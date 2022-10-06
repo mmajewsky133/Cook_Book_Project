@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_health"
+        android:enabled="true"
+        android:icon="@drawable/icon_selection_health"
+        android:title="@string/menu_text_health"/>
+    <item
+        android:id="@+id/page_Recipes"
+        android:enabled="true"
+        android:icon="@drawable/icon_selection_recipe"
+        android:title="@string/menu_text_recipes"/>
+    <item
+        android:id="@+id/page_Home"
+        android:enabled="true"
+        android:icon="@drawable/icon_selection_home"
+        android:title="@string/menu_text_home"/>
+    <item
+        android:id="@+id/page_Cooking"
+        android:enabled="true"
+        android:icon="@drawable/icon_selection_cooking"
+        android:title="@string/menu_text_cooking"/>
+    <item
+        android:id="@+id/page_More"
+        android:enabled="true"
+        android:icon="@drawable/dots_horizontal"
+        android:title="@string/menu_text_more"/>
+</menu>
