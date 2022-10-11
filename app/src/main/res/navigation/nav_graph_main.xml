@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.main.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/cookingFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.main.CookingFragment"
+        android:label="fragment_cooking"
+        tools:layout="@layout/fragment_cooking" />
+    <fragment
+        android:id="@+id/healthFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.main.HealthFragment"
+        android:label="fragment_health"
+        tools:layout="@layout/fragment_health" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.main.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.main.RecipesFragment"
+        android:label="fragment_recipes"
+        tools:layout="@layout/fragment_recipes" />
+</navigation>

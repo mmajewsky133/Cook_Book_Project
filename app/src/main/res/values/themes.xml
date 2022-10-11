@@ -2,17 +2,19 @@
     <!-- Base application theme. -->
     <style name="Theme.CookBook" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryColorLight</item>
-        <item name="colorPrimaryVariant">@color/primaryLightColorLight</item>
-        <item name="colorOnPrimary">@color/primaryTextColorLight</item>
+        <item name="colorPrimary">@color/MainGreenColor</item>
+        <item name="colorPrimaryVariant">@color/MainVariantGreen</item>
+        <item name="colorOnPrimary">@color/LetterishBlackishGreen</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondaryColorLight</item>
-        <item name="colorSecondaryVariant">@color/secondaryDarkColorLight</item>
-        <item name="colorOnSecondary">@color/secondaryTextColorLight</item>
+        <item name="colorSecondary">@color/SecondarishGray</item>
+        <item name="colorSecondaryVariant">@color/SecondarishGrayVariant</item>
+        <item name="colorOnSecondary">@color/Black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Surface color. -->
-        <item name="colorSurface">@color/colorSurfaceLight</item>
+        <!-- NavBar y otras cositas -->
+        <item name="colorSurface">@color/NavBarishLightGreen</item>
+        <item name="colorOnSurface">@color/LetterishBlackishGreen</item>
+        <item name="colorOnSurfaceVariant">@color/LetterishBlackishGreen</item>
     </style>
     <!--
     <style name="Theme.LegacyCookBook" parent="Theme.Material3.DayNight.NoActionBar">

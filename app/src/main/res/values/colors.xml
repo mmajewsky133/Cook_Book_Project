@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Light Theme Colors -->
-    <color name="primaryColorLight">#00d341</color>
-    <color name="primaryLightColorLight">#62ff72</color>
-    <color name="primaryDarkColorLight">#00a000</color>
-    <color name="secondaryColorLight">#757575</color>
-    <color name="secondaryLightColorLight">#a4a4a4</color>
-    <color name="secondaryDarkColorLight">#494949</color>
-    <color name="primaryTextColorLight">#1e2320</color>
-    <color name="secondaryTextColorLight">#ffffff</color>
-    <color name="colorSurfaceLight">#98fa7d</color>
+    <color name="Black">#000000</color>
+    <color name="White">#ffffff</color>
+    <color name="ErrorishGray">#959595</color>
 
-    <!-- Dark Theme Colors -->
-    <color name="primaryColorDark">#1e2320</color>
-    <color name="primaryLightColorDark">#454b47</color>
-    <color name="primaryDarkColorDark">#000000</color>
-    <color name="secondaryColorDark">#00b736</color>
-    <color name="secondaryLightColorDark">#5bea66</color>
-    <color name="secondaryDarkColorDark">#008600</color>
-    <color name="primaryTextColorDark">#ffffff</color>
-    <color name="secondaryTextColorDark">#000000</color>
-    <color name="colorSurfaceDark">#1e2320</color>
+    <color name="MainGreenColor">#00d341</color>
+    <color name="MainDarkModeColor">#1e2320</color>
 
-    <!-- Extra Colores de la App-->
+    <color name="SecondarishGray">#F0F0F0</color>
+
+    <color name="LetterishBlackishGreen">#002810</color>
+
+    <color name="NavBarishLightGreen">#E3FAEA</color>
+    <color name="SelectedItemGreen">#96EDB1</color>
+
+    <!-- Colores obligatorios pero no termino de entender -->
+    <!-- Light Mode -->
+    <color name="MainVariantGreen">#00a000</color>
+    <color name="SecondarishGrayVariant">#bebebe</color>
+    <!-- Dark Mode -->
+    <color name="MainDarkVariantGrey">#454b47</color>
+    <color name="SecondarishDarkGreenVariant">#007000</color>
 </resources>
