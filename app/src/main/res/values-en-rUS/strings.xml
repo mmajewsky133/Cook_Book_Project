@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cook Book</string>
+    <string name="menu_text_health">Health</string>
+    <string name="menu_text_recipes">Recipes</string>
+    <string name="menu_text_home" translatable="false">Home</string>
+    <string name="menu_text_cooking">Cooking</string>
+    <string name="menu_text_more">More</string>
+</resources>
