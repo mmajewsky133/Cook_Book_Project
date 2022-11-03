@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             //getColorStateList(R.color.SelectedItemGreen)
 
         //Selecciona el item correcto en el bottomnav (home) porque por defecto pone el primero
+        replaceFragment(HomeFragment())
         binding.bottomNavigation.selectedItemId = R.id.page_Home
 
         // basicamente maneja el a que pagina se va si le das click
