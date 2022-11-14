@@ -1,17 +1,11 @@
-package edu.uca.innovatech.cookbook
+package edu.uca.innovatech.cookbook.ui.view
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
+import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.databinding.ActivityMainBinding
-import edu.uca.innovatech.cookbook.ui.main.*
+import edu.uca.innovatech.cookbook.ui.view.main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,13 +56,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun replaceFragment(fragment : Fragment){
         println("Enters the replace Fragment")
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
-        println("does Commit?")
     }
 }

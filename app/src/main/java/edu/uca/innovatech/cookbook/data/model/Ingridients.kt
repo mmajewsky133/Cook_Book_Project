@@ -1,4 +1,4 @@
-package edu.uca.innovatech.cookbook.model
+package edu.uca.innovatech.cookbook.data.model
 
 data class Ingridients(
     val nombre: String,

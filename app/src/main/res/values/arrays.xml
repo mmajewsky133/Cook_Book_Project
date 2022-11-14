@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="categorias_receta">
+        <item>PruebaCat1</item>
+        <item>PruebaCat2</item>
+        <item>PruebaCat3</item>
+    </array>
+
+</resources>

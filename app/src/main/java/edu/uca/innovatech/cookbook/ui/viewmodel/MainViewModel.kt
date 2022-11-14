@@ -1,4 +1,4 @@
-package edu.uca.innovatech.cookbook.model
+package edu.uca.innovatech.cookbook.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 

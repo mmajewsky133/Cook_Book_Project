@@ -1,4 +1,4 @@
-package edu.uca.innovatech.cookbook.ui.main
+package edu.uca.innovatech.cookbook.ui.view.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

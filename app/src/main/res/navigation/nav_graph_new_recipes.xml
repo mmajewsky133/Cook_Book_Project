@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_new_recipes"
+    app:startDestination="@id/addRecipeDataFragment">
+
+    <fragment
+        android:id="@+id/addRecipeDataFragment"
+        android:name="edu.uca.innovatech.cookbook.AddRecipeDataFragment"
+        android:label="fragment_add_recipe_data"
+        tools:layout="@layout/fragment_add_recipe_data" />
+</navigation>
