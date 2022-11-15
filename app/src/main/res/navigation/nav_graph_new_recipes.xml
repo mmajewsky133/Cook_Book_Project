@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/addRecipeDataFragment"
-        android:name="edu.uca.innovatech.cookbook.AddRecipeDataFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.AddRecipeDataFragment"
         android:label="fragment_add_recipe_data"
         tools:layout="@layout/fragment_add_recipe_data" />
 </navigation>
