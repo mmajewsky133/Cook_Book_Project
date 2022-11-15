@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="Black">#000000</color>
-    <color name="White">#ffffff</color>
-    <color name="ErrorishGray">#959595</color>
-
-    <color name="MainGreenColor">#00d341</color>
-    <color name="MainDarkModeColor">#1e2320</color>
-
-    <color name="SecondarishGray">#F0F0F0</color>
-
-    <color name="LetterishBlackishGreen">#002810</color>
-
-    <color name="NavBarishLightGreen">#E3FAEA</color>
-    <color name="SelectedItemGreen">#96EDB1</color>
 
     <!-- Colores obligatorios pero no termino de entender -->
     <!-- Light Mode -->
-    <color name="MainVariantGreen">#00a000</color>
-    <color name="SecondarishGrayVariant">#bebebe</color>
     <!-- Dark Mode -->
-    <color name="MainDarkVariantGrey">#454b47</color>
-    <color name="SecondarishDarkGreenVariant">#007000</color>
 
     <color name="md_theme_light_primary">#006E1D</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
@@ -45,12 +28,6 @@
     <color name="md_theme_light_surfaceVariant">#DEE5D8</color>
     <color name="md_theme_light_onSurfaceVariant">#424940</color>
     <color name="md_theme_light_outline">#72796F</color>
-    <color name="md_theme_light_inverseOnSurface">#F0F1EB</color>
-    <color name="md_theme_light_inverseSurface">#2F312D</color>
-    <color name="md_theme_light_inversePrimary">#2EE450</color>
-    <color name="md_theme_light_shadow">#000000</color>
-    <color name="md_theme_light_surfaceTint">#006E1D</color>
-    <color name="md_theme_light_surfaceTintColor">#006E1D</color>
     <color name="md_theme_dark_primary">#2EE450</color>
     <color name="md_theme_dark_onPrimary">#00390B</color>
     <color name="md_theme_dark_primaryContainer">#005314</color>
@@ -74,10 +51,4 @@
     <color name="md_theme_dark_surfaceVariant">#424940</color>
     <color name="md_theme_dark_onSurfaceVariant">#C2C9BD</color>
     <color name="md_theme_dark_outline">#8C9388</color>
-    <color name="md_theme_dark_inverseOnSurface">#1A1C19</color>
-    <color name="md_theme_dark_inverseSurface">#E2E3DD</color>
-    <color name="md_theme_dark_inversePrimary">#006E1D</color>
-    <color name="md_theme_dark_shadow">#000000</color>
-    <color name="md_theme_dark_surfaceTint">#2EE450</color>
-    <color name="md_theme_dark_surfaceTintColor">#2EE450</color>
 </resources>

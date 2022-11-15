@@ -5,5 +5,19 @@
         <item>PruebaCat2</item>
         <item>PruebaCat3</item>
     </array>
-
+    <array name="tiempos_receta">
+        <item>PruebaTemp1</item>
+        <item>PruebaTemp2</item>
+        <item>PruebaTemp3</item>
+    </array>
+    <array name="medidas_receta">
+        <item>PruebaMed1</item>
+        <item>PruebaMed2</item>
+    </array>
+    <array name="pasos_receta">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </array>
 </resources>
