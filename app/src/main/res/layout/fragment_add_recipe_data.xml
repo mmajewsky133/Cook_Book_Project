@@ -55,7 +55,8 @@
                     <ImageView
                         android:id="@+id/ivFotoReceta"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:src=""/>
 
                 </com.google.android.material.card.MaterialCardView>
 

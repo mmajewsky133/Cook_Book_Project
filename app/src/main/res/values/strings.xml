@@ -6,6 +6,10 @@
     <string name="menu_text_cooking">Cocinando</string>
     <string name="menu_text_more">Más</string>
     <string name="add_receta">Añadir nueva receta</string>
+    <string name="content_description_receta">Imagen de la receta</string>
+    <string name="placeholderText_nombreReceta">Nombre de Receta</string>
+    <string name="placeholderText_TiempoPrepReceta">Tiempo de preparacion: XX x</string>
+    <string name="placeholderText_kcalReceta">Calorias estimadas: XXX kcal</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="nombre_receta_label">Nombre</string>
     <string name="autor_receta_label">Autor</string>
