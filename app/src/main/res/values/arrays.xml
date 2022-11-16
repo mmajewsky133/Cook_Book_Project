@@ -7,9 +7,9 @@
         <item>Postres</item>
     </array>
     <array name="tiempos_receta">
-        <item>PruebaTemp1</item>
-        <item>PruebaTemp2</item>
-        <item>PruebaTemp3</item>
+        <item>Desayuno</item>
+        <item>Almuerzo</item>
+        <item>Cena</item>
     </array>
     <array name="medidas_receta">
         <item>PruebaMed1</item>
