@@ -10,6 +10,7 @@
         <item>Desayuno</item>
         <item>Almuerzo</item>
         <item>Cena</item>
+        <item>Snack</item>
     </array>
     <array name="medidas_receta">
         <item>PruebaMed1</item>
