@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="categorias_receta">
-        <item>PruebaCat1</item>
-        <item>PruebaCat2</item>
-        <item>PruebaCat3</item>
+        <item>Pastas</item>
+        <item>Ensaladas</item>
+        <item>Carnes</item>
+        <item>Postres</item>
     </array>
     <array name="tiempos_receta">
         <item>PruebaTemp1</item>
