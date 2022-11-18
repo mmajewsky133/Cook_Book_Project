@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="categorias_receta">
-        <item>PruebaCat1</item>
-        <item>PruebaCat2</item>
-        <item>PruebaCat3</item>
+        <item>Pasta</item>
+        <item>Ensalada</item>
+        <item>Carne</item>
+        <item>Postre</item>
+        <item>Sopa</item>
+        <item>Bebida</item>
+        <item>Tipica</item>
+        <item>Acompañamientos</item>
     </array>
     <array name="tiempos_receta">
-        <item>PruebaTemp1</item>
-        <item>PruebaTemp2</item>
-        <item>PruebaTemp3</item>
-    </array>
-    <array name="medidas_receta">
-        <item>PruebaMed1</item>
-        <item>PruebaMed2</item>
+        <item>Desayuno</item>
+        <item>Almuerzo</item>
+        <item>Cena</item>
+        <item>Snack</item>
     </array>
     <array name="pasos_receta">
         <item>1 Paso</item>

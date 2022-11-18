@@ -5,10 +5,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.main.HealthFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Health Page"
-        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/menu_text_healthy_lifestyle"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </FrameLayout>

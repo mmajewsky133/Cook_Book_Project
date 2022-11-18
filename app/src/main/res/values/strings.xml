@@ -8,8 +8,8 @@
     <string name="add_receta">Añadir nueva receta</string>
     <string name="content_description_receta">Imagen de la receta</string>
     <string name="placeholderText_nombreReceta">Nombre de Receta</string>
-    <string name="placeholderText_TiempoPrepReceta">Tiempo de preparacion: XX x</string>
-    <string name="placeholderText_kcalReceta">Calorias estimadas: XXX kcal</string>
+    <string name="placeholderText_TiempoPrepReceta">Tiempo de preparacion: %1$s m</string>
+    <string name="placeholderText_kcalReceta">Calorias estimadas: %1$s kcal</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="nombre_receta_label">Nombre</string>
     <string name="autor_receta_label">Autor</string>
@@ -18,4 +18,5 @@
     <string name="pasos_receta_label">Pasos</string>
     <string name="medida_receta_label">Medida</string>
     <string name="siguiente">Siguiente</string>
+    <string name="menu_text_healthy_lifestyle">Vida Saludable</string>
 </resources>

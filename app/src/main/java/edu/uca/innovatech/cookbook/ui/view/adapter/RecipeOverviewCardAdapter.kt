@@ -1,52 +1,55 @@
 package edu.uca.innovatech.cookbook.ui.view.adapter
 
-/*
-class RecipeOverviewCardAdapter()
-    : RecyclerView.Adapter<RecipeOverviewCardAdapter.RecipeOverviewCardViewHolder>() {
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import edu.uca.innovatech.cookbook.data.database.entities.Receta
+import edu.uca.innovatech.cookbook.databinding.ItemRecipeOverviewBinding
 
-    //TODO: private val recipeList = recipesDao
 
-    /**
-     * View Holder del rcv dentro del Adapter como un "inner class"
-    */
-    inner class RecipeOverviewCardViewHolder(val binding: ItemRecipeOverviewBinding) :
+class RecipeOverviewCardAdapter(private val onReceteClicked: (Receta) -> Unit) :
+    ListAdapter<Receta, RecipeOverviewCardAdapter.RecetaViewHolder>(DiffCallback) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecetaViewHolder {
+        val binding = ItemRecipeOverviewBinding.inflate(
+            LayoutInflater.from(parent.context)
+        )
+        return RecetaViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: RecetaViewHolder, position: Int) {
+        val current = getItem(position)
+        holder.itemView.setOnClickListener{
+            onReceteClicked(current)
+        }
+        holder.bind(current)
+    }
+
+    class RecetaViewHolder(private val binding: ItemRecipeOverviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        //Declaracion y inicializacion de los componentes list item del UI
-        fun cargar(
-            receta: Receta, onClickListener: (Receta) -> Unit
-        ) {
-            with(binding) {
-                ivReceta.setImageResource(receta.imageResourceId)
-                tvNombreReceta.text = receta.nombre
-                tvTiempoPrepReceta.text = receta.tiempo.toString()
-                tvCaloriesReceta.text = receta.calorias.toString()
 
-                itemView.setOnClickListener {onClickListener(receta) }
+        fun bind(receta: Receta) {
+            binding.apply {
+                ivReceta.setImageURI(receta.uriImagen)
+                tvNombreReceta.text = receta.nombre
+                tvTiempoPrepReceta.text = "Tiempo de preparacion:" + receta.tiempo + "m"
+                tvCaloriesReceta.text = "Calorias estimadas: " + receta.calorias + "kcal"
             }
         }
     }
 
-    override fun onCreateViewHolder( parent: ViewGroup, viewType: Int): RecipeOverviewCardViewHolder {
-        //Crea un nuevo view
-        val binding = ItemRecipeOverviewBinding.inflate(
-           LayoutInflater.from(parent.context), parent, false
-        )
-        return RecipeOverviewCardViewHolder(binding)
+    companion object {
+        private val DiffCallback = object : DiffUtil.ItemCallback<Receta>() {
+            override fun areItemsTheSame(oldItem: Receta, newItem: Receta): Boolean {
+                return oldItem === newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Receta, newItem: Receta): Boolean {
+                return oldItem.nombre == newItem.nombre
+            }
+        }
     }
-
-    override fun onBindViewHolder(holder: RecipeOverviewCardViewHolder, position: Int) {
-        holder.cargar()
-
-        //TODO: (after implementing el DataSource) val item = dataset[position]
-
-        //holder.ivRecipe.setImageResource()                                        TODO: recipeList.imageResourceId
-        //holder.tvRecipe?.text = ""                                                TODO: recipeList.nombre
-        //holder.tvRecipeTiempoPrep?.text = "Tiempo de preparacion " + "" + "min."  TODO: recipeList.tiempo
-        //holder.tvRecipeCalorias?.text = "Calorias " + "" + "kcal"                 TODO: recipeList.calorias
-    }
-
-    override fun getItemCount() = recipeList.size
 
 }
-
-*/

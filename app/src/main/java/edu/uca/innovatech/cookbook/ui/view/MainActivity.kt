@@ -1,5 +1,6 @@
 package edu.uca.innovatech.cookbook.ui.view
 
+import android.content.ContentResolver
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +14,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        fun getContentResolver(): ContentResolver{
+            return contentResolver
+        }
 
         //Basic Binding que bindea el activity main con el layout
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -56,8 +61,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Funcion para cambiar el Fragment
     private fun replaceFragment(fragment : Fragment){
-        println("Enters the replace Fragment")
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)

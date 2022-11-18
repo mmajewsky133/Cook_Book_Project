@@ -56,45 +56,49 @@
                         android:id="@+id/ivFotoReceta"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src=""/>
+                        android:scaleType="centerCrop"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <!--Text Input para nombre de receta-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tfNombreReceta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nombre_receta_label">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tfNombreReceta"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!--Text Input para autor de receta-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tfAutorReceta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/autor_receta_label">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tfAutorReceta"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!--Combo Input para categoria de receta-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tfCategoriaReceta"
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/categoria_receta_label">
 
                     <AutoCompleteTextView
+                        android:id="@+id/tfCategoriaReceta"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
@@ -105,13 +109,13 @@
 
                 <!--Combo Input para tiempo de receta-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tfTiempoReceta"
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/tiempo_receta_label">
 
                     <AutoCompleteTextView
+                        android:id="@+id/tfTiempoReceta"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
@@ -124,32 +128,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <!--Combo Input para medida de receta-->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tfMedidaReceta"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/medida_receta_label">
-
-                    <AutoCompleteTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        app:simpleItems="@array/medidas_receta"
-                        tools:ignore="LabelFor" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <!--Combo Input para pasos de receta-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tfPasosReceta"
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/pasos_receta_label">
 
                     <AutoCompleteTextView
+                        android:id="@+id/tfPasosReceta"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"

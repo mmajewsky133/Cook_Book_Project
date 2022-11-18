@@ -1,6 +1,6 @@
-package edu.uca.innovatech.cookbook.data.model
+package edu.uca.innovatech.cookbook.data.database.entities
 
-data class Ingridients(
+data class Ingrediente(
     val nombre: String,
     val calorias: Double,
     val medida: Int,
