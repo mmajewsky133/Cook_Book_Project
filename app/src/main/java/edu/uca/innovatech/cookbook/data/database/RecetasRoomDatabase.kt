@@ -7,9 +7,10 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import edu.uca.innovatech.cookbook.core.Converters
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
+import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.Receta
 
-@Database(entities = [Receta::class], version = 1, exportSchema = true)
+@Database(entities = [Receta::class, Paso::class], version = 1, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class RecetasRoomDatabase : RoomDatabase() {
 

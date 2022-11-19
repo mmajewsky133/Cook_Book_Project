@@ -10,13 +10,15 @@ import java.io.ByteArrayOutputStream
 class Converters {
 
     @TypeConverter
-    fun fromUri(uri: Uri): String {
-        return uri.toString()
+    fun fromBitmap(bitmap: Bitmap): ByteArray {
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        return outputStream.toByteArray()
     }
 
     @TypeConverter
-    fun toUri(string: String): Uri {
-        return string.toUri()
+    fun toBitmap(byteArray: ByteArray): Bitmap {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
     }
 
 }
