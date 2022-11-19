@@ -15,10 +15,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        fun getContentResolver(): ContentResolver{
-            return contentResolver
-        }
-
         //Basic Binding que bindea el activity main con el layout
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -2,6 +2,7 @@ package edu.uca.innovatech.cookbook.ui.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -32,11 +33,26 @@ class RecipeOverviewCardAdapter(private val onReceteClicked: (Receta) -> Unit) :
 
         fun bind(receta: Receta) {
             binding.apply {
-                ivReceta.setImageURI(receta.uriImagen)
+                ivReceta.setImageBitmap(receta.bitmapImagen)
+                ivReceta.scaleType = ImageView.ScaleType.CENTER_CROP
                 tvNombreReceta.text = receta.nombre
-                tvTiempoPrepReceta.text = "Tiempo de preparacion:" + receta.tiempo + "m"
-                tvCaloriesReceta.text = "Calorias estimadas: " + receta.calorias + "kcal"
+                tvTiempoPrepReceta.text = parseTiempoPrep(receta.tiempoPrep)
+                tvCaloriesReceta.text = parseCalorias(receta.calorias)
             }
+        }
+
+        private fun parseTiempoPrep(tiempoPrep: Int): String{
+            if (tiempoPrep.equals(0))
+                return "Tiempo de preparacion: Pendiente"
+
+            return "Tiempo de preparacion: $tiempoPrep m"
+        }
+
+        private fun parseCalorias(kcal: Int): String{
+            if (kcal.equals(0))
+                return "Calorias estimadas: Pendiente"
+
+            return "Calorias estimadas: $kcal kcal"
         }
     }
 

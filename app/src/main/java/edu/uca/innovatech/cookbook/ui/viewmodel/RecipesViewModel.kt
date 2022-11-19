@@ -1,13 +1,11 @@
 package edu.uca.innovatech.cookbook.ui.viewmodel
 
 import android.graphics.Bitmap
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
 import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import kotlinx.coroutines.launch
@@ -21,11 +19,11 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     }
 
     fun agregarReceta(
-        imagen: Uri, nombre: String, autor: String, categoria: String,
+        imagen: Bitmap, nombre: String, autor: String, categoria: String,
         tiempo: String, pasos: Int
     ) {
         val nuevaReceta = Receta(
-            uriImagen = imagen,
+            bitmapImagen = imagen,
             nombre = nombre,
             autor = autor,
             categoria = categoria,
@@ -37,7 +35,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
 
     private fun insertReceta(receta: Receta) {
         viewModelScope.launch {
-            recetaDao.insert(receta)
+            recetaDao.insertReceta(receta)
         }
     }
 

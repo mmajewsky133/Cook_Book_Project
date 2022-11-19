@@ -16,7 +16,6 @@ import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDataBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
-import edu.uca.innovatech.cookbook.core.ToAppFiles
 
 class AddRecipeDataFragment : Fragment() {
 
@@ -97,7 +96,6 @@ class AddRecipeDataFragment : Fragment() {
                     && tfCategoriaReceta.text.toString().isNotEmpty()
                     && tfTiempoReceta.text.toString().isNotEmpty()
                     && tfTiempoReceta.text.toString().isNotEmpty()
-                    && ivFotoReceta.drawable != null
         }
     }
 
@@ -105,7 +103,7 @@ class AddRecipeDataFragment : Fragment() {
 
         if (esValido()) {
             viewModel.agregarReceta(
-                selectedImageUri,
+                binding.ivFotoReceta.drawable.toBitmap(),
                 binding.tfNombreReceta.text.toString(),
                 binding.tfAutorReceta.text.toString(),
                 binding.tfCategoriaReceta.text.toString(),
