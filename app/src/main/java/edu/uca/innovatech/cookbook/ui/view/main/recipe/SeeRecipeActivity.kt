@@ -70,7 +70,7 @@ class SeeRecipeActivity : AppCompatActivity() {
     }
 
     private fun mostrarDialogConfirmacion() {
-        MaterialAlertDialogBuilder(applicationContext)
+        MaterialAlertDialogBuilder(this)
             .setTitle(getString(android.R.string.dialog_alert_title))
             .setMessage(getString(R.string.delete_recipe_dialog_msg))
             .setCancelable(false)
@@ -83,5 +83,6 @@ class SeeRecipeActivity : AppCompatActivity() {
 
     private fun eliminarReceta() {
         viewModel.deleteReceta(receta)
+        onBackPressedDispatcher.onBackPressed()
     }
 }

@@ -44,6 +44,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         }
     }
 
+    //Manda a llamar el Dao para eliminar una receta
     fun deleteReceta(receta: RecetasConPasos) {
         viewModelScope.launch {
             recetaDao.deletePasos(receta.receta.id)
