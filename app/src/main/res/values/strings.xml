@@ -21,4 +21,9 @@
     <string name="menu_text_healthy_lifestyle">Vida Saludable</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="editar_receta">Editar Receta</string>
+    <string name="eliminar_receta">Eliminar Receta</string>
+    <string name="no">No</string>
+    <string name="yes">Si</string>
+    <string name="delete_recipe_dialog_msg">Desea eliminar esta receta?</string>
 </resources>
