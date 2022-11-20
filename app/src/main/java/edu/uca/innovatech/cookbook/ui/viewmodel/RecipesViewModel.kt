@@ -13,12 +13,15 @@ import kotlinx.coroutines.launch
 
 class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
 
+    //Recupera todas las recetas
     val allRecetas: LiveData<List<Receta>> = recetaDao.getRecetas().asLiveData()
 
+    //Agarra una receta con pasos del dao
     fun agarrarReceta(id: Int): LiveData<RecetasConPasos> {
         return recetaDao.getRecetaConPasos(id).asLiveData()
     }
 
+    //crea un objeto de tipo Receta para mandar a guardar tal objeto
     fun agregarReceta(
         imagen: Bitmap, nombre: String, autor: String, categoria: String,
         tiempo: String, pasos: Int
@@ -34,13 +37,22 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         insertReceta(nuevaReceta)
     }
 
+    //Manda a llamar al Dao para guardar la receta
     private fun insertReceta(receta: Receta) {
         viewModelScope.launch {
             recetaDao.insertReceta(receta)
         }
     }
 
+    fun deleteReceta(receta: RecetasConPasos) {
+        viewModelScope.launch {
+            recetaDao.deletePasos(receta.receta.id)
+            recetaDao.deleteReceta(receta.receta)
+        }
+    }
+
     //Estoy tan cansado que estoy dispuesto a hacer esto
+    //Basicamente dependiendo de la opcion de usuario devuelve el Int correspondiente
     fun pasosConverter(pasos: String): Int{
 
         var numPasos: Int = 0

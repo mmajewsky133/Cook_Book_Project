@@ -3,6 +3,7 @@ package edu.uca.innovatech.cookbook.ui.view.main.recipe
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
@@ -52,15 +53,35 @@ class SeeRecipeActivity : AppCompatActivity() {
             topAppBar.title = receta.receta.nombre
 
             topAppBar.setNavigationOnClickListener{ onBackPressed() }
+            topAppBar.setOnMenuItemClickListener{ menuItem ->
+                when (menuItem.itemId) {
+                    R.id.editar_receta -> {
+
+                        true
+                    }
+                    R.id.eliminar_receta -> {
+                        mostrarDialogConfirmacion()
+                        true
+                    }
+                    else -> false
+                }
+            }
         }
     }
 
-    private fun toggleImageView(receta: RecetasConPasos){
-        binding.apply {
+    private fun mostrarDialogConfirmacion() {
+        MaterialAlertDialogBuilder(applicationContext)
+            .setTitle(getString(android.R.string.dialog_alert_title))
+            .setMessage(getString(R.string.delete_recipe_dialog_msg))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.no)) { _, _ -> }
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                eliminarReceta()
+            }
+            .show()
+    }
 
-            ivFotoReceta.layoutParams.height = receta.receta.bitmapImagen.height
-            ivFotoRecetaHolder.layoutParams.height = receta.receta.bitmapImagen.height
-
-        }
+    private fun eliminarReceta() {
+        viewModel.deleteReceta(receta)
     }
 }
