@@ -22,8 +22,8 @@ interface RecetaDao {
     fun getpaso(idPaso: Int, idReceta: Int): Flow<Paso>
 
     //Query para obtener una receta con sus pasos
-    @Query("SELECT * FROM receta")
-    fun getRecetaConPasos(): Flow<RecetasConPasos>
+    @Query("SELECT * FROM receta WHERE id = :idReceta")
+    fun getRecetaConPasos(idReceta: Int): Flow<RecetasConPasos>
 
     //Insert, Update y Delete de una receta
     @Insert(onConflict = OnConflictStrategy.IGNORE)

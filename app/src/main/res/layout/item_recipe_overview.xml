@@ -16,11 +16,10 @@
         <ImageView
             android:id="@+id/ivReceta"
             android:layout_width="match_parent"
-            android:layout_height="194dp"
+            android:layout_height="140dp"
             android:contentDescription="@string/content_description_receta"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/placeholder"
-            android:adjustViewBounds="false"/>
+            app:srcCompat="@drawable/placeholder"/>
 
         <LinearLayout
             android:layout_width="match_parent"

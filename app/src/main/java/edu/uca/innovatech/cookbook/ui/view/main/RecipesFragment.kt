@@ -1,23 +1,18 @@
 package edu.uca.innovatech.cookbook.ui.view.main
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.uca.innovatech.cookbook.CookBookApp
-import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import edu.uca.innovatech.cookbook.databinding.FragmentRecipesBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeOverviewCardAdapter
 import edu.uca.innovatech.cookbook.ui.view.main.recipe.AddRecipeActivity
-import edu.uca.innovatech.cookbook.ui.view.main.recipe.SeeRecipeFragment
+import edu.uca.innovatech.cookbook.ui.view.main.recipe.SeeRecipeActivity
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
@@ -50,7 +45,10 @@ class RecipesFragment : Fragment() {
 
         val adapter = RecipeOverviewCardAdapter {
             //Codigo para cuando se presione en el CardView
-            mostrarRecetaDialog(it.id)
+            val intent = Intent(context, SeeRecipeActivity::class.java)
+            intent.putExtra("id_receta", it.id)
+
+            startActivity(intent)
         }
 
         binding.rcvListaRecetas.layoutManager = LinearLayoutManager(this.context)
@@ -66,13 +64,6 @@ class RecipesFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
-    }
-
-    private fun mostrarRecetaDialog(id: Int) {
-        val fragmentManager = childFragmentManager
-        val nuevoFragment = SeeRecipeFragment()
-
-        nuevoFragment.show(fragmentManager, id.toString())
     }
 
     override fun onDestroyView() {

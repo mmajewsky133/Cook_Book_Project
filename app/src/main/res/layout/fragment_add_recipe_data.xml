@@ -55,9 +55,9 @@
                     <ImageView
                         android:id="@+id/ivFotoReceta"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="140dp"
                         android:scaleType="centerCrop"
-                        android:src="@color/md_theme_light_surface"/>
+                        android:src="@drawable/placeholder"/>
 
                 </com.google.android.material.card.MaterialCardView>
 

@@ -8,6 +8,8 @@
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/drawable/cards_heart_outline.xml" value="0.294" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/drawable/divider.xml" value="0.1695" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/drawable/home.xml" value="0.288" />
+        <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/drawable/home_outline.xml" value="0.231" />
+        <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.231" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/drawable/ic_cook_book_logo.xml" value="0.274" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/drawable/ic_cook_hat.xml" value="0.288" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/drawable/ic_cookie_warning.xml" value="0.288" />
@@ -22,6 +24,7 @@
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/activity_add_recipe.xml" value="0.33" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/activity_config.xml" value="0.38697916666666665" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/activity_see_recipe.xml" value="0.38697916666666665" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_add_recipe_data.xml" value="0.25" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_cooking.xml" value="0.33" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_health.xml" value="0.38697916666666665" />
