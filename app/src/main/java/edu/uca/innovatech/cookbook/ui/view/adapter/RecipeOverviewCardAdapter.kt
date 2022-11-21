@@ -3,6 +3,7 @@ package edu.uca.innovatech.cookbook.ui.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -36,8 +37,10 @@ class RecipeOverviewCardAdapter(private val onReceteClicked: (Receta) -> Unit) :
                 ivReceta.setImageBitmap(receta.bitmapImagen)
                 ivReceta.scaleType = ImageView.ScaleType.CENTER_CROP
                 tvNombreReceta.text = receta.nombre
+                tvAutorReceta.text = receta.autor
                 tvTiempoPrepReceta.text = parseTiempoPrep(receta.tiempoPrep)
                 tvCaloriesReceta.text = parseCalorias(receta.calorias)
+                if (receta.isPending) tvPendiente.isVisible = true
             }
         }
 
