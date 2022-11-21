@@ -15,11 +15,11 @@ class StepsDetailsCardAdapter(private val onPasoClicked: (Paso) -> Unit) :
         val binding = ItemPasoDetailsBinding.inflate(
             LayoutInflater.from(parent.context)
         )
-        return StepsDetailsCardAdapter.PasoViewHolder(binding)
+        return PasoViewHolder(binding)
     }
 
     override fun onBindViewHolder(
-        holder: StepsDetailsCardAdapter.PasoViewHolder,
+        holder: PasoViewHolder,
         position: Int
     ) {
         val current = getItem(position)
@@ -34,6 +34,7 @@ class StepsDetailsCardAdapter(private val onPasoClicked: (Paso) -> Unit) :
 
         fun bind(paso: Paso) {
             binding.apply {
+                ivPaso.setImageBitmap(paso.imagenPaso)
                 tvPasoNum.text = parseNumPaso(paso.numPaso)
                 tvTiempoPrepPaso.text = parseTiempoPrep(paso.tiempo)
                 tvDetallesPaso.text = paso.detalle
