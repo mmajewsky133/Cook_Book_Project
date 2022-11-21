@@ -26,5 +26,29 @@
             android:name="receta_id"
             android:defaultValue="-1"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_addRecipeDetailFragment_to_editStepDetailsFragment"
+            app:destination="@id/editStepDetailsFragment" />
+        <action
+            android:id="@+id/action_addRecipeDetailFragment_to_editIngridientDetailsFragment"
+            app:destination="@id/editIngridientDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editStepDetailsFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.EditStepDetailsFragment"
+        android:label="fragment_edit_step_details"
+        tools:layout="@layout/fragment_edit_step_details" >
+        <action
+            android:id="@+id/action_editStepDetailsFragment_to_addRecipeDetailFragment"
+            app:destination="@id/addRecipeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editIngridientDetailsFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.EditIngredientDetailsFragment"
+        android:label="fragment_edit_ingridient_details"
+        tools:layout="@layout/fragment_edit_ingredient_details" >
+        <action
+            android:id="@+id/action_editIngridientDetailsFragment_to_addRecipeDetailFragment"
+            app:destination="@id/addRecipeDetailFragment" />
     </fragment>
 </navigation>

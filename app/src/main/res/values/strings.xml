@@ -39,5 +39,9 @@
     <string name="loremIpsum_small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam justo erat, finibus quis imperdiet vel, maximus eu dui. Aliquam lacinia nibh nec pretium lacinia. Praesent nisi lacus, aliquam in nibh eget, facilisis consequat ipsum. Etiam ullamcorper metus eget odio elementum vehicula.</string>
     <string name="loremIpsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam justo erat, finibus quis imperdiet vel, maximus eu dui. Aliquam lacinia nibh nec pretium lacinia. Praesent nisi lacus, aliquam in nibh eget, facilisis consequat ipsum. Etiam ullamcorper metus eget odio elementum vehicula. Nam ex tortor, viverra ac fermentum eget, suscipit sit amet libero. Duis at sodales purus. Donec quis eleifend quam. Nam libero purus, rhoncus ut congue eu, tristique ut lorem. </string>
     <string name="loremIpsum_large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam justo erat, finibus quis imperdiet vel, maximus eu dui. Aliquam lacinia nibh nec pretium lacinia. Praesent nisi lacus, aliquam in nibh eget, facilisis consequat ipsum. Etiam ullamcorper metus eget odio elementum vehicula. Nam ex tortor, viverra ac fermentum eget, suscipit sit amet libero. Duis at sodales purus. Donec quis eleifend quam. Nam libero purus, rhoncus ut congue eu, tristique ut lorem. Pellentesque eu ipsum a justo pharetra ultrices. Aliquam ac nisl quis tortor mollis egestas id vitae nisi. In ornare lacus ac pulvinar aliquet. Vestibulum vitae ornare lacus. Morbi sodales non augue non facilisis. Nunc porta ac nisl non scelerisque. Donec condimentum ipsum a est sodales, vel lobortis felis maximus. In placerat gravida mattis.</string>
-    <string name="placeholderText_paso">Paso #:</string>
+    <string name="placeholderText_paso_label">Paso #:</string>
+    <string name="placeholderText_paso">Paso</string>
+    <string name="save">Guardar</string>
+    <string name="tiempo_prep_label">Tiempo estimado (min)</string>
+    <string name="detalles_paso_label">Detalles</string>
 </resources>
