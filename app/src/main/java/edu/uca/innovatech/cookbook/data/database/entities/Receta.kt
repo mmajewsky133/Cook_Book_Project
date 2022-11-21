@@ -22,7 +22,7 @@ data class Receta(
     @ColumnInfo(name = "tiempo_prep")
     val tiempoPrep: Int = 0,
     @ColumnInfo(name = "num_pasos")
-    val pasos: Int,
+    val pasos: Int = 0,
     @ColumnInfo(name = "cant_calorias")
     val calorias: Int = 0,
     @ColumnInfo(name = "estado_pendiente")

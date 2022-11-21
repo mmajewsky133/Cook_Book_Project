@@ -75,7 +75,6 @@ class AddRecipeDataFragment : Fragment() {
             tfAutorReceta.addTextChangedListener(recipeTextWatcher)
             tfCategoriaReceta.addTextChangedListener(recipeTextWatcher)
             tfTiempoReceta.addTextChangedListener(recipeTextWatcher)
-            tfPasosReceta.addTextChangedListener(recipeTextWatcher)
 
             //un click listener para escoger una image para la receta
             ivFotoRecetaHolder.setOnClickListener {
@@ -108,7 +107,6 @@ class AddRecipeDataFragment : Fragment() {
                     && tfAutorReceta.text.toString().isNotEmpty()
                     && tfCategoriaReceta.text.toString().isNotEmpty()
                     && tfTiempoReceta.text.toString().isNotEmpty()
-                    && tfTiempoReceta.text.toString().isNotEmpty()
         }
     }
 
@@ -120,8 +118,7 @@ class AddRecipeDataFragment : Fragment() {
                 binding.tfNombreReceta.text.toString(),
                 binding.tfAutorReceta.text.toString(),
                 binding.tfCategoriaReceta.text.toString(),
-                binding.tfTiempoReceta.text.toString(),
-                viewModel.pasosConverter(binding.tfPasosReceta.text.toString())
+                binding.tfTiempoReceta.text.toString()
             )
         }
         return 0

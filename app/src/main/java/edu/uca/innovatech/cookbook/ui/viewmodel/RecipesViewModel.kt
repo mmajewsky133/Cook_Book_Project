@@ -29,15 +29,14 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     //crea un objeto de tipo Receta para mandar a guardar tal objeto
     suspend fun agregarReceta(
         imagen: Bitmap, nombre: String, autor: String, categoria: String,
-        tiempo: String, pasos: Int
+        tiempo: String
     ): Int {
         val nuevaReceta = Receta(
             bitmapImagen = imagen,
             nombre = nombre,
             autor = autor,
             categoria = categoria,
-            tiempo = tiempo,
-            pasos = pasos
+            tiempo = tiempo
         )
         return insertReceta(nuevaReceta)
     }
@@ -53,27 +52,6 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
             recetaDao.deletePasos(receta.receta.id)
             recetaDao.deleteReceta(receta.receta)
         }
-    }
-
-    //Estoy tan cansado que estoy dispuesto a hacer esto
-    //Basicamente dependiendo de la opcion de usuario devuelve el Int correspondiente
-    fun pasosConverter(pasos: String): Int{
-
-        var numPasos: Int = 0
-
-        when (pasos){
-            "1 Paso" -> numPasos = 1
-            "2 Pasos" -> numPasos = 2
-            "3 Pasos" -> numPasos = 3
-            "4 Pasos" -> numPasos = 4
-            "5 Pasos" -> numPasos = 5
-            "6 Pasos" -> numPasos = 6
-            "7 Pasos" -> numPasos = 7
-            "8 Pasos" -> numPasos = 8
-            "9 Pasos" -> numPasos = 9
-            "10 Pasos" -> numPasos = 10
-        }
-        return numPasos
     }
 }
 
