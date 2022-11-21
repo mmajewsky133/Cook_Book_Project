@@ -22,10 +22,10 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     }
 
     //crea un objeto de tipo Receta para mandar a guardar tal objeto
-    fun agregarReceta(
+    suspend fun agregarReceta(
         imagen: Bitmap, nombre: String, autor: String, categoria: String,
         tiempo: String, pasos: Int
-    ) {
+    ): Int {
         val nuevaReceta = Receta(
             bitmapImagen = imagen,
             nombre = nombre,
@@ -34,14 +34,12 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
             tiempo = tiempo,
             pasos = pasos
         )
-        insertReceta(nuevaReceta)
+        return insertReceta(nuevaReceta)
     }
 
     //Manda a llamar al Dao para guardar la receta
-    private fun insertReceta(receta: Receta) {
-        viewModelScope.launch {
-            recetaDao.insertReceta(receta)
-        }
+    private suspend fun insertReceta(receta: Receta): Int {
+        return recetaDao.insertReceta(receta).toString().toInt()
     }
 
     //Manda a llamar el Dao para eliminar una receta

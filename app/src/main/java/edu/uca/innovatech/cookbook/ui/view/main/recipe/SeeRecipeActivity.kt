@@ -51,6 +51,7 @@ class SeeRecipeActivity : AppCompatActivity() {
         binding.apply {
             ivFotoReceta.setImageBitmap(receta.receta.bitmapImagen)
             topAppBar.title = receta.receta.nombre
+            topAppBar.subtitle = receta.receta.autor
 
             topAppBar.setNavigationOnClickListener{ onBackPressed() }
             topAppBar.setOnMenuItemClickListener{ menuItem ->
