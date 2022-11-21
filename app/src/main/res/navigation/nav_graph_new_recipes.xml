@@ -9,5 +9,22 @@
         android:id="@+id/addRecipeDataFragment"
         android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.AddRecipeDataFragment"
         android:label="fragment_add_recipe_data"
-        tools:layout="@layout/fragment_add_recipe_data" />
+        tools:layout="@layout/fragment_add_recipe_data">
+        <argument
+            android:name="receta_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_addRecipeDataFragment_to_addRecipeDetailFragment"
+            app:destination="@id/addRecipeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRecipeDetailFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.AddRecipeDetailFragment"
+        android:label="fragment_add_recipe_detail"
+        tools:layout="@layout/fragment_add_recipe_detail">
+        <argument
+            android:name="receta_id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 </navigation>

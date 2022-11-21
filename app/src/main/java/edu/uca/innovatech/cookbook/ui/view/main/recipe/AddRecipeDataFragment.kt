@@ -5,23 +5,29 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import edu.uca.innovatech.cookbook.CookBookApp
+import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDataBinding
+import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDetailBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class AddRecipeDataFragment : Fragment() {
 
     private lateinit var selectedImageUri: Uri
 
-    //Basicamente comparte el ViewModel entre fragmentos
+    //Basicamente instancia el ViewModel
     private val viewModel: RecipesViewModel by activityViewModels {
         RecipesViewModelFactory(
             (activity?.application as CookBookApp).database
@@ -40,14 +46,15 @@ class AddRecipeDataFragment : Fragment() {
         }
     }
 
-    private lateinit var binding: FragmentAddRecipeDataBinding
+    private var _binding: FragmentAddRecipeDataBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddRecipeDataBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
+        _binding = FragmentAddRecipeDataBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -81,9 +88,15 @@ class AddRecipeDataFragment : Fragment() {
 
             //un click listener para el boton siguiente
             btnSiguiente.setOnClickListener() {
-                //Temp navigation
-                agregarNuevaReceta()
-                activity?.onBackPressed()
+
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val id = agregarNuevaReceta()
+                    println(id)
+
+                    val action = AddRecipeDataFragmentDirections
+                        .actionAddRecipeDataFragmentToAddRecipeDetailFragment(id)
+                    findNavController().navigate(action)
+                }
             }
         }
     }
@@ -99,10 +112,10 @@ class AddRecipeDataFragment : Fragment() {
         }
     }
 
-    private fun agregarNuevaReceta() {
+    private suspend fun agregarNuevaReceta(): Int {
 
         if (esValido()) {
-            viewModel.agregarReceta(
+            return viewModel.agregarReceta(
                 binding.ivFotoReceta.drawable.toBitmap(),
                 binding.tfNombreReceta.text.toString(),
                 binding.tfAutorReceta.text.toString(),
@@ -111,6 +124,7 @@ class AddRecipeDataFragment : Fragment() {
                 viewModel.pasosConverter(binding.tfPasosReceta.text.toString())
             )
         }
+        return 0
     }
 
     //Objeto TextWatcher para manejar el cambio del TextField
@@ -125,5 +139,13 @@ class AddRecipeDataFragment : Fragment() {
         }
 
         override fun afterTextChanged(p0: Editable?) {}
+    }
+
+    /**
+     * Called when fragment is destroyed.
+     */
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
