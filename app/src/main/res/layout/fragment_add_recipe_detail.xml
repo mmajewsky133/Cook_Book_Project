@@ -232,7 +232,10 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <!--Recycler View de Pasos-->
-
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvPasos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <!--Agregar un Nuevo Paso-->
                 <Button

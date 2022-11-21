@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
+import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import kotlinx.coroutines.launch
@@ -19,6 +20,10 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     //Agarra una receta con pasos del dao
     fun agarrarReceta(id: Int): LiveData<RecetasConPasos> {
         return recetaDao.getRecetaConPasos(id).asLiveData()
+    }
+
+    fun agarrarPasos(id: Int): LiveData<List<Paso>> {
+        return recetaDao.getPasos(id).asLiveData()
     }
 
     //crea un objeto de tipo Receta para mandar a guardar tal objeto
