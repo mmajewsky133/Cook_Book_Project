@@ -1,5 +1,6 @@
 package edu.uca.innovatech.cookbook.ui.view.main.recipe
 
+import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -10,8 +11,10 @@ import androidx.navigation.fragment.findNavController
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import edu.uca.innovatech.cookbook.CookBookApp
@@ -61,6 +64,10 @@ class AddRecipeDataFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        init()
+    }
+
+    private fun init(){
         with(binding) {
 
             btnSiguiente.isEnabled = false
@@ -84,6 +91,10 @@ class AddRecipeDataFragment : Fragment() {
                     )
                 )
             }
+
+            //Un click listener para los comboBox para ocultar el teclado
+            tvCategoria.setOnClickListener { ocultarTeclado() }
+            tvTiempoComida.setOnClickListener { ocultarTeclado() }
 
             //un click listener para el boton siguiente
             btnSiguiente.setOnClickListener() {
@@ -136,6 +147,11 @@ class AddRecipeDataFragment : Fragment() {
         }
 
         override fun afterTextChanged(p0: Editable?) {}
+    }
+
+
+    private fun ocultarTeclado() {
+        //TODO
     }
 
     /**
