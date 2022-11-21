@@ -29,10 +29,9 @@
                     android:id="@+id/topAppBar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:navigationIcon="@drawable/ic_baseline_close_24"
-                    app:title="@string/placeholderText_paso"
                     app:menu="@menu/top_app_bar_save"
-                    />
+                    app:navigationIcon="@drawable/ic_baseline_close_24"
+                    app:title="@string/placeholderText_paso" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -87,43 +86,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tfAutorReceta"
                         android:layout_width="match_parent"
-                        android:layout_height="270dp"
-                        android:inputType="text"
-                        android:maxLines="8"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!--Combo Input para categoria de receta-->
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/categoria_receta_label">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/tfCategoriaReceta"
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        app:simpleItems="@array/categorias_receta"
-                        tools:ignore="LabelFor" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!--Combo Input para tiempo de receta-->
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/tiempo_receta_label">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/tfTiempoReceta"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        app:simpleItems="@array/tiempos_receta"
-                        tools:ignore="LabelFor" />
+                        android:maxLines="10"
+                        app:endIconMode="clear_text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

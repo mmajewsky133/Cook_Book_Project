@@ -65,7 +65,9 @@ class AddRecipeDetailFragment : Fragment() {
         }
 
         val adapter = StepsDetailsCardAdapter {
-            //Codigo para cuando se presione en el CardView
+            val action  = AddRecipeDetailFragmentDirections
+                .actionAddRecipeDetailFragmentToEditStepDetailsFragment()
+            findNavController().navigate(action)
         }
 
         binding.rcvPasos.layoutManager = LinearLayoutManager(this.context)
