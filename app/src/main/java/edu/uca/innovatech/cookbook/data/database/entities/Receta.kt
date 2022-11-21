@@ -33,6 +33,8 @@ data class Paso(
     val idPaso: Int = 0,
     @ColumnInfo(name = "id_receta")
     val idReceta: Int,
+    @ColumnInfo(name = "img_paso")
+    val imagenPaso: Bitmap = Bitmap.createBitmap(1284, 1247, Bitmap.Config.ARGB_8888),
     @ColumnInfo(name = "tiempo_paso")
     val tiempo: Int = 0,
     @ColumnInfo(name = "num_paso")
