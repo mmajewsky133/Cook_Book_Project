@@ -58,7 +58,6 @@ class RecipesFragment : Fragment() {
             val intent = Intent(context, AddRecipeActivity::class.java)
             context?.startActivity(intent)
 
-
         }
 
         viewModel.allRecetas.observe(this.viewLifecycleOwner) { recetas ->
