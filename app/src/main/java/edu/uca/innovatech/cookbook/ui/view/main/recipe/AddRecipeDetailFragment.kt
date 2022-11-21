@@ -80,6 +80,10 @@ class AddRecipeDetailFragment : Fragment() {
         binding.btnAddPaso.setOnClickListener{
             agregarPaso()
         }
+        binding.btnTerminar.setOnClickListener{
+            finalizarReceta()
+            getActivity()?.finish()
+        }
     }
 
     //Pone datos generales a usar en el View
@@ -102,6 +106,9 @@ class AddRecipeDetailFragment : Fragment() {
         }
     }
 
+    private fun finalizarReceta() {
+        viewModel.actualizarRecetaEstado(receta.receta)
+    }
 
     private fun mostrarDialogConfirmacionSalida() {
         context?.let {

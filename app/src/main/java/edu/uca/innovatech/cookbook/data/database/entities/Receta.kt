@@ -24,7 +24,7 @@ data class Receta(
     @ColumnInfo(name = "cant_calorias")
     val calorias: Int = 0,
     @ColumnInfo(name = "estado_pendiente")
-    val isPending: Boolean = true
+    var isPending: Boolean = true
 )
 
 @Entity(tableName = "paso")

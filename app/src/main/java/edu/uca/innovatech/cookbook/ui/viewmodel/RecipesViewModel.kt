@@ -51,6 +51,20 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         return recetaDao.insertReceta(receta).toString().toInt()
     }
 
+    fun actualizarRecetaEstado(receta: Receta){
+        val recetaUpdated = receta
+
+        recetaUpdated.isPending = false
+
+        updateReceta(recetaUpdated)
+    }
+
+    private fun updateReceta(receta: Receta){
+        viewModelScope.launch {
+            recetaDao.updateReceta(receta)
+        }
+    }
+
     //Manda a llamar el Dao para eliminar una receta
     fun deleteReceta(receta: RecetasConPasos) {
         viewModelScope.launch {

@@ -57,6 +57,8 @@ class RecipesFragment : Fragment() {
         binding.fabNuevaReceta.setOnClickListener() {
             val intent = Intent(context, AddRecipeActivity::class.java)
             context?.startActivity(intent)
+
+
         }
 
         viewModel.allRecetas.observe(this.viewLifecycleOwner) { recetas ->
