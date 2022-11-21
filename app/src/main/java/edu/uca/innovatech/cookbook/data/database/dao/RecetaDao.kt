@@ -27,7 +27,7 @@ interface RecetaDao {
 
     //Insert, Update y Delete de una receta
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertReceta(receta: Receta)
+    suspend fun insertReceta(receta: Receta): Long
 
     @Update
     suspend fun updateReceta(receta: Receta)
