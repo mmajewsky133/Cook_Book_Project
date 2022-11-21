@@ -66,7 +66,7 @@ class AddRecipeDetailFragment : Fragment() {
 
         val adapter = StepsDetailsCardAdapter {
             val action  = AddRecipeDetailFragmentDirections
-                .actionAddRecipeDetailFragmentToEditStepDetailsFragment()
+                .actionAddRecipeDetailFragmentToEditStepDetailsFragment(it.idPaso, it.idReceta)
             findNavController().navigate(action)
         }
 

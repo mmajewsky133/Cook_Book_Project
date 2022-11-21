@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_addRecipeDetailFragment_to_editIngridientDetailsFragment"
             app:destination="@id/editIngridientDetailsFragment" />
+        <argument
+            android:name="paso_id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/editStepDetailsFragment"
@@ -41,6 +44,12 @@
         <action
             android:id="@+id/action_editStepDetailsFragment_to_addRecipeDetailFragment"
             app:destination="@id/addRecipeDetailFragment" />
+        <argument
+            android:name="paso_id"
+            app:argType="integer" />
+        <argument
+            android:name="receta_id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/editIngridientDetailsFragment"

@@ -23,12 +23,14 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         return recetaDao.getRecetaConPasos(id).asLiveData()
     }
 
+    //Recupera todas los pasos de una receta
     fun agarrarPasos(id: Int): LiveData<List<Paso>> {
         return recetaDao.getPasos(id).asLiveData()
     }
 
-    private fun agarrarPasosArray(id: Int): List<Paso>? {
-        return recetaDao.getPasos(id).asLiveData().value
+    //Recupera un paso de una receta
+    fun agarrarPaso(id: Int, idReceta: Int): LiveData<Paso> {
+        return recetaDao.getPaso(id, idReceta).asLiveData()
     }
 
     //crea un objeto de tipo Receta para mandar a guardar tal objeto

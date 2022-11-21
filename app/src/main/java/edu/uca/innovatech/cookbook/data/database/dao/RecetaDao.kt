@@ -19,7 +19,7 @@ interface RecetaDao {
     fun getPasos(idReceta: Int): Flow<List<Paso>>
 
     @Query("SELECT * from paso WHERE idPaso = :idPaso AND id_receta = :idReceta")
-    fun getpaso(idPaso: Int, idReceta: Int): Flow<Paso>
+    fun getPaso(idPaso: Int, idReceta: Int): Flow<Paso>
 
     //Query para obtener una receta con sus pasos
     @Query("SELECT * FROM receta WHERE id = :idReceta")
