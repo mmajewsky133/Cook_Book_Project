@@ -3,11 +3,13 @@ package edu.uca.innovatech.cookbook.ui.view.main.recipe
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.ActivitySeeRecipeBinding
+import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
@@ -44,6 +46,19 @@ class SeeRecipeActivity : AppCompatActivity() {
                         bind(receta)
                     }
                 }
+        }
+
+        val adapter = StepsDetailsCardAdapter{}
+
+        binding.rcvPasos.layoutManager = LinearLayoutManager(this)
+        binding.rcvPasos.adapter = adapter
+
+        if (id != null) {
+            viewModel.agarrarPasos(id).observe(this) { pasos ->
+                pasos.let {
+                    adapter.submitList(it)
+                }
+            }
         }
     }
 

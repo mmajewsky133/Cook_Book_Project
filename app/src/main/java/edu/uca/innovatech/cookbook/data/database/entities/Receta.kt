@@ -21,8 +21,6 @@ data class Receta(
     val tiempo: String,
     @ColumnInfo(name = "tiempo_prep")
     val tiempoPrep: Int = 0,
-    @ColumnInfo(name = "num_pasos")
-    val pasos: Int = 0,
     @ColumnInfo(name = "cant_calorias")
     val calorias: Int = 0,
     @ColumnInfo(name = "estado_pendiente")
@@ -36,11 +34,11 @@ data class Paso(
     @ColumnInfo(name = "id_receta")
     val idReceta: Int,
     @ColumnInfo(name = "tiempo_paso")
-    val tiempo: Int,
+    val tiempo: Int = 0,
     @ColumnInfo(name = "num_paso")
     val numPaso: Int,
     @ColumnInfo(name = "detalle_paso")
-    val detalle: String
+    val detalle: String = "Presione el paso que quiera para poder editar sus contenidos."
 )
 
 data class RecetasConPasos(

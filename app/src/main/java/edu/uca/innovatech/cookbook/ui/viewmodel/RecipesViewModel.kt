@@ -10,6 +10,7 @@ import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
@@ -24,6 +25,10 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
 
     fun agarrarPasos(id: Int): LiveData<List<Paso>> {
         return recetaDao.getPasos(id).asLiveData()
+    }
+
+    private fun agarrarPasosArray(id: Int): List<Paso>? {
+        return recetaDao.getPasos(id).asLiveData().value
     }
 
     //crea un objeto de tipo Receta para mandar a guardar tal objeto
@@ -51,6 +56,23 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         viewModelScope.launch {
             recetaDao.deletePasos(receta.receta.id)
             recetaDao.deleteReceta(receta.receta)
+        }
+    }
+
+    //Crea un objeto de tipo Paso y asigna el numero del paso
+    fun agregarNuevoPaso(id: Int, num: Int) {
+        val nuevoPaso =
+            Paso(
+                idReceta = id,
+                numPaso = num
+            )
+        insertPaso(nuevoPaso)
+    }
+
+    //Manda a insertar el Paso nuevo
+    private fun insertPaso(paso: Paso) {
+        viewModelScope.launch {
+            recetaDao.insertPaso(paso)
         }
     }
 }

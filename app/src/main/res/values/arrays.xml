@@ -16,10 +16,4 @@
         <item>Cena</item>
         <item>Snack</item>
     </array>
-    <array name="pasos_receta">
-        <item>1 Paso</item>
-        <item>2 Pasos</item>
-        <item>3 Pasos</item>
-        <item>4 Pasos</item>
-    </array>
 </resources>

@@ -42,6 +42,10 @@ interface RecetaDao {
     @Update
     suspend fun updatePaso(paso: Paso)
 
+    //El Delete es un query para eliminar un paso de una receta
+    @Query("DELETE FROM paso WHERE idPaso = :idPaso AND id_receta = :idReceta")
+    suspend fun deletePaso(idPaso: Int, idReceta: Int)
+
     //El Delete es un query para poder especificar que pasos con que id de receta se borraran
     @Query("DELETE FROM paso WHERE id_receta = :idReceta")
     suspend fun deletePasos(idReceta: Int)

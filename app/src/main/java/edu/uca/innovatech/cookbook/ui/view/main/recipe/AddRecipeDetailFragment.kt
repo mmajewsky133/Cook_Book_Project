@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
@@ -23,6 +24,8 @@ class AddRecipeDetailFragment : Fragment() {
 
     private val navigationArgs: AddRecipeDataFragmentArgs by navArgs()
     lateinit var receta: RecetasConPasos
+    var pasosCount: Int = 0
+
 
     //Basicamente instancia el ViewModel
     private val viewModel: RecipesViewModel by activityViewModels {
@@ -46,6 +49,11 @@ class AddRecipeDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        init()
+    }
+
+    private fun init(){
         //Conseguir id del navigation args
         val id = navigationArgs.recetaId
 
@@ -69,11 +77,45 @@ class AddRecipeDetailFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
+
+        binding.btnAddPaso.setOnClickListener{
+            agregarPaso()
+        }
     }
 
     //Pone datos generales a usar en el View
     private fun bind(receta: RecetasConPasos) {
+        binding.apply {
+            topAppBar.title = receta.receta.nombre
+            topAppBar.subtitle = receta.receta.autor
 
+            topAppBar.setNavigationOnClickListener{ mostrarDialogConfirmacionSalida() }
+        }
+    }
+
+    private fun agregarPaso(){
+        pasosCount++
+        if (pasosCount<4)
+            viewModel.agregarNuevoPaso(receta.receta.id, pasosCount)
+        else if (pasosCount==4) {
+            viewModel.agregarNuevoPaso(receta.receta.id, pasosCount)
+            binding.btnAddPaso.isEnabled = false
+        }
+    }
+
+
+    private fun mostrarDialogConfirmacionSalida() {
+        context?.let {
+            MaterialAlertDialogBuilder(it)
+                .setTitle(getString(android.R.string.dialog_alert_title))
+                .setMessage(getString(R.string.delete_recipe_dialog_msg))
+                .setCancelable(false)
+                .setNegativeButton(getString(R.string.no)) { _, _ -> }
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                    //Codigo
+                }
+                .show()
+        }
     }
 
     /**
