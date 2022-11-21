@@ -16,4 +16,16 @@
         <item>Cena</item>
         <item>Snack</item>
     </array>
+    <array name="nombre_ingredientes">
+        <item>Ingrediente1</item>
+        <item>Ingrediente2</item>
+        <item>Ingrediente3</item>
+        <item>Ingrediente4</item>
+    </array>
+    <array name="medidas_ingredientes">
+        <item>Medida1</item>
+        <item>Medida2</item>
+        <item>Medida3</item>
+        <item>Medida4</item>
+    </array>
 </resources>
