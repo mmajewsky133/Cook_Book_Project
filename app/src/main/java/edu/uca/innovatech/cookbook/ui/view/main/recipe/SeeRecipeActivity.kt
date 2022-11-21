@@ -38,27 +38,20 @@ class SeeRecipeActivity : AppCompatActivity() {
     private fun init() {
         val id = intent?.getIntExtra("id_receta", 0)
 
-        if (id != null) {
-            viewModel.agarrarReceta(id)
-                .observe(this) { selectedReceta ->
-                    selectedReceta?.let {
-                        receta = it
-                        bind(receta)
-                    }
-                }
-        }
-
         val adapter = StepsDetailsCardAdapter{}
 
         binding.rcvPasos.layoutManager = LinearLayoutManager(this)
         binding.rcvPasos.adapter = adapter
 
         if (id != null) {
-            viewModel.agarrarPasos(id).observe(this) { pasos ->
-                pasos.let {
-                    adapter.submitList(it)
+            viewModel.agarrarReceta(id)
+                .observe(this) { selectedReceta ->
+                    selectedReceta?.let {
+                        receta = it
+                        bind(receta)
+                        adapter.submitList(receta.pasos)
+                    }
                 }
-            }
         }
     }
 
