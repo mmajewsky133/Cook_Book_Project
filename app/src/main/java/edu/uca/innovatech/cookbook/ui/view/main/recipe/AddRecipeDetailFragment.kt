@@ -78,7 +78,7 @@ class AddRecipeDetailFragment : Fragment() {
         viewModel.agarrarPasos(id).observe(this.viewLifecycleOwner) { selectedPasos ->
             selectedPasos.let {
                 pasos = it
-                adapter.submitList(it)
+                adapter.submitList(pasos)
             }
         }
 
@@ -102,10 +102,10 @@ class AddRecipeDetailFragment : Fragment() {
     }
 
     private fun agregarPaso() {
-        if (pasosCount < 4) {
+        if (pasosCount < 10) {
             viewModel.agregarNuevoPaso(receta.receta.id, pasosCount)
             pasosCount++
-        } else if (pasosCount == 4) {
+        } else if (pasosCount == 10) {
             viewModel.agregarNuevoPaso(receta.receta.id, pasosCount)
             binding.btnAddPaso.isEnabled = false
         }
