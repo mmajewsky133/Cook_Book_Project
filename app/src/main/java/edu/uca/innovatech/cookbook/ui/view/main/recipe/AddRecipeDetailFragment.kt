@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDetailBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeOverviewCardAdapter
@@ -24,6 +25,7 @@ class AddRecipeDetailFragment : Fragment() {
 
     private val navigationArgs: AddRecipeDetailFragmentArgs by navArgs()
     lateinit var receta: RecetasConPasos
+    lateinit var pasos: List<Paso>
     var pasosCount: Int = 0
 
 
@@ -73,8 +75,9 @@ class AddRecipeDetailFragment : Fragment() {
         binding.rcvPasos.layoutManager = LinearLayoutManager(this.context)
         binding.rcvPasos.adapter = adapter
 
-        viewModel.agarrarPasos(id).observe(this.viewLifecycleOwner) { pasos ->
-            pasos.let {
+        viewModel.agarrarPasos(id).observe(this.viewLifecycleOwner) { selectedPasos ->
+            selectedPasos.let {
+                pasos = it
                 adapter.submitList(it)
             }
         }

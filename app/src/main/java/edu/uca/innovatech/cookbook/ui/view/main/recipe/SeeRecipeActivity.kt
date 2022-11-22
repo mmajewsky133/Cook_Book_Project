@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.ActivitySeeRecipeBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
@@ -16,6 +17,7 @@ import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 class SeeRecipeActivity : AppCompatActivity() {
 
     lateinit var receta: RecetasConPasos
+    lateinit var pasos: List<Paso>
 
     private val viewModel: RecipesViewModel by viewModels {
         RecipesViewModelFactory(
@@ -49,7 +51,6 @@ class SeeRecipeActivity : AppCompatActivity() {
                     selectedReceta?.let {
                         receta = it
                         bind(receta)
-                        println(receta.pasos.size)
                         adapter.submitList(receta.pasos)
                     }
                 }
