@@ -22,7 +22,7 @@ import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
 class AddRecipeDetailFragment : Fragment() {
 
-    private val navigationArgs: AddRecipeDataFragmentArgs by navArgs()
+    private val navigationArgs: AddRecipeDetailFragmentArgs by navArgs()
     lateinit var receta: RecetasConPasos
     var pasosCount: Int = 0
 
@@ -55,7 +55,7 @@ class AddRecipeDetailFragment : Fragment() {
 
     private fun init(){
         //Conseguir id del navigation args
-        val id = navigationArgs.recetaId
+        val id = navigationArgs.idReceta
 
         //Atraves del id se obtiene los datos generales de la receta recien guardada
         // mas los pasos (vacios)

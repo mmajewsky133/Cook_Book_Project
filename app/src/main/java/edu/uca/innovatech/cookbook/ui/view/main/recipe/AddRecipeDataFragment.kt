@@ -1,6 +1,7 @@
 package edu.uca.innovatech.cookbook.ui.view.main.recipe
 
 import android.app.Activity
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -92,10 +93,6 @@ class AddRecipeDataFragment : Fragment() {
                 )
             }
 
-            //Un click listener para los comboBox para ocultar el teclado
-            tvCategoria.setOnClickListener { ocultarTeclado() }
-            tvTiempoComida.setOnClickListener { ocultarTeclado() }
-
             //un click listener para el boton siguiente
             btnSiguiente.setOnClickListener() {
 
@@ -147,11 +144,6 @@ class AddRecipeDataFragment : Fragment() {
         }
 
         override fun afterTextChanged(p0: Editable?) {}
-    }
-
-
-    private fun ocultarTeclado() {
-        //TODO
     }
 
     /**

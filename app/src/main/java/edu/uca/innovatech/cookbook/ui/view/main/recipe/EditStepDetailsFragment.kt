@@ -18,7 +18,7 @@ import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
 class EditStepDetailsFragment : Fragment() {
 
-    private val navigationArgs: AddRecipeDetailFragmentArgs by navArgs()
+    private val navigationArgs: EditStepDetailsFragmentArgs by navArgs()
     lateinit var paso: Paso
 
     //Basicamente instancia el ViewModel
@@ -50,8 +50,8 @@ class EditStepDetailsFragment : Fragment() {
 
     private fun init() {
         //Conseguir id del navigation args
-        val id = navigationArgs.pasoId
-        val idReceta = navigationArgs.recetaId
+        val id = navigationArgs.idPaso
+        val idReceta = navigationArgs.idReceta
 
         //Atraves del id y el id de su receta se obtiene los datos del paso
         viewModel.agarrarPaso(id, idReceta).observe(this.viewLifecycleOwner) { selectedItem ->
@@ -63,7 +63,7 @@ class EditStepDetailsFragment : Fragment() {
     //Pone datos generales a usar en el View
     private fun bind(paso: Paso) {
         binding.apply {
-            topAppBar.title = "Paso: ${paso.numPaso}"
+            topAppBar.title = "Paso ${paso.numPaso}"
             ivFotoPaso.setImageBitmap(paso.imagenPaso)
             if (paso.tiempo != 0)
                 tfTiempoPrepPaso.setText(paso.tiempo)

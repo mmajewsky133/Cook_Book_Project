@@ -10,9 +10,6 @@
         android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.AddRecipeDataFragment"
         android:label="fragment_add_recipe_data"
         tools:layout="@layout/fragment_add_recipe_data">
-        <argument
-            android:name="receta_id"
-            app:argType="integer" />
         <action
             android:id="@+id/action_addRecipeDataFragment_to_addRecipeDetailFragment"
             app:destination="@id/addRecipeDetailFragment" />
@@ -23,18 +20,14 @@
         android:label="fragment_add_recipe_detail"
         tools:layout="@layout/fragment_add_recipe_detail">
         <argument
-            android:name="receta_id"
-            android:defaultValue="-1"
+            android:name="idReceta"
             app:argType="integer" />
         <action
             android:id="@+id/action_addRecipeDetailFragment_to_editStepDetailsFragment"
             app:destination="@id/editStepDetailsFragment" />
         <action
             android:id="@+id/action_addRecipeDetailFragment_to_editIngridientDetailsFragment"
-            app:destination="@id/editIngridientDetailsFragment" />
-        <argument
-            android:name="paso_id"
-            app:argType="integer" />
+            app:destination="@id/editIngredientDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/editStepDetailsFragment"
@@ -45,14 +38,14 @@
             android:id="@+id/action_editStepDetailsFragment_to_addRecipeDetailFragment"
             app:destination="@id/addRecipeDetailFragment" />
         <argument
-            android:name="paso_id"
+            android:name="idPaso"
             app:argType="integer" />
         <argument
-            android:name="receta_id"
+            android:name="idReceta"
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/editIngridientDetailsFragment"
+        android:id="@+id/editIngredientDetailsFragment"
         android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.EditIngredientDetailsFragment"
         android:label="fragment_edit_ingridient_details"
         tools:layout="@layout/fragment_edit_ingredient_details" >
