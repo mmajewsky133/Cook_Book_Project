@@ -26,7 +26,7 @@ class AddRecipeDetailFragment : Fragment() {
     private val navigationArgs: AddRecipeDetailFragmentArgs by navArgs()
     lateinit var receta: RecetasConPasos
     lateinit var pasos: List<Paso>
-    var pasosCount: Int = 0
+    var pasosCount: Int = 1
 
 
     //Basicamente instancia el ViewModel
@@ -55,7 +55,7 @@ class AddRecipeDetailFragment : Fragment() {
         init()
     }
 
-    private fun init(){
+    private fun init() {
         //Conseguir id del navigation args
         val id = navigationArgs.idReceta
 
@@ -67,7 +67,7 @@ class AddRecipeDetailFragment : Fragment() {
         }
 
         val adapter = StepsDetailsCardAdapter {
-            val action  = AddRecipeDetailFragmentDirections
+            val action = AddRecipeDetailFragmentDirections
                 .actionAddRecipeDetailFragmentToEditStepDetailsFragment(it.idPaso, it.idReceta)
             findNavController().navigate(action)
         }
@@ -82,10 +82,10 @@ class AddRecipeDetailFragment : Fragment() {
             }
         }
 
-        binding.btnAddPaso.setOnClickListener{
+        binding.btnAddPaso.setOnClickListener {
             agregarPaso()
         }
-        binding.btnTerminar.setOnClickListener{
+        binding.btnTerminar.setOnClickListener {
             finalizarReceta()
             getActivity()?.finish()
         }
@@ -97,15 +97,15 @@ class AddRecipeDetailFragment : Fragment() {
             topAppBar.title = receta.receta.nombre
             topAppBar.subtitle = receta.receta.autor
 
-            topAppBar.setNavigationOnClickListener{ mostrarDialogConfirmacionSalida() }
+            topAppBar.setNavigationOnClickListener { mostrarDialogConfirmacionSalida() }
         }
     }
 
-    private fun agregarPaso(){
-        pasosCount++
-        if (pasosCount<4)
+    private fun agregarPaso() {
+        if (pasosCount < 4) {
             viewModel.agregarNuevoPaso(receta.receta.id, pasosCount)
-        else if (pasosCount==4) {
+            pasosCount++
+        } else if (pasosCount == 4) {
             viewModel.agregarNuevoPaso(receta.receta.id, pasosCount)
             binding.btnAddPaso.isEnabled = false
         }
@@ -119,11 +119,11 @@ class AddRecipeDetailFragment : Fragment() {
         context?.let {
             MaterialAlertDialogBuilder(it)
                 .setTitle(getString(android.R.string.dialog_alert_title))
-                .setMessage(getString(R.string.delete_recipe_dialog_msg))
+                .setMessage(getString(R.string.conf_exit_recipe_dialog_msg))
                 .setCancelable(false)
                 .setNegativeButton(getString(R.string.no)) { _, _ -> }
                 .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                    //Codigo
+                    getActivity()?.finish()
                 }
                 .show()
         }

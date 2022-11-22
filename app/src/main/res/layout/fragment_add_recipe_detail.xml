@@ -85,112 +85,13 @@
                                 android:text="@string/ingridient_label"
                                 android:textAppearance="?attr/textAppearanceTitleSmall" />
 
-                            <!-- Lista de Ingredientes (Max 10) -->
+                            <!-- Lista de Ingredientes-->
                             <TextView
                                 android:id="@+id/tvIngrediente1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="@string/placeholderText_ingrediente"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:visibility="gone"
-                                tools:visibility="" />
-
-                            <TextView
-                                android:id="@+id/tvIngrediente2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/placeholderText_ingrediente"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:visibility="gone"
-                                tools:visibility="" />
-
-                            <TextView
-                                android:id="@+id/tvIngrediente3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/placeholderText_ingrediente"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:visibility="gone"
-                                tools:visibility="" />
-
-                            <TextView
-                                android:id="@+id/tvIngrediente4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/placeholderText_ingrediente"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:visibility="gone"
-                                tools:visibility="" />
-
-                            <TextView
-                                android:id="@+id/tvIngrediente5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/placeholderText_ingrediente"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:visibility="gone"
-                                tools:visibility="" />
-
-                            <TextView
-                                android:id="@+id/tvIngrediente6"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/placeholderText_ingrediente"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:visibility="gone"
-                                tools:visibility="" />
-
-                            <TextView
-                                android:id="@+id/tvIngrediente7"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/placeholderText_ingrediente"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:visibility="gone"
-                                tools:visibility="" />
-
-                            <TextView
-                                android:id="@+id/tvIngrediente8"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/placeholderText_ingrediente"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:visibility="gone"
-                                tools:visibility="" />
-
-                            <TextView
-                                android:id="@+id/tvIngrediente9"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/placeholderText_ingrediente"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:visibility="gone"
-                                tools:visibility="" />
-
-                            <TextView
-                                android:id="@+id/tvIngrediente10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/placeholderText_ingrediente"
+                                android:text="@string/loremIpsum_small"
                                 android:textAppearance="?attr/textAppearanceBodyMedium"
                                 android:textColor="?android:attr/textColorSecondary"
                                 android:visibility="gone"
@@ -237,7 +138,7 @@
                 <!--Terminar la edicion de una receta-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="56dp"
                     android:gravity="end"
                     android:layout_marginBottom="12dp">
 
