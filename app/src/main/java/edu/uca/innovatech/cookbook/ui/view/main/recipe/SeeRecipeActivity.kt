@@ -49,6 +49,7 @@ class SeeRecipeActivity : AppCompatActivity() {
                     selectedReceta?.let {
                         receta = it
                         bind(receta)
+                        println(receta.pasos.size)
                         adapter.submitList(receta.pasos)
                     }
                 }

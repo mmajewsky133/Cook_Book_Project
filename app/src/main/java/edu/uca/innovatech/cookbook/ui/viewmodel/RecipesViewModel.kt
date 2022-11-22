@@ -1,6 +1,7 @@
 package edu.uca.innovatech.cookbook.ui.viewmodel
 
 import android.graphics.Bitmap
+import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -53,7 +54,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         return recetaDao.insertReceta(receta).toString().toInt()
     }
 
-    fun actualizarRecetaEstado(receta: Receta){
+    fun actualizarRecetaEstado(receta: Receta) {
         val recetaUpdated = receta
 
         recetaUpdated.isPending = false
@@ -61,7 +62,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         updateReceta(recetaUpdated)
     }
 
-    private fun updateReceta(receta: Receta){
+    private fun updateReceta(receta: Receta) {
         viewModelScope.launch {
             recetaDao.updateReceta(receta)
         }
@@ -89,6 +90,31 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     private fun insertPaso(paso: Paso) {
         viewModelScope.launch {
             recetaDao.insertPaso(paso)
+        }
+    }
+
+    fun guardarCambiosPaso(
+        id: Int,
+        idReceta: Int,
+        numPaso: Int,
+        imagen: Bitmap,
+        tiempoPrep: Int,
+        detallePaso: String
+    ) {
+        val nuevoPaso = Paso(
+            idPaso = id,
+            idReceta = idReceta,
+            numPaso = numPaso,
+            imagenPaso = imagen,
+            tiempo = tiempoPrep,
+            detalle = detallePaso
+        )
+        updatePaso(nuevoPaso)
+    }
+
+    private fun updatePaso(paso: Paso) {
+        viewModelScope.launch {
+            recetaDao.updatePaso(paso)
         }
     }
 }
