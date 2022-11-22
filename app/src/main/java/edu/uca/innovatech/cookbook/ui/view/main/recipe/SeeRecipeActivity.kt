@@ -29,7 +29,6 @@ class SeeRecipeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         //View Binding
         binding = ActivitySeeRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -45,4 +45,10 @@
     <string name="save">Guardar</string>
     <string name="tiempo_prep_label">Tiempo estimado (min)</string>
     <string name="detalles_paso_label">Detalles</string>
+    <string name="ingridient">Ingredientes</string>
+    <string name="preparation">Preparacion</string>
+    <string name="edit_ingredients">Editar Ingredientes</string>
+    <string name="cant_ingredient">Cantidad</string>
+    <string name="ingredient_label">Ingrediente</string>
+    <string name="medida_ingredient_label">Medida</string>
 </resources>
