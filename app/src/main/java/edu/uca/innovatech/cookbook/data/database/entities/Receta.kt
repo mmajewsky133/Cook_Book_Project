@@ -20,9 +20,9 @@ data class Receta(
     @ColumnInfo(name = "tiempo_comida")
     val tiempo: String,
     @ColumnInfo(name = "tiempo_prep")
-    val tiempoPrep: Int = 0,
+    var tiempoPrep: Int = 0,
     @ColumnInfo(name = "cant_calorias")
-    val calorias: Int = 0,
+    var calorias: Int = 0,
     @ColumnInfo(name = "estado_pendiente")
     var isPending: Boolean = true
 )

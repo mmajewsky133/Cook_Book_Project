@@ -114,7 +114,7 @@ class AddRecipeDetailFragment : Fragment() {
     }
 
     private fun finalizarReceta() {
-        viewModel.actualizarRecetaEstado(receta.receta)
+        viewModel.actualizarRecetaEstado(receta)
     }
 
     private fun mostrarDialogConfirmacionSalida() {

@@ -71,9 +71,11 @@ class SeeRecipeFragment : Fragment() {
         binding.apply {
             ivFotoReceta.setImageBitmap(receta.receta.bitmapImagen)
             topAppBar.title = receta.receta.nombre
-            topAppBar.subtitle = receta.receta.autor
+            topAppBar.subtitle = "Escrita por: ${receta.receta.autor}"
 
-            topAppBar.setNavigationOnClickListener { activity?.onBackPressed() }
+            topAppBar.setNavigationOnClickListener {
+                activity?.onBackPressedDispatcher?.onBackPressed()
+            }
             topAppBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.editar_receta -> {
