@@ -69,9 +69,12 @@ class SeeRecipeFragment : Fragment() {
 
     private fun bind(receta: RecetasConPasos) {
         binding.apply {
-            ivFotoReceta.setImageBitmap(receta.receta.bitmapImagen)
             topAppBar.title = receta.receta.nombre
             topAppBar.subtitle = "Escrita por: ${receta.receta.autor}"
+            ivFotoReceta.setImageBitmap(receta.receta.bitmapImagen)
+
+            tvCaloriesReceta.setText(receta.receta.calorias) //TODO parse pendiente
+            tvTiempoPrepReceta.setText(receta.receta.tiempoPrep) //TODO parse pendiente
 
             topAppBar.setNavigationOnClickListener {
                 activity?.onBackPressedDispatcher?.onBackPressed()
