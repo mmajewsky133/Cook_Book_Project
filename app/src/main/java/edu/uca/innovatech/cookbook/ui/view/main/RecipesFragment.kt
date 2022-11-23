@@ -43,6 +43,21 @@ class RecipesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        init()
+    }
+
+    private fun init() {
+        initRecyclerView()
+
+        binding.fabNuevaReceta.setOnClickListener() {
+            val intent = Intent(context, AddRecipeActivity::class.java)
+            context?.startActivity(intent)
+        }
+
+
+    }
+
+    private fun initRecyclerView() {
         val adapter = RecipeOverviewCardAdapter {
             //Codigo para cuando se presione en el CardView
             val intent = Intent(context, SeeRecipeActivity::class.java)
@@ -53,12 +68,6 @@ class RecipesFragment : Fragment() {
 
         binding.rcvListaRecetas.layoutManager = LinearLayoutManager(this.context)
         binding.rcvListaRecetas.adapter = adapter
-
-        binding.fabNuevaReceta.setOnClickListener() {
-            val intent = Intent(context, AddRecipeActivity::class.java)
-            context?.startActivity(intent)
-
-        }
 
         viewModel.allRecetas.observe(this.viewLifecycleOwner) { recetas ->
             recetas.let {

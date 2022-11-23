@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -15,7 +13,6 @@ import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
-import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDataBinding
 import edu.uca.innovatech.cookbook.databinding.FragmentSeeRecipeBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
@@ -62,6 +59,7 @@ class SeeRecipeFragment : Fragment() {
             viewModel.agarrarReceta(id)
                 .observe(this.viewLifecycleOwner) { selectedReceta ->
                     selectedReceta?.let {
+                        bind(it)
                         pasos = it.pasos
                         adapter.submitList(pasos)
                     }
@@ -79,7 +77,7 @@ class SeeRecipeFragment : Fragment() {
             topAppBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.editar_receta -> {
-                        editarReceta()
+                        editarReceta(receta.receta.id)
                         true
                     }
                     R.id.eliminar_receta -> {
@@ -106,13 +104,11 @@ class SeeRecipeFragment : Fragment() {
         }
     }
 
-    private fun editarReceta() {
-        val id = activity?.intent?.getIntExtra("id_receta", 0)
-
-        if (id != null) {
-            val action = SeeRecipeFragmentDirections.actionSeeRecipeFragmentToNavGraphNewRecipes(id)
-            findNavController().navigate(action)
-        }
+    private fun editarReceta(idReceta: Int) {
+        val action = SeeRecipeFragmentDirections.actionSeeRecipeFragmentToNavGraphNewRecipes(
+            idReceta
+        )
+        findNavController().navigate(action)
     }
 
     private fun eliminarReceta() {

@@ -1,5 +1,7 @@
 package edu.uca.innovatech.cookbook.ui.viewmodel
 
+import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.text.Editable
 import androidx.lifecycle.LiveData
@@ -7,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.Receta
@@ -25,9 +28,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     }
 
     //Recupera todas los pasos de una receta
-    fun agarrarPasos(id: Int): LiveData<List<Paso>> {
-        return recetaDao.getPasos(id).asLiveData()
-    }
+    fun agarrarPasos(id: Int): LiveData<List<Paso>> = recetaDao.getPasos(id).asLiveData()
 
     //Recupera un paso de una receta
     fun agarrarPaso(id: Int, idReceta: Int): LiveData<Paso> {
@@ -54,8 +55,19 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         return recetaDao.insertReceta(receta).toString().toInt()
     }
 
-    fun actualizarReceta(editedReceta: Receta) {
-        return updateReceta(editedReceta)
+    fun actualizarReceta(
+        idReceta: Int, imagen: Bitmap, nombre: String, autor: String, categoria: String,
+        tiempo: String
+    ) {
+        val editedReceta = Receta(
+            id = idReceta,
+            bitmapImagen = imagen,
+            nombre = nombre,
+            autor = autor,
+            categoria = categoria,
+            tiempo = tiempo
+        )
+        updateReceta(editedReceta)
     }
 
     fun actualizarRecetaEstado(receta: Receta) {

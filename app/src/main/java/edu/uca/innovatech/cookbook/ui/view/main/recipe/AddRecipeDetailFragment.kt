@@ -1,6 +1,5 @@
 package edu.uca.innovatech.cookbook.ui.view.main.recipe
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDetailBinding
-import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeOverviewCardAdapter
 import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
@@ -63,6 +61,9 @@ class AddRecipeDetailFragment : Fragment() {
         // mas los pasos (vacios)
         viewModel.agarrarReceta(id).observe(this.viewLifecycleOwner) { selectedItem ->
             receta = selectedItem
+            if (obtenerCantPasos(receta) >= 10){
+                binding.btnAddPaso.isEnabled = false
+            }
             bind(receta)
         }
 
@@ -127,6 +128,10 @@ class AddRecipeDetailFragment : Fragment() {
                 }
                 .show()
         }
+    }
+
+    private fun obtenerCantPasos(receta: RecetasConPasos): Int {
+        return receta.pasos.size
     }
 
     /**

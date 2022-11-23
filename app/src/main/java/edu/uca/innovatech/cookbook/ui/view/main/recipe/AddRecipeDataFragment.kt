@@ -1,7 +1,5 @@
 package edu.uca.innovatech.cookbook.ui.view.main.recipe
 
-import android.app.Activity
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -12,10 +10,8 @@ import androidx.navigation.fragment.findNavController
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -23,14 +19,13 @@ import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDataBinding
-import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDetailBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class AddRecipeDataFragment : Fragment() {
 
+    private val navigationArgs: AddRecipeDataFragmentArgs by navArgs()
     private lateinit var selectedImageUri: Uri
     lateinit var receta: RecetasConPasos
 
@@ -73,7 +68,7 @@ class AddRecipeDataFragment : Fragment() {
 
     private fun init() {
         //Conseguir id del navigation args en caso de editar
-        val idRecetaFrom = -1
+        val idRecetaFrom = navigationArgs.idReceta
 
         if (idRecetaFrom != -1) {
             viewModel.agarrarReceta(idRecetaFrom).observe(this.viewLifecycleOwner) { selectedItem ->
@@ -83,7 +78,6 @@ class AddRecipeDataFragment : Fragment() {
         }
 
         with(binding) {
-
             btnSiguiente.isEnabled = false
 
             //Permitiendo que la flecha del TopAppBar funcione igual que darle hacia atras
@@ -108,8 +102,6 @@ class AddRecipeDataFragment : Fragment() {
 
             //un click listener para el boton siguiente
             btnSiguiente.setOnClickListener() {
-                var id: Int
-
                 if (idRecetaFrom != -1) {
                     actualizarReceta()
 
@@ -119,15 +111,13 @@ class AddRecipeDataFragment : Fragment() {
 
                 } else {
                     viewLifecycleOwner.lifecycleScope.launch {
-                        id = agregarNuevaReceta()
+                        val id = agregarNuevaReceta()
 
                         val action = AddRecipeDataFragmentDirections
                             .actionAddRecipeDataFragmentToAddRecipeDetailFragment(id)
                         findNavController().navigate(action)
                     }
                 }
-
-
             }
         }
     }
@@ -136,6 +126,7 @@ class AddRecipeDataFragment : Fragment() {
     private fun bind(receta: RecetasConPasos) {
         binding.apply {
             topAppBar.title = receta.receta.nombre
+            ivFotoReceta.setImageBitmap(receta.receta.bitmapImagen)
             tfNombreReceta.setText(receta.receta.nombre)
             tfAutorReceta.setText(receta.receta.autor)
             tfCategoriaReceta.setText(receta.receta.categoria)
@@ -154,7 +145,6 @@ class AddRecipeDataFragment : Fragment() {
     }
 
     private suspend fun agregarNuevaReceta(): Int {
-
         if (esValido()) {
             return viewModel.agregarReceta(
                 binding.ivFotoReceta.drawable.toBitmap(),
@@ -169,7 +159,14 @@ class AddRecipeDataFragment : Fragment() {
 
     private fun actualizarReceta() {
         if (esValido()) {
-            viewModel.actualizarReceta(receta.receta)
+            viewModel.actualizarReceta(
+                receta.receta.id,
+                binding.ivFotoReceta.drawable.toBitmap(),
+                binding.tfNombreReceta.text.toString(),
+                binding.tfAutorReceta.text.toString(),
+                binding.tfCategoriaReceta.text.toString(),
+                binding.tfTiempoReceta.text.toString()
+            )
         }
     }
 
