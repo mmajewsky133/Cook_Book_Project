@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph_see_recipes">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_see_recipes"
+    app:startDestination="@id/seeRecipeFragment">
 
+    <fragment
+        android:id="@+id/seeRecipeFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.SeeRecipeFragment"
+        android:label="fragment_see_recipe"
+        tools:layout="@layout/fragment_see_recipe">
+        <action
+            android:id="@+id/action_seeRecipeFragment_to_nav_graph_new_recipes"
+            app:destination="@id/nav_graph_new_recipes">
+            <argument
+                android:name="idReceta"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <include app:graph="@navigation/nav_graph_new_recipes" />
 </navigation>

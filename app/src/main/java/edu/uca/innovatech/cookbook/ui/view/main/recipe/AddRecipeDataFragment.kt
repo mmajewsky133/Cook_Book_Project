@@ -18,8 +18,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDataBinding
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDetailBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
@@ -30,6 +32,7 @@ import kotlinx.coroutines.runBlocking
 class AddRecipeDataFragment : Fragment() {
 
     private lateinit var selectedImageUri: Uri
+    lateinit var receta: RecetasConPasos
 
     //Basicamente instancia el ViewModel
     private val viewModel: RecipesViewModel by activityViewModels {
@@ -68,7 +71,17 @@ class AddRecipeDataFragment : Fragment() {
         init()
     }
 
-    private fun init(){
+    private fun init() {
+        //Conseguir id del navigation args en caso de editar
+        val idRecetaFrom = -1
+
+        if (idRecetaFrom != -1) {
+            viewModel.agarrarReceta(idRecetaFrom).observe(this.viewLifecycleOwner) { selectedItem ->
+                receta = selectedItem
+                bind(receta)
+            }
+        }
+
         with(binding) {
 
             btnSiguiente.isEnabled = false
@@ -95,16 +108,38 @@ class AddRecipeDataFragment : Fragment() {
 
             //un click listener para el boton siguiente
             btnSiguiente.setOnClickListener() {
+                var id: Int
 
-                viewLifecycleOwner.lifecycleScope.launch {
-                    val id = agregarNuevaReceta()
-                    println(id)
+                if (idRecetaFrom != -1) {
+                    actualizarReceta()
 
                     val action = AddRecipeDataFragmentDirections
-                        .actionAddRecipeDataFragmentToAddRecipeDetailFragment(id)
+                        .actionAddRecipeDataFragmentToAddRecipeDetailFragment(idRecetaFrom)
                     findNavController().navigate(action)
+
+                } else {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        id = agregarNuevaReceta()
+
+                        val action = AddRecipeDataFragmentDirections
+                            .actionAddRecipeDataFragmentToAddRecipeDetailFragment(id)
+                        findNavController().navigate(action)
+                    }
                 }
+
+
             }
+        }
+    }
+
+    //Pone datos generales a usar en el View
+    private fun bind(receta: RecetasConPasos) {
+        binding.apply {
+            topAppBar.title = receta.receta.nombre
+            tfNombreReceta.setText(receta.receta.nombre)
+            tfAutorReceta.setText(receta.receta.autor)
+            tfCategoriaReceta.setText(receta.receta.categoria)
+            tfTiempoReceta.setText(receta.receta.tiempo)
         }
     }
 
@@ -130,6 +165,12 @@ class AddRecipeDataFragment : Fragment() {
             )
         }
         return 0
+    }
+
+    private fun actualizarReceta() {
+        if (esValido()) {
+            viewModel.actualizarReceta(receta.receta)
+        }
     }
 
     //Objeto TextWatcher para manejar el cambio del TextField

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.view.main.recipe.SeeRecipeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp"
+                app:layout_collapseMode="pin"
+                app:menu="@menu/recipe_top_app_bar"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                app:subtitle="Autor Receta"
+                app:title="Nombre Receta" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/InfoContainerLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:divider="@drawable/divider"
+                android:orientation="vertical"
+                android:showDividers="middle"
+                app:layout_constraintVertical_bias="0">
+
+                <!--Image View para imagen de receta-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvFotoRecetaHolder"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp">
+
+                    <ImageView
+                        android:id="@+id/ivFotoReceta"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/placeholder" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!--Seccion de preparacion e Ingredientes-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvPreparacionReceta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Title, secondary and supporting text -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/preparation_label"
+                            android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+                        <TextView
+                            android:id="@+id/tvTiempoPrepReceta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/placeholderText_tiempoEst"
+                            android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/ingridient_label"
+                            android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+                        <!-- Lista de Ingredientes (Max 10) -->
+                        <TextView
+                            android:id="@+id/tvIngrediente1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                        <TextView
+                            android:id="@+id/tvIngrediente2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                        <TextView
+                            android:id="@+id/tvIngrediente3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                        <TextView
+                            android:id="@+id/tvIngrediente4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                        <TextView
+                            android:id="@+id/tvIngrediente5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                        <TextView
+                            android:id="@+id/tvIngrediente6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                        <TextView
+                            android:id="@+id/tvIngrediente7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                        <TextView
+                            android:id="@+id/tvIngrediente8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                        <TextView
+                            android:id="@+id/tvIngrediente9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                        <TextView
+                            android:id="@+id/tvIngrediente10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/placeholderText_ingrediente"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:visibility="gone"
+                            tools:visibility="" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!--Recycler View de Pasos-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvPasos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+
+                <!--Terminar la edicion de una receta-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_marginBottom="12dp"
+                    android:visibility="invisible">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/finish" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

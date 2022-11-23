@@ -54,6 +54,10 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         return recetaDao.insertReceta(receta).toString().toInt()
     }
 
+    fun actualizarReceta(editedReceta: Receta) {
+        return updateReceta(editedReceta)
+    }
+
     fun actualizarRecetaEstado(receta: Receta) {
         val recetaUpdated = receta
 

@@ -5,6 +5,10 @@
     android:id="@+id/nav_graph_new_recipes"
     app:startDestination="@id/addRecipeDataFragment">
 
+    <argument
+        android:name="idReceta"
+        app:argType="integer" />
+
     <fragment
         android:id="@+id/addRecipeDataFragment"
         android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.AddRecipeDataFragment"
@@ -13,6 +17,10 @@
         <action
             android:id="@+id/action_addRecipeDataFragment_to_addRecipeDetailFragment"
             app:destination="@id/addRecipeDetailFragment" />
+        <argument
+            android:name="idReceta"
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/addRecipeDetailFragment"
@@ -33,7 +41,7 @@
         android:id="@+id/editStepDetailsFragment"
         android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.EditStepDetailsFragment"
         android:label="fragment_edit_step_details"
-        tools:layout="@layout/fragment_edit_step_details" >
+        tools:layout="@layout/fragment_edit_step_details">
         <action
             android:id="@+id/action_editStepDetailsFragment_to_addRecipeDetailFragment"
             app:destination="@id/addRecipeDetailFragment" />
@@ -48,7 +56,7 @@
         android:id="@+id/editIngredientDetailsFragment"
         android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.EditIngredientDetailsFragment"
         android:label="fragment_edit_ingridient_details"
-        tools:layout="@layout/fragment_edit_ingredient_details" >
+        tools:layout="@layout/fragment_edit_ingredient_details">
         <action
             android:id="@+id/action_editIngridientDetailsFragment_to_addRecipeDetailFragment"
             app:destination="@id/addRecipeDetailFragment" />
