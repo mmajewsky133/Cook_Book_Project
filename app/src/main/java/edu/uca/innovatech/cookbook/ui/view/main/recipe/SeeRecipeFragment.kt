@@ -112,7 +112,17 @@ class SeeRecipeFragment : Fragment() {
     }
 
     private fun eliminarReceta() {
-        viewModel.deleteReceta(receta)
+        val id = activity?.intent?.getIntExtra("id_receta", 0)
+
+        if (id != null) {
+            viewModel.agarrarReceta(id)
+                .observe(this.viewLifecycleOwner) { selectedReceta ->
+                    selectedReceta?.let {
+                        receta = it
+                        viewModel.deleteReceta(receta)
+                    }
+                }
+        }
         activity?.onBackPressedDispatcher?.onBackPressed()
     }
 
