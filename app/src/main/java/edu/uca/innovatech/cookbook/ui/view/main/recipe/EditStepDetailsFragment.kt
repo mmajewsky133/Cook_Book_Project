@@ -89,12 +89,12 @@ class EditStepDetailsFragment : Fragment() {
             tfTiempoPrepPaso.setText(paso.tiempo.toString())
             tfDetallePaso.setText(paso.detalle)
 
-            topAppBar.setNavigationOnClickListener { activity?.onBackPressed() }
+            topAppBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
             topAppBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.guardar -> {
                         guardarEdicionesPaso()
-                        activity?.onBackPressed()
+                        activity?.onBackPressedDispatcher?.onBackPressed()
                         true
                     }
                     else -> false
