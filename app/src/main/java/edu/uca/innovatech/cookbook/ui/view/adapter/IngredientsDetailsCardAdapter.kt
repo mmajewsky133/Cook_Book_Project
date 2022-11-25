@@ -49,7 +49,7 @@ class IngredientsDetailsCardAdapter(private val onIngredienteClicked: (Ingredien
         }
 
         private fun parseCant(cantIngrediente: Int, medidaIngrediente: String): String {
-            if (medidaIngrediente.equals("al gusto")) {
+            if (medidaIngrediente.equals("Al gusto")) {
                 return medidaIngrediente
             }
             return "$cantIngrediente - $medidaIngrediente"
