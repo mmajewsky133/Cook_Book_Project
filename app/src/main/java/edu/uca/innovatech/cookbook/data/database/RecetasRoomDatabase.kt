@@ -29,7 +29,7 @@ abstract class RecetasRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     RecetasRoomDatabase::class.java,
                     "recetas_database"
-                )//.createFromAsset("database/recetas.db")
+                ).createFromAsset("database/recetas.db")
                     .build()
                 INSTANCE = instance
                 // return instance
