@@ -71,7 +71,7 @@
                                 android:textAppearance="?attr/textAppearanceTitleLarge" />
 
                             <TextView
-                                android:id="@+id/tvTiempoPrepReceta"
+                                android:id="@+id/tvTiempoPrepPreparacion"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -87,7 +87,7 @@
 
                             <!-- Lista de Ingredientes-->
                             <TextView
-                                android:id="@+id/tvIngrediente1"
+                                android:id="@+id/tvIngrediente"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"

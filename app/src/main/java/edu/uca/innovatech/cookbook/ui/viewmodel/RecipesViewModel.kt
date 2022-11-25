@@ -11,6 +11,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
+import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
@@ -33,6 +34,14 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     //Recupera un paso de una receta
     fun agarrarPaso(id: Int, idReceta: Int): LiveData<Paso> {
         return recetaDao.getPaso(id, idReceta).asLiveData()
+    }
+
+    //Recupera todas los ingredientes de una receta
+    fun agarrarIngredientes(id: Int): LiveData<List<Ingrediente>> = recetaDao.getIngredientes(id).asLiveData()
+
+    //Recupera un ingrediente de una receta
+    fun agarrarIngrediente(id: Int, idReceta: Int): LiveData<Ingrediente> {
+        return recetaDao.getIngrediente(id, idReceta).asLiveData()
     }
 
     //crea un objeto de tipo Receta para mandar a guardar tal objeto
@@ -65,7 +74,8 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
             nombre = nombre,
             autor = autor,
             categoria = categoria,
-            tiempo = tiempo
+            tiempo = tiempo,
+            isPending = false
         )
         updateReceta(editedReceta)
     }
@@ -87,6 +97,14 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         updateReceta(recetaUpdated)
     }
 
+    fun guardarCambiosTiempoPrepPrep(receta: RecetasConPasos, tiempoPrepPrep: Int) {
+        val recetaUpdated = receta.receta
+
+        recetaUpdated.tiempoPrepPrep = tiempoPrepPrep
+
+        updateReceta(recetaUpdated)
+    }
+
     private fun updateReceta(receta: Receta) {
         viewModelScope.launch {
             recetaDao.updateReceta(receta)
@@ -96,6 +114,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     //Manda a llamar el Dao para eliminar una receta
     fun deleteReceta(receta: RecetasConPasos) {
         viewModelScope.launch {
+            recetaDao.deleteIngredientes(receta.receta.id)
             recetaDao.deletePasos(receta.receta.id)
             recetaDao.deleteReceta(receta.receta)
         }
@@ -140,6 +159,56 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     private fun updatePaso(paso: Paso) {
         viewModelScope.launch {
             recetaDao.updatePaso(paso)
+        }
+    }
+
+    fun agregarNuevoIngrediente(id: Int) {
+        val nuevoIngrediente =
+            Ingrediente(
+                idReceta = id
+            )
+        insertIngrediente(nuevoIngrediente)
+    }
+
+    private fun insertIngrediente(ingrediente: Ingrediente) {
+        viewModelScope.launch {
+            recetaDao.insertIngrediente(ingrediente)
+        }
+    }
+
+    fun guardarCambiosIngrediente(
+        id: Int,
+        idReceta: Int,
+        nombre: String,
+        cant: Int,
+        medida: String,
+        kcals: Int
+    ) {
+        val nuevoIngrediente =
+            Ingrediente(
+                idIngrediente = id,
+                idReceta = idReceta,
+                nombreIngrediente = nombre,
+                cantIngrediente = cant,
+                medidaIngrediente = medida,
+                caloriasIngrediente = kcals
+            )
+        updateIngrediente(nuevoIngrediente)
+    }
+
+    private fun updateIngrediente(ingrediente: Ingrediente) {
+        viewModelScope.launch {
+            recetaDao.updateIngrediente(ingrediente)
+        }
+    }
+
+    fun eliminarIngrediente(id: Int, idReceta: Int){
+        deleteIngrediente(id, idReceta)
+    }
+
+    private fun deleteIngrediente(id: Int, idReceta: Int) {
+        viewModelScope.launch {
+            recetaDao.deleteIngrediente(id, idReceta)
         }
     }
 }

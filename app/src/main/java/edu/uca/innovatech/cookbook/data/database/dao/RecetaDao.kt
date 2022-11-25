@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecetaDao {
-
     //Queries para obtener datos generales de una receta
     @Query("SELECT * FROM receta ORDER BY nombre_receta ASC")
     fun getRecetas(): Flow<List<Receta>>
@@ -21,10 +20,19 @@ interface RecetaDao {
     @Query("SELECT * from paso WHERE idPaso = :idPaso AND id_receta = :idReceta")
     fun getPaso(idPaso: Int, idReceta: Int): Flow<Paso>
 
+    //Queries para obtener datos de ingredientes especificos
+    @Query("SELECT * FROM ingrediente WHERE id_receta = :idReceta")
+    fun getIngredientes(idReceta: Int): Flow<List<Ingrediente>>
+
+    @Query("SELECT * from ingrediente WHERE idIngrediente = :idIngrediente AND id_receta = :idReceta")
+    fun getIngrediente(idIngrediente: Int, idReceta: Int): Flow<Ingrediente>
+
     //Query para obtener una receta con sus pasos
     @Transaction
     @Query("SELECT * FROM receta WHERE id = :idReceta")
     fun getRecetaConPasos(idReceta: Int): Flow<RecetasConPasos>
+
+
 
     //Insert, Update y Delete de una receta
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -35,6 +43,8 @@ interface RecetaDao {
 
     @Delete()
     suspend fun deleteReceta(receta: Receta)
+
+
 
     //Insert, Update y Delete de un paso de una receta
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -50,4 +60,21 @@ interface RecetaDao {
     //El Delete es un query para poder especificar que pasos con que id de receta se borraran
     @Query("DELETE FROM paso WHERE id_receta = :idReceta")
     suspend fun deletePasos(idReceta: Int)
+
+
+
+    //Insert, Update y Delete de un ingrediente de una receta
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertIngrediente(ingrediente: Ingrediente)
+
+    @Update
+    suspend fun updateIngrediente(ingrediente: Ingrediente)
+
+    //El Delete es un query para eliminar un paso de una receta
+    @Query("DELETE FROM ingrediente WHERE idIngrediente = :idIngrediente AND id_receta = :idReceta")
+    suspend fun deleteIngrediente(idIngrediente: Int, idReceta: Int)
+
+    //El Delete es un query para poder especificar que pasos con que id de receta se borraran
+    @Query("DELETE FROM ingrediente WHERE id_receta = :idReceta")
+    suspend fun deleteIngredientes(idReceta: Int)
 }

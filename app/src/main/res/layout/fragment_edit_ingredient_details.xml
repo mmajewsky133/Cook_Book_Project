@@ -35,47 +35,61 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
-            <LinearLayout
-                android:id="@+id/InfoContainerLinearLayout"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:divider="@drawable/divider"
-                android:orientation="vertical"
-                android:showDividers="middle"
-                app:layout_constraintVertical_bias="0">
+                android:fillViewport="false">
 
-                <!--Text Input para Tiempo de preparacion-->
-                <com.google.android.material.textfield.TextInputLayout
+                <LinearLayout
+                    android:id="@+id/InfoContainerLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/tiempo_prep_label">
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:divider="@drawable/divider"
+                    android:orientation="vertical"
+                    android:showDividers="middle"
+                    app:layout_constraintVertical_bias="0">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tfTiempoPrepPaso"
+                    <!--Text Input para Tiempo de preparacion-->
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:maxLines="1" />
+                        android:hint="@string/tiempo_prep_label">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tfTiempoPrepPrep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLines="1" />
 
-                <!--Divider-->
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <!--Agregar un Nuevo Paso-->
-                <Button
-                    android:id="@+id/btnEditIngredients"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/edit_ingredients" />
+                    <!--Divider-->
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-            </LinearLayout>
+                    <!--Recycler View de Ingredientes-->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcvIngredientes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                    <!--Agregar un Nuevo Paso-->
+                    <Button
+                        android:id="@+id/btnAddIngredients"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_ingredients" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
 
         </LinearLayout>
 

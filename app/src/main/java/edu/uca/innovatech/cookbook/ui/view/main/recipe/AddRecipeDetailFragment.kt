@@ -12,12 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDetailBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class AddRecipeDetailFragment : Fragment() {
 
@@ -62,7 +65,7 @@ class AddRecipeDetailFragment : Fragment() {
         viewModel.agarrarReceta(id).observe(this.viewLifecycleOwner) { selectedItem ->
             receta = selectedItem
             pasosCount = obtenerCantPasos(receta)
-            if (pasosCount >= 10){
+            if (pasosCount >= 10) {
                 binding.btnAddPaso.isEnabled = false
             }
             bind(receta)
@@ -84,6 +87,12 @@ class AddRecipeDetailFragment : Fragment() {
             }
         }
 
+        binding.btnEditarIng.setOnClickListener {
+            val action = AddRecipeDetailFragmentDirections
+                .actionAddRecipeDetailFragmentToEditIngridientDetailsFragment(id)
+            findNavController().navigate(action)
+        }
+
         binding.btnAddPaso.setOnClickListener {
             agregarPaso()
         }
@@ -99,8 +108,39 @@ class AddRecipeDetailFragment : Fragment() {
             topAppBar.title = receta.receta.nombre
             topAppBar.subtitle = receta.receta.autor
 
+            tvTiempoPrepPreparacion.text = parseTiempoPrep(receta.receta.tiempoPrepPrep)
+            //Aqui va el binding de las recetas
+            tvIngrediente.text = parseIngredientes(receta.ingredientes)
+
             topAppBar.setNavigationOnClickListener { mostrarDialogConfirmacionSalida() }
         }
+    }
+
+    //Obtiene el tiempo en minutos y lo pasa a horas si es mas de 60 minutos
+    private fun parseTiempoPrep(tiempoPrep: Int): String{
+        if (tiempoPrep.equals(0)){
+            return "Tiempo estimado: Pendiente"
+        } else if (tiempoPrep > 60){
+            val tiempoPrepH: Double = ((tiempoPrep).toDouble())/60
+            val df = DecimalFormat("#.#")
+            df.roundingMode = RoundingMode.CEILING
+
+            return "Tiempo estimado: ${df.format(tiempoPrepH).toDouble()} h"
+        }
+        return "Tiempo estimado: $tiempoPrep m"
+    }
+
+    private fun parseIngredientes(ingredientes: List<Ingrediente>): String {
+        var ingredientesFormatted: String = ""
+
+        for (ing in ingredientes) {
+            ingredientesFormatted += """
+                ${ing.nombreIngrediente} - ${ing.medidaIngrediente} ${ing.medidaIngrediente}
+                
+            """.trimIndent()
+        }
+
+        return ingredientesFormatted
     }
 
     private fun agregarPaso() {

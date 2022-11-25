@@ -30,11 +30,14 @@
     <string name="no">No</string>
     <string name="yes">Si</string>
     <string name="delete_recipe_dialog_msg">Desea eliminar esta receta?</string>
+    <string name="delete_ingredient_dialog_msg">Desea eliminar este ingrediente?</string>
     <string name="conf_exit_recipe_dialog_msg">Sus ediciones actuales seran guardadas pero la receta permanecera pendiente. Seguro que desea salir? </string>
     <string name="preparation_label">Preparacion:</string>
     <string name="placeholderText_tiempoEst">Tiempo estimado:</string>
     <string name="ingridient_label">Ingredientes:</string>
     <string name="placeholderText_ingrediente">Un ingrediente - cant med</string>
+    <string name="placeholder_cant_med">cantidad - medida</string>
+    <string name="placeholder_cant_cals">Calorias estimadas</string>
     <string name="edit_details">Editar Detalles</string>
     <string name="agregar_paso">Agregar Paso</string>
     <string name="loremIpsum_small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam justo erat, finibus quis imperdiet vel, maximus eu dui. Aliquam lacinia nibh nec pretium lacinia. Praesent nisi lacus, aliquam in nibh eget, facilisis consequat ipsum. Etiam ullamcorper metus eget odio elementum vehicula.</string>
@@ -43,12 +46,16 @@
     <string name="placeholderText_paso_label">Paso #:</string>
     <string name="placeholderText_paso">Paso</string>
     <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
     <string name="tiempo_prep_label">Tiempo estimado (min)</string>
     <string name="detalles_paso_label">Detalles</string>
-    <string name="ingridient">Ingredientes</string>
+    <string name="ingredient">Ingrediente</string>
+    <string name="ingredients">Ingredientes</string>
     <string name="preparation">Preparacion</string>
     <string name="edit_ingredients">Editar Ingredientes</string>
+    <string name="add_ingredients">Agregar Ingrediente</string>
     <string name="cant_ingredient">Cantidad</string>
     <string name="ingredient_label">Ingrediente</string>
     <string name="medida_ingredient_label">Medida</string>
+    <string name="cant_calorias">Calorias totales</string>
 </resources>

@@ -60,5 +60,26 @@
         <action
             android:id="@+id/action_editIngridientDetailsFragment_to_addRecipeDetailFragment"
             app:destination="@id/addRecipeDetailFragment" />
+        <action
+            android:id="@+id/action_editIngredientDetailsFragment_to_editIngredientsFragment"
+            app:destination="@id/editIngredientsFragment" />
+        <argument
+            android:name="id_receta"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/editIngredientsFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.view.main.recipe.EditIngredientsFragment"
+        android:label="fragment_edit_ingredients"
+        tools:layout="@layout/fragment_edit_ingredients" >
+        <argument
+            android:name="id_receta"
+            app:argType="integer" />
+        <argument
+            android:name="id_ingrediente"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editIngredientsFragment_to_editIngredientDetailsFragment"
+            app:destination="@id/editIngredientDetailsFragment" />
     </fragment>
 </navigation>
