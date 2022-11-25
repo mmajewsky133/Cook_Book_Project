@@ -70,7 +70,6 @@ class EditIngredientsFragment : Fragment() {
         binding.apply {
             tfIngrediente.setText(ingrediente.nombreIngrediente)
             tfCantidadIngrediente.setText(ingrediente.cantIngrediente.toString())
-            tfMedidaIngrediente.setText(ingrediente.medidaIngrediente)
             tfCalorias.setText(ingrediente.caloriasIngrediente.toString())
 
             topAppBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
