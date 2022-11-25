@@ -16,16 +16,21 @@
         <item>Cena</item>
         <item>Snack</item>
     </array>
-    <array name="nombre_ingredientes">
-        <item>Ingrediente1</item>
-        <item>Ingrediente2</item>
-        <item>Ingrediente3</item>
-        <item>Ingrediente4</item>
-    </array>
     <array name="medidas_ingredientes">
-        <item>Medida1</item>
-        <item>Medida2</item>
-        <item>Medida3</item>
-        <item>Medida4</item>
+        <item>Lb</item>
+        <item>Tz</item>
+        <item>Tbsp</item>
+        <item>Tsp</item>
+        <item>Moño</item>
+        <item>Ramas</item>
+        <item>Diente</item>
+        <item>Hojas</item>
+        <item>L</item>
+        <item>mL</item>
+        <item>oz</item>
+        <item>g</item>
+        <item>Rodajas</item>
+        <item>Enter@</item>
+        <item>Al gusto</item>
     </array>
 </resources>
