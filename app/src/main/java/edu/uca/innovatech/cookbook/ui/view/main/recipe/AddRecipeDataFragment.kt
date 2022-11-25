@@ -129,8 +129,9 @@ class AddRecipeDataFragment : Fragment() {
             ivFotoReceta.setImageBitmap(receta.receta.bitmapImagen)
             tfNombreReceta.setText(receta.receta.nombre)
             tfAutorReceta.setText(receta.receta.autor)
-            tfCategoriaReceta.setText(receta.receta.categoria)
-            tfTiempoReceta.setText(receta.receta.tiempo)
+
+            tfCategoriaReceta.setText(receta.receta.categoria, false)
+            tfTiempoReceta.setText(receta.receta.tiempo, false)
         }
     }
 
