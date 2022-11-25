@@ -104,10 +104,10 @@ class AddRecipeDetailFragment : Fragment() {
     }
 
     private fun agregarPaso() {
-        if (pasosCount < 10) {
+        if (pasosCount < 12) {
             pasosCount++
             viewModel.agregarNuevoPaso(receta.receta.id, pasosCount)
-        } else if (pasosCount == 10) {
+        } else if (pasosCount == 12) {
             viewModel.agregarNuevoPaso(receta.receta.id, pasosCount)
             binding.btnAddPaso.isEnabled = false
         }
