@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -109,8 +110,9 @@ class AddRecipeDetailFragment : Fragment() {
             topAppBar.subtitle = receta.receta.autor
 
             tvTiempoPrepPreparacion.text = parseTiempoPrep(receta.receta.tiempoPrepPrep)
-            //Aqui va el binding de las recetas
+
             tvIngrediente.text = parseIngredientes(receta.ingredientes)
+            tvIngrediente.isVisible = true
 
             topAppBar.setNavigationOnClickListener { mostrarDialogConfirmacionSalida() }
         }

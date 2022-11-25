@@ -83,7 +83,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     fun actualizarRecetaEstado(receta: RecetasConPasos) {
         val recetaUpdated = receta.receta
         val pasosReceta = receta.pasos
-        var tiempoPrepReceta: Int = 0
+        var tiempoPrepReceta = receta.receta.tiempoPrepPrep
 
         //Recorre los pasos de la receta y suma todos los tiempos para dar
         //El total de tiempo de preparacion

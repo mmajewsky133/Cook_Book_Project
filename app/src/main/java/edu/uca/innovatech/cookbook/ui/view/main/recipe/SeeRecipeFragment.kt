@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentSeeRecipeBinding
@@ -73,9 +75,13 @@ class SeeRecipeFragment : Fragment() {
         binding.apply {
             topAppBar.title = receta.receta.nombre
             topAppBar.subtitle = "Escrita por: ${receta.receta.autor}"
+
             ivFotoReceta.setImageBitmap(receta.receta.bitmapImagen)
             tvTiempoPrepReceta.text = parseTiempoPrep(receta.receta.tiempoPrep)
             tvCaloriesReceta.text =  parseCalorias(receta.receta.calorias)
+
+            tvIngrediente.text = parseIngredientes(receta.ingredientes)
+            tvIngrediente.isVisible = true
 
             topAppBar.setNavigationOnClickListener {
                 activity?.onBackPressedDispatcher?.onBackPressed()
@@ -115,6 +121,19 @@ class SeeRecipeFragment : Fragment() {
             return "Calorias estimadas: Pendiente"
 
         return "Calorias estimadas: $kcal kcal"
+    }
+
+    private fun parseIngredientes(ingredientes: List<Ingrediente>): String {
+        var ingredientesFormatted: String = ""
+
+        for (ing in ingredientes) {
+            ingredientesFormatted += """
+                ${ing.nombreIngrediente} - ${ing.medidaIngrediente} ${ing.medidaIngrediente}
+                
+            """.trimIndent()
+        }
+
+        return ingredientesFormatted
     }
 
     private fun mostrarDialogConfirmacion() {
