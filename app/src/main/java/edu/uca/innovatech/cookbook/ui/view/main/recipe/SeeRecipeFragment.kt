@@ -17,6 +17,8 @@ import edu.uca.innovatech.cookbook.databinding.FragmentSeeRecipeBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class SeeRecipeFragment : Fragment() {
 
@@ -72,9 +74,8 @@ class SeeRecipeFragment : Fragment() {
             topAppBar.title = receta.receta.nombre
             topAppBar.subtitle = "Escrita por: ${receta.receta.autor}"
             ivFotoReceta.setImageBitmap(receta.receta.bitmapImagen)
-
-            tvCaloriesReceta.setText(receta.receta.calorias) //TODO parse pendiente
-            tvTiempoPrepReceta.setText(receta.receta.tiempoPrep) //TODO parse pendiente
+            tvTiempoPrepReceta.text = parseTiempoPrep(receta.receta.tiempoPrep)
+            tvCaloriesReceta.text =  parseCalorias(receta.receta.calorias)
 
             topAppBar.setNavigationOnClickListener {
                 activity?.onBackPressedDispatcher?.onBackPressed()
@@ -93,6 +94,27 @@ class SeeRecipeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    //Obtiene el tiempo en minutos y lo pasa a horas si es mas de 60 minutos
+    private fun parseTiempoPrep(tiempoPrep: Int): String{
+        if (tiempoPrep.equals(0)){
+            return "Tiempo de preparacion: Pendiente"
+        } else if (tiempoPrep > 60){
+            val tiempoPrepH: Double = ((tiempoPrep).toDouble())/60
+            val df = DecimalFormat("#.#")
+            df.roundingMode = RoundingMode.CEILING
+
+            return "Tiempo de preparacion: ${df.format(tiempoPrepH).toDouble()} h"
+        }
+        return "Tiempo de preparacion: $tiempoPrep m"
+    }
+
+    private fun parseCalorias(kcal: Int): String{
+        if (kcal.equals(0))
+            return "Calorias estimadas: Pendiente"
+
+        return "Calorias estimadas: $kcal kcal"
     }
 
     private fun mostrarDialogConfirmacion() {

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import edu.uca.innovatech.cookbook.databinding.ItemRecipeOverviewBinding
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 
 class RecipeOverviewCardAdapter(private val onReceteClicked: (Receta) -> Unit) :
@@ -44,10 +46,17 @@ class RecipeOverviewCardAdapter(private val onReceteClicked: (Receta) -> Unit) :
             }
         }
 
+        //Obtiene el tiempo en minutos y lo pasa a horas si es mas de 60 minutos
         private fun parseTiempoPrep(tiempoPrep: Int): String{
-            if (tiempoPrep.equals(0))
+            if (tiempoPrep.equals(0)){
                 return "Tiempo de preparacion: Pendiente"
+            } else if (tiempoPrep > 60){
+                val tiempoPrepH: Double = ((tiempoPrep).toDouble())/60
+                val df = DecimalFormat("#.#")
+                df.roundingMode = RoundingMode.CEILING
 
+                return "Tiempo de preparacion: ${df.format(tiempoPrepH).toDouble()} h"
+            }
             return "Tiempo de preparacion: $tiempoPrep m"
         }
 
