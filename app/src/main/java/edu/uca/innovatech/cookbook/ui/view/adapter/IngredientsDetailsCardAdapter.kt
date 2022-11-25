@@ -36,7 +36,7 @@ class IngredientsDetailsCardAdapter(private val onIngredienteClicked: (Ingredien
             binding.apply {
                 tvIngrediente.text = ingrediente.nombreIngrediente
                 tvCantidadIngrediente.text =
-                    "${ingrediente.cantIngrediente} - ${ingrediente.medidaIngrediente}"
+                    parseCant(ingrediente.cantIngrediente, ingrediente.medidaIngrediente)
                 tvCaloriasIngrediente.text = parseCalorias(ingrediente.caloriasIngrediente)
             }
         }
@@ -48,6 +48,12 @@ class IngredientsDetailsCardAdapter(private val onIngredienteClicked: (Ingredien
             return "Calorias estimadas: $kcal kcal"
         }
 
+        private fun parseCant(cantIngrediente: Int, medidaIngrediente: String): String {
+            if (medidaIngrediente.equals("al gusto")) {
+                return medidaIngrediente
+            }
+            return "$cantIngrediente - $medidaIngrediente"
+        }
     }
 
     companion object {

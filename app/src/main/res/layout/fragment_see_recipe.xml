@@ -80,9 +80,27 @@
 
                             <!-- Title, secondary and supporting text -->
                             <TextView
+                                android:id="@+id/tvCategoriaReceta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/placeholderText_CatReceta"
+                                android:textAppearance="?attr/textAppearanceBodyMedium"
+                                android:textColor="?android:attr/textColorSecondary" />
+
+                            <TextView
+                                android:id="@+id/tvTiempoComidaReceta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/placeholderText_TiempoComidaReceta"
+                                android:textAppearance="?attr/textAppearanceBodyMedium"
+                                android:textColor="?android:attr/textColorSecondary" />
+
+                            <TextView
                                 android:id="@+id/tvTiempoPrepReceta"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
                                 android:text="@string/placeholderText_TiempoPrepReceta"
                                 android:textAppearance="?attr/textAppearanceBodyMedium"
                                 android:textColor="?android:attr/textColorSecondary" />

@@ -136,12 +136,18 @@ class AddRecipeDetailFragment : Fragment() {
         var ingredientesFormatted: String = ""
 
         for (ing in ingredientes) {
-            ingredientesFormatted += """
-                ${ing.nombreIngrediente} - ${ing.medidaIngrediente} ${ing.medidaIngrediente}
+            if (ing.medidaIngrediente.equals("al gusto")) {
+                ingredientesFormatted += """
+                ${ing.nombreIngrediente} - ${ing.medidaIngrediente}
                 
-            """.trimIndent()
+                """.trimIndent()
+            } else {
+                ingredientesFormatted += """
+                ${ing.nombreIngrediente} - ${ing.cantIngrediente} ${ing.medidaIngrediente}
+                
+                """.trimIndent()
+            }
         }
-
         return ingredientesFormatted
     }
 

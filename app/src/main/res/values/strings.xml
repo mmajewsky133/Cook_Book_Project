@@ -34,6 +34,8 @@
     <string name="conf_exit_recipe_dialog_msg">Sus ediciones actuales seran guardadas pero la receta permanecera pendiente. Seguro que desea salir? </string>
     <string name="preparation_label">Preparacion:</string>
     <string name="placeholderText_tiempoEst">Tiempo estimado:</string>
+    <string name="placeholderText_TiempoComidaReceta">Tiempo de Comida: %s</string>
+    <string name="placeholderText_CatReceta">Categoria: %s</string>
     <string name="ingridient_label">Ingredientes:</string>
     <string name="placeholderText_ingrediente">Un ingrediente - cant med</string>
     <string name="placeholder_cant_med">cantidad - medida</string>

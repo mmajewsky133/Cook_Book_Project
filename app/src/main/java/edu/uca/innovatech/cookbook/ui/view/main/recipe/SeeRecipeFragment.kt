@@ -77,8 +77,12 @@ class SeeRecipeFragment : Fragment() {
             topAppBar.subtitle = "Escrita por: ${receta.receta.autor}"
 
             ivFotoReceta.setImageBitmap(receta.receta.bitmapImagen)
+            tvCategoriaReceta.text =
+                getString(R.string.placeholderText_CatReceta, receta.receta.categoria)
+            tvTiempoComidaReceta.text =
+                getString(R.string.placeholderText_TiempoComidaReceta, receta.receta.tiempo)
             tvTiempoPrepReceta.text = parseTiempoPrep(receta.receta.tiempoPrep)
-            tvCaloriesReceta.text =  parseCalorias(receta.receta.calorias)
+            tvCaloriesReceta.text = parseCalorias(receta.receta.calorias)
 
             tvIngrediente.text = parseIngredientes(receta.ingredientes)
             tvIngrediente.isVisible = true
@@ -103,11 +107,11 @@ class SeeRecipeFragment : Fragment() {
     }
 
     //Obtiene el tiempo en minutos y lo pasa a horas si es mas de 60 minutos
-    private fun parseTiempoPrep(tiempoPrep: Int): String{
-        if (tiempoPrep.equals(0)){
+    private fun parseTiempoPrep(tiempoPrep: Int): String {
+        if (tiempoPrep.equals(0)) {
             return "Tiempo de preparacion: Pendiente"
-        } else if (tiempoPrep > 60){
-            val tiempoPrepH: Double = ((tiempoPrep).toDouble())/60
+        } else if (tiempoPrep > 60) {
+            val tiempoPrepH: Double = ((tiempoPrep).toDouble()) / 60
             val df = DecimalFormat("#.#")
             df.roundingMode = RoundingMode.CEILING
 
@@ -116,7 +120,7 @@ class SeeRecipeFragment : Fragment() {
         return "Tiempo de preparacion: $tiempoPrep m"
     }
 
-    private fun parseCalorias(kcal: Int): String{
+    private fun parseCalorias(kcal: Int): String {
         if (kcal.equals(0))
             return "Calorias estimadas: Pendiente"
 
@@ -127,12 +131,18 @@ class SeeRecipeFragment : Fragment() {
         var ingredientesFormatted: String = ""
 
         for (ing in ingredientes) {
-            ingredientesFormatted += """
-                ${ing.nombreIngrediente} - ${ing.medidaIngrediente} ${ing.medidaIngrediente}
+            if (ing.medidaIngrediente.equals("al gusto")) {
+                ingredientesFormatted += """
+                ${ing.nombreIngrediente} - ${ing.medidaIngrediente}
                 
-            """.trimIndent()
+                """.trimIndent()
+            } else {
+                ingredientesFormatted += """
+                ${ing.nombreIngrediente} - ${ing.cantIngrediente} ${ing.medidaIngrediente}
+                
+                """.trimIndent()
+            }
         }
-
         return ingredientesFormatted
     }
 

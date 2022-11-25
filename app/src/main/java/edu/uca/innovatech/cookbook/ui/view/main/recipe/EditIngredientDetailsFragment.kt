@@ -67,6 +67,7 @@ class EditIngredientDetailsFragment : Fragment() {
         }
 
         val adapter = IngredientsDetailsCardAdapter {
+            guardarEdiciones()
             val action = EditIngredientDetailsFragmentDirections
                 .actionEditIngredientDetailsFragmentToEditIngredientsFragment(id, it.idIngrediente)
             findNavController().navigate(action)
