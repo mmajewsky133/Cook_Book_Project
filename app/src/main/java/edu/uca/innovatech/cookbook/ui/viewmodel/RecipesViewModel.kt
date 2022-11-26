@@ -23,6 +23,10 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     //Recupera todas las recetas
     val allRecetas: LiveData<List<Receta>> = recetaDao.getRecetas().asLiveData()
 
+    //Recupera todas las recetas de cierto tiempo
+    fun allRecetasTiempo(tiempo: String): LiveData<List<Receta>> =
+        recetaDao.getRecetasTiempo(tiempo).asLiveData()
+
     //Agarra una receta con pasos del dao
     fun agarrarReceta(id: Int): LiveData<RecetasConPasos> {
         return recetaDao.getRecetaConPasos(id).asLiveData()
@@ -37,7 +41,8 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     }
 
     //Recupera todas los ingredientes de una receta
-    fun agarrarIngredientes(id: Int): LiveData<List<Ingrediente>> = recetaDao.getIngredientes(id).asLiveData()
+    fun agarrarIngredientes(id: Int): LiveData<List<Ingrediente>> =
+        recetaDao.getIngredientes(id).asLiveData()
 
     //Recupera un ingrediente de una receta
     fun agarrarIngrediente(id: Int, idReceta: Int): LiveData<Ingrediente> {
@@ -87,7 +92,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
 
         //Recorre los pasos de la receta y suma todos los tiempos para dar
         //El total de tiempo de preparacion
-        for (tiempo in pasosReceta){
+        for (tiempo in pasosReceta) {
             tiempoPrepReceta += tiempo.tiempo
         }
 
@@ -202,7 +207,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
         }
     }
 
-    fun eliminarIngrediente(id: Int, idReceta: Int){
+    fun eliminarIngrediente(id: Int, idReceta: Int) {
         deleteIngrediente(id, idReceta)
     }
 

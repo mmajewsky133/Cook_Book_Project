@@ -13,6 +13,10 @@ interface RecetaDao {
     @Query("SELECT * from receta WHERE id = :id")
     fun getReceta(id: Int): Flow<Receta>
 
+    //Query para obtener recetas dependiendo el tiempo
+    @Query("SELECT * FROM receta WHERE tiempo_comida = :tiempoComida")
+    fun getRecetasTiempo(tiempoComida: String): Flow<List<Receta>>
+
     //Queries para obtener datos de pasos especificos
     @Query("SELECT * FROM paso WHERE id_receta = :idReceta ORDER BY num_paso ASC")
     fun getPasos(idReceta: Int): Flow<List<Paso>>

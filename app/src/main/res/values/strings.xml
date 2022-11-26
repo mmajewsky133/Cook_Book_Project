@@ -28,7 +28,9 @@
     <string name="editar_receta">Editar Receta</string>
     <string name="eliminar_receta">Eliminar Receta</string>
     <string name="no">No</string>
+    <string name="cancel">Cancelar</string>
     <string name="yes">Si</string>
+    <string name="ok">OK</string>
     <string name="delete_recipe_dialog_msg">Desea eliminar esta receta?</string>
     <string name="delete_ingredient_dialog_msg">Desea eliminar este ingrediente?</string>
     <string name="conf_exit_recipe_dialog_msg">Sus ediciones actuales seran guardadas pero la receta permanecera pendiente. Seguro que desea salir? </string>
@@ -60,4 +62,9 @@
     <string name="ingredient_label">Ingrediente</string>
     <string name="medida_ingredient_label">Medida</string>
     <string name="cant_calorias">Calorias totales</string>
+    <string name="time_day_label">Buen@s XXXXX,</string>
+    <string name="wayouwant_label">Que Le Apetece Hoy?</string>
+    <string name="perfect_time_label">Perfectos Para la Hora</string>
+    <string name="start_cooking">Empezar a Cocinar</string>
+    <string name="cook_recipe_dialog_msg">Desea comenzar a cocinar esta receta?</string>
 </resources>
