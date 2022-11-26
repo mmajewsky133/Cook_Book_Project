@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.databinding.FragmentRecipesBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeOverviewCardAdapter
@@ -54,7 +55,28 @@ class RecipesFragment : Fragment() {
             context?.startActivity(intent)
         }
 
+        //Detecta Scrolling del Recycler View
+        binding.rcvListaRecetas.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            //Detecta la direccion en la cual se mueve el Recycler View
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                //Si hay movimiento hacia abajo, el FAB se encoje
+                if (dy > 0) {
+                    binding.fabNuevaReceta.shrink()
+                }
+            }
 
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                //Si no se puede scroll de manera vertical y el estado del Recycler View esta Idle
+                //Indica que el Recycler View ha llegado al tope de arriba
+                if (!recyclerView.canScrollVertically(-1)
+                    && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    //Vuelve a extender el FAB
+                    binding.fabNuevaReceta.extend()
+                }
+            }
+        })
     }
 
     private fun initRecyclerView() {
@@ -65,8 +87,9 @@ class RecipesFragment : Fragment() {
 
             startActivity(intent)
         }
+        val layoutManager = LinearLayoutManager(this.context)
 
-        binding.rcvListaRecetas.layoutManager = LinearLayoutManager(this.context)
+        binding.rcvListaRecetas.layoutManager = layoutManager
         binding.rcvListaRecetas.adapter = adapter
 
         viewModel.allRecetas.observe(this.viewLifecycleOwner) { recetas ->

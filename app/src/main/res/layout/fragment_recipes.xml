@@ -30,13 +30,14 @@
             android:layout_marginEnd="10dp" />
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabNuevaReceta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="@string/add_receta"
-        app:srcCompat="@drawable/ic_outline_edit_24" />
+        android:text="@string/add_receta"
+        app:icon="@drawable/ic_outline_edit_24" />
 
 </FrameLayout>
