@@ -67,4 +67,7 @@
     <string name="perfect_time_label">Perfectos Para la Hora</string>
     <string name="start_cooking">Empezar a Cocinar</string>
     <string name="cook_recipe_dialog_msg">Desea comenzar a cocinar esta receta?</string>
+    <string name="good_morning_label">Buenos Dias,</string>
+    <string name="good_afternoon_label">Buenas Tardes,</string>
+    <string name="good_evening_label">Buenas Noches,</string>
 </resources>

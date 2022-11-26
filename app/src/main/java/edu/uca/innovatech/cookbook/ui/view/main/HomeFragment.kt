@@ -50,11 +50,11 @@ class HomeFragment : Fragment() {
         val currentHour: Int = rightNow.get(Calendar.HOUR_OF_DAY)
 
         if (currentHour in 4..12) {
-            binding.tvTiempoDia.text = "Buenos Dias,"
+            binding.tvTiempoDia.text =  getString(R.string.good_morning_label)
         } else if (currentHour in 13..18) {
-            binding.tvTiempoDia.text = "Buenas Tardes,"
+            binding.tvTiempoDia.text = getString(R.string.good_afternoon_label)
         } else {
-            binding.tvTiempoDia.text = "Buenas Noches,"
+            binding.tvTiempoDia.text = getString(R.string.good_evening_label)
         }
 
         val adapter = RecipeSelectionCardAdapter {
