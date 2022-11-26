@@ -85,6 +85,10 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
+        binding.fabNuevaAccion.setOnClickListener{
+            //TODO Implement Speed Dial for: Start Cooking, Add Recipe, Add consumed food
+        }
     }
 
     private fun bind(currentHour: Int) {
