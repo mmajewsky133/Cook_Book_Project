@@ -49,13 +49,7 @@ class HomeFragment : Fragment() {
         val rightNow = Calendar.getInstance()
         val currentHour: Int = rightNow.get(Calendar.HOUR_OF_DAY)
 
-        if (currentHour in 4..12) {
-            binding.tvTiempoDia.text =  getString(R.string.good_morning_label)
-        } else if (currentHour in 13..18) {
-            binding.tvTiempoDia.text = getString(R.string.good_afternoon_label)
-        } else {
-            binding.tvTiempoDia.text = getString(R.string.good_evening_label)
-        }
+        bind(currentHour)
 
         val adapter = RecipeSelectionCardAdapter {
             //Codigo para cuando se presione en el boton CardView
@@ -90,6 +84,16 @@ class HomeFragment : Fragment() {
                     adapter.submitList(it)
                 }
             }
+        }
+    }
+
+    private fun bind(currentHour: Int) {
+        if (currentHour in 4..12) {
+            binding.tvTiempoDia.text =  getString(R.string.good_morning_label)
+        } else if (currentHour in 13..18) {
+            binding.tvTiempoDia.text = getString(R.string.good_afternoon_label)
+        } else {
+            binding.tvTiempoDia.text = getString(R.string.good_evening_label)
         }
     }
 
