@@ -84,6 +84,7 @@ class SeeRecipeFragment : Fragment() {
             tvTiempoPrepReceta.text = parseTiempoPrep(receta.receta.tiempoPrep)
             tvCaloriesReceta.text = parseCalorias(receta.receta.calorias)
 
+            tvTiempoPrepPreparacion.text = parseTiempoPrep(receta.receta.tiempoPrepPrep)
             tvIngrediente.text = parseIngredientes(receta.ingredientes)
             tvIngrediente.isVisible = true
 
@@ -134,6 +135,16 @@ class SeeRecipeFragment : Fragment() {
             if (ing.medidaIngrediente.equals("Al gusto")) {
                 ingredientesFormatted += """
                 ${ing.nombreIngrediente} - ${ing.medidaIngrediente}
+                
+                """.trimIndent()
+            } else if (ing.medidaIngrediente.equals("xxx")) {
+                ingredientesFormatted += """
+                ${ing.nombreIngrediente} - ${ing.cantIngrediente}
+                
+                """.trimIndent()
+            } else if (ing.cantIngrediente.equals(0)) {
+                ingredientesFormatted += """
+                ${ing.nombreIngrediente}
                 
                 """.trimIndent()
             } else {
