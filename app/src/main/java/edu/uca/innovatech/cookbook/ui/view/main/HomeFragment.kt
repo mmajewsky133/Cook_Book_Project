@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
             tiempo = "Desayuno"
         } else if (currentHour in 11..16) {
             tiempo = "Almuerzo"
-        } else if (currentHour in 18..21) {
+        } else if (currentHour in 18..22) {
             tiempo = "Cena"
         } else {
             tiempo = "Snack"
