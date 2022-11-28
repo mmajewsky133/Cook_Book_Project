@@ -55,7 +55,20 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        // basicamente maneja el a que pagina se va si le das click
+        binding.bottomNavigation.setOnItemReselectedListener{ item ->
+            when(item.itemId) {
+                R.id.page_Recipes -> {
+                    //Bottom Sheet Fragment para Filter
+                    true
+                }
+                else -> false
+            }
+        }
     }
+
+
 
     //Funcion para cambiar el Fragment
     private fun replaceFragment(fragment : Fragment){
