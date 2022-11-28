@@ -23,9 +23,14 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
     //Recupera todas las recetas
     val allRecetas: LiveData<List<Receta>> = recetaDao.getRecetas().asLiveData()
 
-    //Recupera todas las recetas de cierto tiempo
-    fun allRecetasTiempo(tiempo: String): LiveData<List<Receta>> =
-        recetaDao.getRecetasTiempo(tiempo).asLiveData()
+    //Recupera todas las recetas dentro de un filtro y manda a llamar al query dependiendo del
+    //filter puesto
+    fun allRecetasFilter(filter: String, value: String): LiveData<List<Receta>> {
+        if (filter == "tiempo_comida"){
+            return recetaDao.getRecetasTiempo(value).asLiveData()
+        }
+        return recetaDao.getRecetas().asLiveData()
+    }
 
     //Agarra una receta con pasos del dao
     fun agarrarReceta(id: Int): LiveData<RecetasConPasos> {

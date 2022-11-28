@@ -48,6 +48,7 @@ class HomeFragment : Fragment() {
     private fun init() {
         val rightNow = Calendar.getInstance()
         val currentHour: Int = rightNow.get(Calendar.HOUR_OF_DAY)
+        var tiempo = ""
 
         bind(currentHour)
 
@@ -61,28 +62,18 @@ class HomeFragment : Fragment() {
         binding.rcvListaRecetas.adapter = adapter
 
         if (currentHour in 5..10) {
-            viewModel.allRecetasTiempo("Desayuno").observe(this.viewLifecycleOwner) { recetas ->
-                recetas.let {
-                    adapter.submitList(it)
-                }
-            }
+            tiempo = "Desayuno"
         } else if (currentHour in 11..16) {
-            viewModel.allRecetasTiempo("Almuerzo").observe(this.viewLifecycleOwner) { recetas ->
-                recetas.let {
-                    adapter.submitList(it)
-                }
-            }
+            tiempo = "Almuerzo"
         } else if (currentHour in 18..21) {
-            viewModel.allRecetasTiempo("Cena").observe(this.viewLifecycleOwner) { recetas ->
-                recetas.let {
-                    adapter.submitList(it)
-                }
-            }
+            tiempo = "Cena"
         } else {
-            viewModel.allRecetasTiempo("Snack").observe(this.viewLifecycleOwner) { recetas ->
-                recetas.let {
-                    adapter.submitList(it)
-                }
+            tiempo = "Snack"
+        }
+
+        viewModel.allRecetasFilter("tiempo_comida", tiempo).observe(this.viewLifecycleOwner) { recetas ->
+            recetas.let {
+                adapter.submitList(it)
             }
         }
 
