@@ -66,7 +66,7 @@ class AddRecipeDetailFragment : Fragment() {
         viewModel.agarrarReceta(id).observe(this.viewLifecycleOwner) { selectedItem ->
             receta = selectedItem
             pasosCount = obtenerCantPasos(receta)
-            if (pasosCount >= 10) {
+            if (pasosCount >= 12) {
                 binding.btnAddPaso.isEnabled = false
             }
             bind(receta)
