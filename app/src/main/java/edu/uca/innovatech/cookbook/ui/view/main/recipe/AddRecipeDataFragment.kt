@@ -82,7 +82,7 @@ class AddRecipeDataFragment : Fragment() {
 
             //Permitiendo que la flecha del TopAppBar funcione igual que darle hacia atras
             topAppBar.setNavigationOnClickListener() {
-                activity?.onBackPressed()
+                activity?.onBackPressedDispatcher?.onBackPressed()
             }
 
             //manejar el cambio de valores de los campos
