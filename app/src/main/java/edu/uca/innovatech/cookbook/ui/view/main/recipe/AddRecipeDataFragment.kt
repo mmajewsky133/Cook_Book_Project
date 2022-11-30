@@ -10,12 +10,15 @@ import androidx.navigation.fragment.findNavController
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import edu.uca.innovatech.cookbook.CookBookApp
+import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
+import edu.uca.innovatech.cookbook.core.ex.onTextChanged
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDataBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
@@ -84,11 +87,16 @@ class AddRecipeDataFragment : Fragment() {
                 activity?.onBackPressedDispatcher?.onBackPressed()
             }
 
-            //manejar el cambio de valores de los campos
-            tfNombreReceta.addTextChangedListener(recipeTextWatcher)
-            tfAutorReceta.addTextChangedListener(recipeTextWatcher)
-            tfCategoriaReceta.addTextChangedListener(recipeTextWatcher)
-            tfTiempoReceta.addTextChangedListener(recipeTextWatcher)
+            //manejar el cambio de valores de los campos y accion en keyboard
+            tfNombreReceta.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
+            tfNombreReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
+
+            tfAutorReceta.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
+            tfAutorReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
+
+
+            tfCategoriaReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
+            tfTiempoReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
 
             //un click listener para escoger una image para la receta
             ivFotoRecetaHolder.setOnClickListener {
@@ -168,20 +176,6 @@ class AddRecipeDataFragment : Fragment() {
                 binding.tfTiempoReceta.text.toString()
             )
         }
-    }
-
-    //Objeto TextWatcher para manejar el cambio del TextField
-    private val recipeTextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-        //Cuando Cambia el texto
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            // Habilita el boton dependiendo si los campos estan llenos o no
-            binding.btnSiguiente.isEnabled = esValido()
-        }
-
-        override fun afterTextChanged(p0: Editable?) {}
     }
 
     /**

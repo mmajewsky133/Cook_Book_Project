@@ -1,4 +1,4 @@
-package edu.uca.innovatech.cookbook.core
+package edu.uca.innovatech.cookbook.data.database.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
