@@ -1,9 +1,7 @@
 package edu.uca.innovatech.cookbook.data.database.entities
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.room.*
-import edu.uca.innovatech.cookbook.R
 
 @Entity(tableName = "receta")
 data class Receta(

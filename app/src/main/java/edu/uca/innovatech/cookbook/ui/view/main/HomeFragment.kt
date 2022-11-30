@@ -1,6 +1,5 @@
 package edu.uca.innovatech.cookbook.ui.view.main
 
-import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

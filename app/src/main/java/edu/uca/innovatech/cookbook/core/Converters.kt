@@ -1,14 +1,8 @@
 package edu.uca.innovatech.cookbook.core
 
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
-import android.widget.ImageView
-import androidx.core.net.toUri
 import androidx.room.TypeConverter
-import coil.api.load
-import edu.uca.innovatech.cookbook.R
 import java.io.ByteArrayOutputStream
 
 class Converters {

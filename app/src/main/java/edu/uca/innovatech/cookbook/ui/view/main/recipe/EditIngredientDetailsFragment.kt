@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,13 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
-import edu.uca.innovatech.cookbook.data.database.entities.Paso
-import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
-import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDetailBinding
 import edu.uca.innovatech.cookbook.databinding.FragmentEditIngredientDetailsBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.IngredientsDetailsCardAdapter
-import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 

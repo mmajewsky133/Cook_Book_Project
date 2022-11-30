@@ -5,18 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
-import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.databinding.FragmentEditIngredientsBinding
-import edu.uca.innovatech.cookbook.databinding.FragmentEditStepDetailsBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 

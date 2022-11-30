@@ -14,8 +14,6 @@ import androidx.navigation.fragment.navArgs
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
-import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
-import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDetailBinding
 import edu.uca.innovatech.cookbook.databinding.FragmentEditStepDetailsBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory

@@ -1,19 +1,15 @@
 package edu.uca.innovatech.cookbook.ui.view.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.databinding.FragmentSelectRecipeBottomSheetBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeOverviewCardAdapter
-import edu.uca.innovatech.cookbook.ui.view.main.recipe.AddRecipeActivity
-import edu.uca.innovatech.cookbook.ui.view.main.recipe.SeeRecipeActivity
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 

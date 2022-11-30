@@ -16,7 +16,6 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import edu.uca.innovatech.cookbook.CookBookApp
-import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDataBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
