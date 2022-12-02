@@ -88,12 +88,11 @@ class AddRecipeDataFragment : Fragment() {
             }
 
             //manejar el cambio de valores de los campos y accion en keyboard
-            tfNombreReceta.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
+            tfNombreReceta.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
             tfNombreReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
 
-            tfAutorReceta.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
+            tfAutorReceta.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
             tfAutorReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
-
 
             tfCategoriaReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
             tfTiempoReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }

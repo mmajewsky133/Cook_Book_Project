@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
@@ -13,6 +14,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
+import edu.uca.innovatech.cookbook.core.ex.onTextChanged
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.databinding.FragmentEditStepDetailsBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
@@ -98,6 +101,10 @@ class EditStepDetailsFragment : Fragment() {
                     else -> false
                 }
             }
+
+            //manejar el cambio de valores de los campos y accion en keyboard
+            tfTiempoPrepPaso.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
+            tfDetallePaso.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
         }
 
     }

@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentEditIngredientDetailsBinding
@@ -85,6 +87,7 @@ class EditIngredientDetailsFragment : Fragment() {
 
     private fun bind(receta: RecetasConPasos) {
         binding.apply {
+            tfTiempoPrepPrep.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
             tfTiempoPrepPrep.setText(receta.receta.tiempoPrepPrep.toString())
 
             topAppBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }

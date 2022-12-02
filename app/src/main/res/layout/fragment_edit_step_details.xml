@@ -87,8 +87,7 @@
                         android:id="@+id/tfDetallePaso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="10"
-                        app:endIconMode="clear_text" />
+                        android:maxLines="10"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 

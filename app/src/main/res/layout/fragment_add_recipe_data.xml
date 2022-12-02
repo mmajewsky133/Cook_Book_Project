@@ -57,7 +57,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="140dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/placeholder"/>
+                        android:src="@drawable/placeholder" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -86,6 +86,7 @@
                         android:id="@+id/tfAutorReceta"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
                         android:inputType="text"
                         android:maxLines="1" />
 
