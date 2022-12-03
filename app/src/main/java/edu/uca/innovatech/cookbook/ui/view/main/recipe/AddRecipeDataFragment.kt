@@ -2,8 +2,6 @@ package edu.uca.innovatech.cookbook.ui.view.main.recipe
 
 import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -17,6 +15,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import edu.uca.innovatech.cookbook.CookBookApp
+import edu.uca.innovatech.cookbook.constants.MAX_LENGTH_TITLE_AUTHOR
 import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
 import edu.uca.innovatech.cookbook.core.ex.onTextChanged
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
@@ -79,6 +78,11 @@ class AddRecipeDataFragment : Fragment() {
             }
         }
 
+        initListeners(idRecetaFrom)
+    }
+
+    //Inicializa listeners de botones y cambios
+    private fun initListeners(idRecetaFrom: Int) {
         with(binding) {
             btnSiguiente.isEnabled = false
 
@@ -89,10 +93,19 @@ class AddRecipeDataFragment : Fragment() {
 
             //manejar el cambio de valores de los campos y accion en keyboard
             tfNombreReceta.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
-            tfNombreReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
-
+            tfNombreReceta.onTextChanged {
+                btnSiguiente.isEnabled = esValido()
+                tflNombreReceta.error =
+                    if (tfNombreReceta.text.toString().length <= MAX_LENGTH_TITLE_AUTHOR) null
+                    else "Nombre de la receta muy grande"
+            }
             tfAutorReceta.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
-            tfAutorReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
+            tfAutorReceta.onTextChanged {
+                btnSiguiente.isEnabled = esValido()
+                tflAutorReceta.error =
+                    if (tfAutorReceta.text.toString().length <= MAX_LENGTH_TITLE_AUTHOR) null
+                    else "Nombre del autor muy grande"
+            }
 
             tfCategoriaReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
             tfTiempoReceta.onTextChanged { binding.btnSiguiente.isEnabled = esValido() }
@@ -145,7 +158,9 @@ class AddRecipeDataFragment : Fragment() {
     private fun esValido(): Boolean {
         return with(binding) {
             tfNombreReceta.text.toString().isNotEmpty()
+                    && tfNombreReceta.text.toString().length <= MAX_LENGTH_TITLE_AUTHOR
                     && tfAutorReceta.text.toString().isNotEmpty()
+                    && tfAutorReceta.text.toString().length <= MAX_LENGTH_TITLE_AUTHOR
                     && tfCategoriaReceta.text.toString().isNotEmpty()
                     && tfTiempoReceta.text.toString().isNotEmpty()
         }

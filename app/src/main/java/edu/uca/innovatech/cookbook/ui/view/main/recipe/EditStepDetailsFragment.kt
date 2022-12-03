@@ -14,6 +14,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.constants.MAX_LENGTH_STEP_DETAIL
+import edu.uca.innovatech.cookbook.constants.MAX_TIME_PREP_INGREDIENT
+import edu.uca.innovatech.cookbook.constants.MIN_LENGTH_STEP_DETAIL
 import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
 import edu.uca.innovatech.cookbook.core.ex.onTextChanged
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
@@ -60,6 +63,7 @@ class EditStepDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         init()
+        initListeners()
     }
 
     private fun init() {
@@ -82,14 +86,28 @@ class EditStepDetailsFragment : Fragment() {
         }
     }
 
-    //Pone datos generales a usar en el View
-    private fun bind(paso: Paso) {
+    private fun initListeners() {
         binding.apply {
-            topAppBar.title = "Paso ${paso.numPaso}"
-            ivFotoPaso.setImageBitmap(paso.imagenPaso)
-            tfTiempoPrepPaso.setText(paso.tiempo.toString())
-            tfDetallePaso.setText(paso.detalle)
-
+            tfTiempoPrepPaso.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
+            tfTiempoPrepPaso.onTextChanged {
+                tflTiempoPrepPaso.error =
+                    if (tfTiempoPrepPaso.text.toString()
+                            .isEmpty() || tfTiempoPrepPaso.text.toString().toInt() < 1
+                    ) "Debe de ingresar un tiempo de preparacion para el paso"
+                    else if (tfTiempoPrepPaso.text.toString()
+                            .toInt() <= MAX_TIME_PREP_INGREDIENT
+                    ) null
+                    else "El tiempo de preparacion del paso es demasiado largo"
+            }
+            tfDetallePaso.onTextChanged {
+                tflDetallePaso.error =
+                    if (tfDetallePaso.text.toString().isEmpty() ||
+                        tfDetallePaso.text.toString().length <= MIN_LENGTH_STEP_DETAIL
+                    ) "El paso necesita detalles"
+                    else if (tfDetallePaso.text.toString().length <= MAX_LENGTH_STEP_DETAIL
+                    ) null
+                    else "Detalle del paso muy grande"
+            }
             topAppBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
             topAppBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
@@ -101,6 +119,16 @@ class EditStepDetailsFragment : Fragment() {
                     else -> false
                 }
             }
+        }
+    }
+
+    //Pone datos generales a usar en el View
+    private fun bind(paso: Paso) {
+        binding.apply {
+            topAppBar.title = "Paso ${paso.numPaso}"
+            ivFotoPaso.setImageBitmap(paso.imagenPaso)
+            tfTiempoPrepPaso.setText(paso.tiempo.toString())
+            tfDetallePaso.setText(paso.detalle)
 
             //manejar el cambio de valores de los campos y accion en keyboard
             tfTiempoPrepPaso.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
@@ -128,7 +156,11 @@ class EditStepDetailsFragment : Fragment() {
     private fun esValido(): Boolean {
         return with(binding) {
             tfTiempoPrepPaso.text.toString().isNotEmpty()
+                    && tfTiempoPrepPaso.text.toString().toInt() < 1
+                    && tfTiempoPrepPaso.text.toString().toInt() <= MAX_TIME_PREP_INGREDIENT
                     && tfDetallePaso.text.toString().isNotEmpty()
+                    && tfDetallePaso.text.toString().length >= MIN_LENGTH_STEP_DETAIL
+                    && tfDetallePaso.text.toString().length <= MAX_LENGTH_STEP_DETAIL
         }
     }
 

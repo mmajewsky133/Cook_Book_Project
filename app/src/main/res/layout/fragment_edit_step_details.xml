@@ -64,6 +64,7 @@
 
                 <!--Text Input para Tiempo de preparacion-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tflTiempoPrepPaso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/tiempo_prep_label">
@@ -79,15 +80,19 @@
 
                 <!--Text Input los detalles del paso-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tflDetallePaso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/detalles_paso_label">
+                    android:hint="@string/detalles_paso_label"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="260"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tfDetallePaso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="10"/>
+                        android:maxLines="10" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

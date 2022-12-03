@@ -54,6 +54,7 @@
 
                     <!--Text Input para Tiempo de preparacion-->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tflTiempoPrepPrep"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/tiempo_prep_label">
