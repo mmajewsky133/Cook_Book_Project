@@ -16,6 +16,7 @@ import edu.uca.innovatech.cookbook.constants.MAX_KCAL_INGREDIENT
 import edu.uca.innovatech.cookbook.constants.MAX_LENGTH_INGREDIENT_NAME
 import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
 import edu.uca.innovatech.cookbook.core.ex.onTextChanged
+import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.databinding.FragmentEditIngredientsBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
@@ -158,18 +159,16 @@ class EditIngredientsFragment : Fragment() {
         }
     }
 
+
     private fun mostrarDialogConfirmacion() {
-        this.context?.let {
-            MaterialAlertDialogBuilder(it)
-                .setTitle(getString(android.R.string.dialog_alert_title))
-                .setMessage(getString(R.string.delete_ingredient_dialog_msg))
-                .setCancelable(false)
-                .setNegativeButton(getString(R.string.no)) { _, _ -> }
-                .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                    eliminarIngrediente()
-                }
-                .show()
-        }
+        showMaterialDialog(
+            getString(android.R.string.dialog_alert_title),
+            getString(R.string.delete_ingredient_dialog_msg),
+            false,
+            getString(R.string.no),
+            getString(R.string.yes),
+            {}, { eliminarIngrediente() }
+        )
     }
 
     /**
