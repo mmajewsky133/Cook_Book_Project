@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
@@ -158,17 +159,14 @@ class SeeRecipeFragment : Fragment() {
     }
 
     private fun mostrarDialogConfirmacion() {
-        this.context?.let {
-            MaterialAlertDialogBuilder(it)
-                .setTitle(getString(android.R.string.dialog_alert_title))
-                .setMessage(getString(R.string.delete_recipe_dialog_msg))
-                .setCancelable(false)
-                .setNegativeButton(getString(R.string.no)) { _, _ -> }
-                .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                    eliminarReceta()
-                }
-                .show()
-        }
+        showMaterialDialog(
+            getString(android.R.string.dialog_alert_title),
+            getString(R.string.delete_recipe_dialog_msg),
+            false,
+            getString(R.string.no),
+            getString(R.string.yes),
+            {}, { eliminarReceta() }
+        )
     }
 
     private fun editarReceta(idReceta: Int) {

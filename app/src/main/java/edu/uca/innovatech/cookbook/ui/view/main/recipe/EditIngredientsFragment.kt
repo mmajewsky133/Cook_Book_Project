@@ -5,18 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.graphics.drawable.toBitmap
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.constants.MAX_CANT_INGREDIENT
+import edu.uca.innovatech.cookbook.constants.MAX_KCAL_INGREDIENT
+import edu.uca.innovatech.cookbook.constants.MAX_LENGTH_INGREDIENT_NAME
+import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
+import edu.uca.innovatech.cookbook.core.ex.onTextChanged
+import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
-import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.databinding.FragmentEditIngredientsBinding
-import edu.uca.innovatech.cookbook.databinding.FragmentEditStepDetailsBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
@@ -49,6 +51,7 @@ class EditIngredientsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         init()
+        initListeners()
     }
 
     private fun init() {
@@ -62,17 +65,10 @@ class EditIngredientsFragment : Fragment() {
                 ingrediente = selectedItem
                 bind(ingrediente)
             }
-
     }
 
-    //Pone datos generales a usar en el View
-    private fun bind(ingrediente: Ingrediente) {
+    private fun initListeners() {
         binding.apply {
-            tfIngrediente.setText(ingrediente.nombreIngrediente)
-            tfCantidadIngrediente.setText(ingrediente.cantIngrediente.toString())
-            tfMedidaIngrediente.setText(ingrediente.medidaIngrediente, false)
-            tfCalorias.setText(ingrediente.caloriasIngrediente.toString())
-
             topAppBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
             topAppBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
@@ -88,8 +84,43 @@ class EditIngredientsFragment : Fragment() {
                     else -> false
                 }
             }
+            tfIngrediente.loseFocusAfterAction(EditorInfo.IME_ACTION_NEXT)
+            tfIngrediente.onTextChanged {
+                tflIngrediente.error =
+                    if (tfIngrediente.text.toString().length <= MAX_LENGTH_INGREDIENT_NAME) null
+                    else "El nombre del ingrediente es muy grande"
+            }
+            tfCantidadIngrediente.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
+            tfCantidadIngrediente.onTextChanged {
+                tflCantidadIngrediente.error =
+                    if (tfCantidadIngrediente.text.toString().isEmpty())
+                        "La cantidad del ingrediente no es valida"
+                    else if (tfCantidadIngrediente.text.toString()
+                            .toInt() <= MAX_CANT_INGREDIENT
+                    ) null
+                    else "La cantidad del ingrediente no es valida"
+            }
+            tfCalorias.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
+            tfCalorias.onTextChanged {
+                tflCalorias.error =
+                    if (tfCalorias.text.toString().isEmpty())
+                        "La cantidad de calorias no es valida"
+                    else if (tfCalorias.text.toString()
+                            .toInt() <= MAX_KCAL_INGREDIENT
+                    ) null
+                    else "La cantidad de calorias no es valida"
+            }
         }
+    }
 
+    //Pone datos generales a usar en el View
+    private fun bind(ingrediente: Ingrediente) {
+        binding.apply {
+            tfIngrediente.setText(ingrediente.nombreIngrediente)
+            tfCantidadIngrediente.setText(ingrediente.cantIngrediente.toString())
+            tfMedidaIngrediente.setText(ingrediente.medidaIngrediente, false)
+            tfCalorias.setText(ingrediente.caloriasIngrediente.toString())
+        }
     }
 
     private fun guardarEdiciones() {
@@ -119,24 +150,25 @@ class EditIngredientsFragment : Fragment() {
     private fun esValido(): Boolean {
         return with(binding) {
             tfIngrediente.text.toString().isNotEmpty()
+                    && tfIngrediente.text.toString().length <= MAX_LENGTH_INGREDIENT_NAME
                     && tfCantidadIngrediente.text.toString().isNotEmpty()
+                    && tfCantidadIngrediente.text.toString().toInt() <= MAX_CANT_INGREDIENT
                     && tfMedidaIngrediente.text.toString().isNotEmpty()
                     && tfCalorias.text.toString().isNotEmpty()
+                    && tfCalorias.text.toString().toInt() <= MAX_KCAL_INGREDIENT
         }
     }
 
+
     private fun mostrarDialogConfirmacion() {
-        this.context?.let {
-            MaterialAlertDialogBuilder(it)
-                .setTitle(getString(android.R.string.dialog_alert_title))
-                .setMessage(getString(R.string.delete_ingredient_dialog_msg))
-                .setCancelable(false)
-                .setNegativeButton(getString(R.string.no)) { _, _ -> }
-                .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                    eliminarIngrediente()
-                }
-                .show()
-        }
+        showMaterialDialog(
+            getString(android.R.string.dialog_alert_title),
+            getString(R.string.delete_ingredient_dialog_msg),
+            false,
+            getString(R.string.no),
+            getString(R.string.yes),
+            {}, { eliminarIngrediente() }
+        )
     }
 
     /**

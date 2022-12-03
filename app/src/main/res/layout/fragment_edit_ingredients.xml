@@ -49,10 +49,13 @@
 
                 <!--Combo Input para Ingrediente-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tvIngrediente"
+                    android:id="@+id/tflIngrediente"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/ingredient_label">
+                    android:hint="@string/ingredient_label"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="45"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tfIngrediente"
@@ -70,6 +73,7 @@
 
                     <!--Text Input para Cantidad del Ingrediente-->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tflCantidadIngrediente"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
@@ -79,6 +83,7 @@
                             android:id="@+id/tfCantidadIngrediente"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
                             android:inputType="number"
                             android:maxLines="1" />
 
@@ -105,6 +110,7 @@
 
                 <!--Text Input para las Calorias del Ingrediente-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tflCalorias"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/cant_calorias">
@@ -113,6 +119,7 @@
                         android:id="@+id/tfCalorias"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
                         android:maxLines="1" />
 

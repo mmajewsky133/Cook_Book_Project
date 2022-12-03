@@ -1,21 +1,16 @@
 package edu.uca.innovatech.cookbook.ui.viewmodel
 
-import android.content.Context
-import android.content.res.Resources
 import android.graphics.Bitmap
-import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {

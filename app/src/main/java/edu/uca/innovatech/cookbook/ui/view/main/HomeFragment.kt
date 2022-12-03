@@ -1,6 +1,5 @@
 package edu.uca.innovatech.cookbook.ui.view.main
 
-import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
 import edu.uca.innovatech.cookbook.databinding.FragmentHomeBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeSelectionCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
@@ -93,17 +93,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun mostrarDialogConfirmacion() {
-        this.context?.let {
-            MaterialAlertDialogBuilder(it)
-                .setTitle(getString(R.string.start_cooking))
-                .setMessage(getString(R.string.cook_recipe_dialog_msg))
-                .setCancelable(false)
-                .setNegativeButton(getString(R.string.cancel)) { _, _ -> }
-                .setPositiveButton(getString(R.string.ok)) { _, _ ->
-                    //cocinarReceta()
-                }
-                .show()
-        }
+        showMaterialDialog(
+            getString(R.string.start_cooking),
+            getString(R.string.cook_recipe_dialog_msg),
+            false,
+            getString(R.string.cancel),
+            getString(R.string.ok),
+            {}, { /*cocinarReceta()*/ }
+        )
     }
 
     override fun onDestroyView() {

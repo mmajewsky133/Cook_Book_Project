@@ -5,21 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.drawable.toBitmap
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
+import edu.uca.innovatech.cookbook.constants.MAX_TIME_PREP_PREP
+import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
+import edu.uca.innovatech.cookbook.core.ex.onTextChanged
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
-import edu.uca.innovatech.cookbook.data.database.entities.Paso
-import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
-import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDetailBinding
 import edu.uca.innovatech.cookbook.databinding.FragmentEditIngredientDetailsBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.IngredientsDetailsCardAdapter
-import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
@@ -53,6 +52,7 @@ class EditIngredientDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         init()
+        initListeners()
     }
 
     private fun init() {
@@ -82,16 +82,24 @@ class EditIngredientDetailsFragment : Fragment() {
                 adapter.submitList(ingredientes)
             }
         }
-
-        binding.btnAddIngredients.setOnClickListener{
-            agregarIngrediente()
-        }
     }
 
-    private fun bind(receta: RecetasConPasos) {
+    private fun initListeners() {
         binding.apply {
-            tfTiempoPrepPrep.setText(receta.receta.tiempoPrepPrep.toString())
-
+            tfTiempoPrepPrep.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
+            tfTiempoPrepPrep.onTextChanged {
+                tflTiempoPrepPrep.error =
+                    if (tfTiempoPrepPrep.text.toString()
+                            .isEmpty()
+                    ) "Debe de ingresar un tiempo de preparacion de ingredientes"
+                    else if (tfTiempoPrepPrep.text.toString()
+                            .toInt() <= MAX_TIME_PREP_PREP
+                    ) null
+                    else "El tiempo de preparacion de ingredientes es demasiado largo"
+            }
+            btnAddIngredients.setOnClickListener {
+                agregarIngrediente()
+            }
             topAppBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
             topAppBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
@@ -103,6 +111,13 @@ class EditIngredientDetailsFragment : Fragment() {
                     else -> false
                 }
             }
+        }
+    }
+
+    private fun bind(receta: RecetasConPasos) {
+        binding.apply {
+            tfTiempoPrepPrep.loseFocusAfterAction(EditorInfo.IME_ACTION_DONE)
+            tfTiempoPrepPrep.setText(receta.receta.tiempoPrepPrep.toString())
         }
     }
 
@@ -125,6 +140,7 @@ class EditIngredientDetailsFragment : Fragment() {
     private fun esValido(): Boolean {
         return with(binding) {
             tfTiempoPrepPrep.text.toString().isNotEmpty()
+                    && tfTiempoPrepPrep.text.toString().toInt() <= MAX_TIME_PREP_PREP
         }
     }
 

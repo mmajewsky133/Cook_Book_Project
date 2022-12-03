@@ -41,10 +41,9 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
-                android:divider="@drawable/divider"
+                android:divider="@drawable/divider_small"
                 android:orientation="vertical"
-                android:showDividers="middle"
-                app:layout_constraintVertical_bias="0">
+                android:showDividers="middle">
 
                 <!--Image View para imagen de receta-->
                 <com.google.android.material.card.MaterialCardView
@@ -57,15 +56,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="140dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/placeholder"/>
+                        android:src="@drawable/placeholder" />
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <!--Text Input para nombre de receta-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tflNombreReceta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/nombre_receta_label">
+                    android:hint="@string/nombre_receta_label"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="35">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tfNombreReceta"
@@ -78,14 +80,18 @@
 
                 <!--Text Input para autor de receta-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tflAutorReceta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/autor_receta_label">
+                    android:hint="@string/autor_receta_label"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="35">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tfAutorReceta"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
                         android:inputType="text"
                         android:maxLines="1" />
 
@@ -115,6 +121,7 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:hint="@string/tiempo_receta_label">
 
                     <AutoCompleteTextView

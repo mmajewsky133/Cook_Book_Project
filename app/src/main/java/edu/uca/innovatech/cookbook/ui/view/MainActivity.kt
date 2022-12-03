@@ -1,6 +1,5 @@
 package edu.uca.innovatech.cookbook.ui.view
 
-import android.content.ContentResolver
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
