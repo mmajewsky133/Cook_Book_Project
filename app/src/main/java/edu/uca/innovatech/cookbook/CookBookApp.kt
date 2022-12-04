@@ -1,7 +1,9 @@
 package edu.uca.innovatech.cookbook
 
 import android.app.Application
-import edu.uca.innovatech.cookbook.data.database.RecetasRoomDatabase
+import edu.uca.innovatech.cookbook.data.database.CookBookRoomDatabase
+
+import edu.uca.innovatech.cookbook.data.database.CookBookRoomDatabase
 
 class CookBookApp : Application() {
     override fun onCreate() {
@@ -13,6 +15,6 @@ class CookBookApp : Application() {
         lateinit var application: Application
             private set
         //Se usa lazy para que solo sea init cuando se llame
-        val database: RecetasRoomDatabase by lazy { RecetasRoomDatabase.getDatabase(application) }
+        val database: CookBookRoomDatabase by lazy { CookBookRoomDatabase.getDatabase(application) }
     }
 }
