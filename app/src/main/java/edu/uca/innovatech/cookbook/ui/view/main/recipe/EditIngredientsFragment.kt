@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.constants.MAX_CANT_INGREDIENT
 import edu.uca.innovatech.cookbook.constants.MAX_KCAL_INGREDIENT
@@ -20,7 +18,6 @@ import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.databinding.FragmentEditIngredientsBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
 class EditIngredientsFragment : Fragment() {
 
@@ -29,10 +26,7 @@ class EditIngredientsFragment : Fragment() {
 
     //Basicamente instancia el ViewModel
     private val viewModel: RecipesViewModel by activityViewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database
-                .RecetaDao()
-        )
+        RecipesViewModel.factory
     }
 
     private var _binding: FragmentEditIngredientsBinding? = null

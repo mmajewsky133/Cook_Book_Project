@@ -12,7 +12,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.constants.MAX_LENGTH_STEP_DETAIL
 import edu.uca.innovatech.cookbook.constants.MAX_TIME_PREP_INGREDIENT
@@ -22,7 +21,6 @@ import edu.uca.innovatech.cookbook.core.ex.onTextChanged
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.databinding.FragmentEditStepDetailsBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
 class EditStepDetailsFragment : Fragment() {
 
@@ -32,10 +30,7 @@ class EditStepDetailsFragment : Fragment() {
 
     //Basicamente instancia el ViewModel
     private val viewModel: RecipesViewModel by activityViewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database
-                .RecetaDao()
-        )
+        RecipesViewModel.factory
     }
 
     //para el Media Picker

@@ -9,20 +9,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.databinding.FragmentRecipesBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeOverviewCardAdapter
 import edu.uca.innovatech.cookbook.ui.view.main.recipe.AddRecipeActivity
 import edu.uca.innovatech.cookbook.ui.view.main.recipe.SeeRecipeActivity
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
 class RecipesFragment : Fragment() {
     //Basicamente comparte el ViewModel entre fragmentos
     private val viewModel: RecipesViewModel by activityViewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database.RecetaDao()
-        )
+        RecipesViewModel.factory
     }
 
     //un lateinit var para las entidades a usar (en este caso solo la entidad receta)

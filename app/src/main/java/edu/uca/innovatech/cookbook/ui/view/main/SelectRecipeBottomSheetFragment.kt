@@ -7,18 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.databinding.FragmentSelectRecipeBottomSheetBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeOverviewCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
 class SelectRecipeBottomSheetFragment : BottomSheetDialogFragment() {
     //Basicamente comparte el ViewModel entre fragmentos
     private val viewModel: RecipesViewModel by activityViewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database.RecetaDao()
-        )
+        RecipesViewModel.factory
     }
 
     //el view binding

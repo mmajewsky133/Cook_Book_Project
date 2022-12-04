@@ -9,8 +9,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
@@ -19,7 +17,6 @@ import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentSeeRecipeBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -29,9 +26,7 @@ class SeeRecipeFragment : Fragment() {
     lateinit var pasos: List<Paso>
 
     private val viewModel: RecipesViewModel by viewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database.RecetaDao()
-        )
+        RecipesViewModel.factory
     }
 
     private var _binding: FragmentSeeRecipeBinding? = null

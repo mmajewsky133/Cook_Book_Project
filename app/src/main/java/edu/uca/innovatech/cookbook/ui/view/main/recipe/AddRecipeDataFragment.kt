@@ -14,14 +14,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.constants.MAX_LENGTH_TITLE_AUTHOR
 import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
 import edu.uca.innovatech.cookbook.core.ex.onTextChanged
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentAddRecipeDataBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 import kotlinx.coroutines.launch
 
 class AddRecipeDataFragment : Fragment() {
@@ -32,10 +30,7 @@ class AddRecipeDataFragment : Fragment() {
 
     //Basicamente instancia el ViewModel
     private val viewModel: RecipesViewModel by activityViewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database
-                .RecetaDao()
-        )
+        RecipesViewModel.factory
     }
 
     //para el Media Picker
