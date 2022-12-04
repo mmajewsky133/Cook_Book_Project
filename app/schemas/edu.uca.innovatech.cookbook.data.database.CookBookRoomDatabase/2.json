@@ -1,0 +1,188 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "dd176769709c71e15649d0fb3b292bdc",
+    "entities": [
+      {
+        "tableName": "receta",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `foto` BLOB NOT NULL, `nombre_receta` TEXT NOT NULL, `autor_receta` TEXT NOT NULL, `categoria` TEXT NOT NULL, `tiempo_comida` TEXT NOT NULL, `tiempo_prep` INTEGER NOT NULL, `tiempo_prep_prep` INTEGER NOT NULL, `cant_calorias` INTEGER NOT NULL, `estado_pendiente` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bitmapImagen",
+            "columnName": "foto",
+            "affinity": "BLOB",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre_receta",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "autor",
+            "columnName": "autor_receta",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoria",
+            "columnName": "categoria",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tiempo",
+            "columnName": "tiempo_comida",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tiempoPrep",
+            "columnName": "tiempo_prep",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tiempoPrepPrep",
+            "columnName": "tiempo_prep_prep",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "calorias",
+            "columnName": "cant_calorias",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isPending",
+            "columnName": "estado_pendiente",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "paso",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPaso` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_receta` INTEGER NOT NULL, `img_paso` BLOB NOT NULL, `tiempo_paso` INTEGER NOT NULL, `num_paso` INTEGER NOT NULL, `detalle_paso` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idPaso",
+            "columnName": "idPaso",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idReceta",
+            "columnName": "id_receta",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imagenPaso",
+            "columnName": "img_paso",
+            "affinity": "BLOB",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tiempo",
+            "columnName": "tiempo_paso",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numPaso",
+            "columnName": "num_paso",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "detalle",
+            "columnName": "detalle_paso",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idPaso"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ingrediente",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idIngrediente` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_receta` INTEGER NOT NULL, `nombre_ingrediente` TEXT NOT NULL, `cant_ingrediente` INTEGER NOT NULL, `medida_ingrediente` TEXT NOT NULL, `cant_calorias_ingrediente` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idIngrediente",
+            "columnName": "idIngrediente",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idReceta",
+            "columnName": "id_receta",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombreIngrediente",
+            "columnName": "nombre_ingrediente",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cantIngrediente",
+            "columnName": "cant_ingrediente",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "medidaIngrediente",
+            "columnName": "medida_ingrediente",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "caloriasIngrediente",
+            "columnName": "cant_calorias_ingrediente",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idIngrediente"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dd176769709c71e15649d0fb3b292bdc')"
+    ]
+  }
+}

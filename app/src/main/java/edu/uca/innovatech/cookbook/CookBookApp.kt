@@ -3,8 +3,6 @@ package edu.uca.innovatech.cookbook
 import android.app.Application
 import edu.uca.innovatech.cookbook.data.database.CookBookRoomDatabase
 
-import edu.uca.innovatech.cookbook.data.database.CookBookRoomDatabase
-
 class CookBookApp : Application() {
     override fun onCreate() {
         super.onCreate()
