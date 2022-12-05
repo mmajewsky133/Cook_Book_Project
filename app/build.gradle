@@ -72,6 +72,9 @@ dependencies {
     //Activty Libraries
     implementation "androidx.activity:activity:1.6.1"
 
+    //Splash Screen API
+    implementation "androidx.core:core-splashscreen:1.0.0"
+
     //Coil Library
     implementation "io.coil-kt:coil:0.8.0"
 }
