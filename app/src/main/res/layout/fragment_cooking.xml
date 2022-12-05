@@ -21,14 +21,35 @@
             android:textSize="28sp"
             android:textStyle="bold" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvListaCocinar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="10dp" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lNoCooking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="No hay recetas cocinandose"
+            tools:ignore="HardcodedText"
+            android:src="@drawable/ic_cookie_warning"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No hay recetas cocinandose por el momento!"
+            android:textColor="?attr/colorOutline"/>
 
     </LinearLayout>
 
