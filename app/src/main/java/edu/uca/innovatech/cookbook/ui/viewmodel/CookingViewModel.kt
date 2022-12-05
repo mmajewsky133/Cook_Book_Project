@@ -2,22 +2,25 @@ package edu.uca.innovatech.cookbook.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.viewModelFactory
+import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.data.database.dao.CocinandoDao
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
 
 class CookingViewModel(private val recetaDao: RecetaDao, private val cocinandoDao: CocinandoDao) :
     ViewModel() {
 
-}
 
-//Clase Factory para instansear la instanciade ViewModel
-class CookingViewModelFactory(private val recetaDao: RecetaDao, private val cocinandoDao: CocinandoDao) :
-    ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CookingViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return CookingViewModel(recetaDao, cocinandoDao) as T
+
+    companion object {
+        val factory: ViewModelProvider.Factory = viewModelFactory {
+            addInitializer(CookingViewModel::class) {
+                CookingViewModel(
+                    CookBookApp.database.RecetaDao(),
+                    CookBookApp.database.CocinandoDao()
+                )
+            }
+            build()
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

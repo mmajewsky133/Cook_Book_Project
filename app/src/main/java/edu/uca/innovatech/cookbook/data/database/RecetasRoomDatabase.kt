@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.*
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import edu.uca.innovatech.cookbook.data.database.dao.CocinandoDao
 import edu.uca.innovatech.cookbook.data.database.util.Converters
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
 import edu.uca.innovatech.cookbook.data.database.entities.CookingReceta
@@ -11,11 +12,12 @@ import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.Receta
 
-@Database(entities = [Receta::class, Paso::class, Ingrediente::class], version = 2, exportSchema = true)
+@Database(entities = [Receta::class, Paso::class, Ingrediente::class, CookingReceta::class], version = 2, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class CookBookRoomDatabase : RoomDatabase() {
 
     abstract fun RecetaDao(): RecetaDao
+    abstract fun CocinandoDao(): CocinandoDao
 
     companion object {
         @Volatile
@@ -23,8 +25,9 @@ abstract class CookBookRoomDatabase : RoomDatabase() {
 
         private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("CREATE TABLE `cooking` (`idCooking` INTEGER, " +
-                        " `id_receta` INTEGER, `current_step` INTEGER, PRIMARY KEY(`idCooking`))")
+                database.execSQL("CREATE TABLE `cooking` (`idCooking` INTEGER NOT NULL, " +
+                        " `id_receta` INTEGER NOT NULL, `current_step` INTEGER NOT NULL, " +
+                        "PRIMARY KEY(`idCooking`))")
             }
         }
 
