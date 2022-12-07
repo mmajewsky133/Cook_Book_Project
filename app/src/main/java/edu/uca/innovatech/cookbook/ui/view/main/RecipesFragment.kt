@@ -21,9 +21,6 @@ class RecipesFragment : Fragment() {
         RecipesViewModel.factory
     }
 
-    //un lateinit var para las entidades a usar (en este caso solo la entidad receta)
-    //lateinit var receta: Receta
-
     // El ViewBinding
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
