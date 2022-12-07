@@ -31,10 +31,12 @@
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/font/roboto_flex.xml" value="0.33425925925925926" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/activity_add_recipe.xml" value="0.33" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/activity_config.xml" value="0.38697916666666665" />
+        <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/activity_cooking.xml" value="0.18819655521783182" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/activity_see_recipe.xml" value="0.38697916666666665" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_add_recipe_data.xml" value="0.25" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_add_recipe_detail.xml" value="0.33" />
+        <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_cook_step.xml" value="0.18819655521783182" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_cooking.xml" value="0.25" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_edit_ingredient_details.xml" value="0.25" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_edit_ingredients.xml" value="0.38697916666666665" />
@@ -42,9 +44,12 @@
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_health.xml" value="0.38697916666666665" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_more.xml" value="0.22" />
+        <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_prep_step.xml" value="0.18819655521783182" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_recipes.xml" value="0.38697916666666665" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_see_recipe.xml" value="0.38697916666666665" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_select_recipe_bottom_sheet.xml" value="0.33" />
+        <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/fragment_start_cooking.xml" value="0.18819655521783182" />
+        <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/item_cooking_overview.xml" value="0.33" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/item_ingrediente_details.xml" value="0.3859375" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/item_paso_details.xml" value="0.38697916666666665" />
         <entry key="..\:/Programmin/Desarollo de Apps Moviles/CookBook/app/src/main/res/layout/item_recipe_overview.xml" value="0.4166666666666667" />
