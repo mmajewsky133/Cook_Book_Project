@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import edu.uca.innovatech.cookbook.core.util.parseCalorias
+import edu.uca.innovatech.cookbook.core.util.parseCantIngredientes
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.databinding.ItemIngredienteDetailsBinding
 
@@ -36,23 +38,9 @@ class IngredientsDetailsCardAdapter(private val onIngredienteClicked: (Ingredien
             binding.apply {
                 tvIngrediente.text = ingrediente.nombreIngrediente
                 tvCantidadIngrediente.text =
-                    parseCant(ingrediente.cantIngrediente, ingrediente.medidaIngrediente)
+                    parseCantIngredientes(ingrediente.cantIngrediente, ingrediente.medidaIngrediente)
                 tvCaloriasIngrediente.text = parseCalorias(ingrediente.caloriasIngrediente)
             }
-        }
-
-        private fun parseCalorias(kcal: Int): String {
-            if (kcal.equals(0))
-                return "Calorias estimadas: Pendiente"
-
-            return "Calorias estimadas: $kcal kcal"
-        }
-
-        private fun parseCant(cantIngrediente: Int, medidaIngrediente: String): String {
-            if (medidaIngrediente.equals("Al gusto")) {
-                return medidaIngrediente
-            }
-            return "$cantIngrediente - $medidaIngrediente"
         }
     }
 

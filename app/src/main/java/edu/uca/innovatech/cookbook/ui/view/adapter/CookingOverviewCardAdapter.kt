@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import edu.uca.innovatech.cookbook.core.util.parseNumPaso
+import edu.uca.innovatech.cookbook.core.util.parsePasoTip
+import edu.uca.innovatech.cookbook.core.util.parseTiempoPrep
 import edu.uca.innovatech.cookbook.data.database.entities.CookingWReceta
 import edu.uca.innovatech.cookbook.databinding.ItemCookingOverviewBinding
-import java.math.RoundingMode
-import java.text.DecimalFormat
 
 class CookingOverviewCardAdapter(private val onCookingClicked: (CookingWReceta) -> Unit) :
     ListAdapter<CookingWReceta, CookingOverviewCardAdapter.CocinandoViewHolder>(DiffCallback) {
@@ -35,32 +36,9 @@ class CookingOverviewCardAdapter(private val onCookingClicked: (CookingWReceta) 
             binding.apply {
                 tvNombreReceta.text = cookingWReceta.receta.nombre
                 tvTiempoPrepReceta.text = parseTiempoPrep(cookingWReceta.receta.tiempoPrep)
-                tvCurrentPaso.text = parseCurrentPaso(cookingWReceta.cookingReceta.currentStep)
+                tvCurrentPaso.text = parseNumPaso(cookingWReceta.cookingReceta.currentStep)
                 tvTipPaso.text = parsePasoTip(cookingWReceta.cookingReceta.currentStep)
             }
-        }
-
-        private fun parseTiempoPrep(tiempoPrep: Int): String{
-            if (tiempoPrep.equals(0)){
-                return "Tiempo de preparacion: Pendiente"
-            } else if (tiempoPrep > 60){
-                val tiempoPrepH: Double = ((tiempoPrep).toDouble())/60
-                val df = DecimalFormat("#.#")
-                df.roundingMode = RoundingMode.CEILING
-
-                return "Tiempo de preparacion: ${df.format(tiempoPrepH).toDouble()} h"
-            }
-            return "Tiempo de preparacion: $tiempoPrep m"
-        }
-
-        private fun parseCurrentPaso(paso: Int): String{
-            if (paso.equals(0)) return "Preparación de Ingredientes"
-            return "Paso $paso:"
-        }
-
-        private fun parsePasoTip(paso: Int): String{
-            if (paso.equals(0)) return "Presione para comenzar a cocinar!"
-            return "Presione para seguir cocinando!"
         }
     }
 

@@ -54,9 +54,7 @@ class SelectRecipeBottomSheetFragment : BottomSheetDialogFragment() {
         binding.rcvListaRecetas.adapter = adapter
 
         viewModelRecipes.allRecetas.observe(this.viewLifecycleOwner) { recetas ->
-            recetas.let {
-                adapter.submitList(it)
-            }
+            recetas.let { adapter.submitList(it) }
         }
     }
 

@@ -37,6 +37,11 @@
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.CookBook</item>
     </style>
+
+    <style name="TimerProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circle_timer</item>
+    </style>
     
     <!--
     <style name="Theme.LegacyCookBook" parent="Theme.Material3.DayNight.NoActionBar">

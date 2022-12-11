@@ -7,6 +7,7 @@ import edu.uca.innovatech.cookbook.data.database.dao.CocinandoDao
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
 import edu.uca.innovatech.cookbook.data.database.entities.CookingReceta
 import edu.uca.innovatech.cookbook.data.database.entities.CookingWReceta
+import edu.uca.innovatech.cookbook.data.database.entities.Receta
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import kotlinx.coroutines.launch
 
@@ -17,7 +18,7 @@ class CookingViewModel(private val recetaDao: RecetaDao, private val cocinandoDa
     val allToCookingRecetas: LiveData<List<CookingWReceta>> =
         cocinandoDao.getToCookRecipes().asLiveData()
 
-    fun agarrarToCookReceta(id: Int): LiveData<CookingReceta>{
+    fun agarrarToCookReceta(id: Int): LiveData<CookingWReceta>{
         return cocinandoDao.getToCookRecipe(id).asLiveData()
     }
 
@@ -36,6 +37,31 @@ class CookingViewModel(private val recetaDao: RecetaDao, private val cocinandoDa
     private fun insertCocinar(cookingReceta: CookingReceta){
         viewModelScope.launch {
             cocinandoDao.insertCooking(cookingReceta)
+        }
+    }
+
+    fun actualizarPasoCocinar(cooking: CookingReceta, currentStep: Int) {
+        val cookingUpdated = CookingReceta(
+            cooking.idCooking,
+            cooking.idRecetaCooking,
+            currentStep = currentStep+1
+        )
+        updateCocinar(cookingUpdated)
+    }
+
+    private fun updateCocinar(cooking: CookingReceta) {
+        viewModelScope.launch {
+            cocinandoDao.updateCooking(cooking)
+        }
+    }
+
+    fun terminarCocinar(cooking: CookingReceta){
+        deleteCocinar(cooking)
+    }
+
+    private fun deleteCocinar(cooking: CookingReceta){
+        viewModelScope.launch {
+            cocinandoDao.deleteCooking(cooking)
         }
     }
 

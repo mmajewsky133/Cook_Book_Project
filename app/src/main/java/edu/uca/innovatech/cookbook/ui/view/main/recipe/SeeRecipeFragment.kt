@@ -11,14 +11,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
-import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
+import edu.uca.innovatech.cookbook.core.util.parseCalorias
+import edu.uca.innovatech.cookbook.core.util.parseIngredientes
+import edu.uca.innovatech.cookbook.core.util.parseTiempoPrep
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentSeeRecipeBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.StepsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import java.math.RoundingMode
-import java.text.DecimalFormat
 
 class SeeRecipeFragment : Fragment() {
 
@@ -101,56 +101,6 @@ class SeeRecipeFragment : Fragment() {
                 }
             }
         }
-    }
-
-    //Obtiene el tiempo en minutos y lo pasa a horas si es mas de 60 minutos
-    private fun parseTiempoPrep(tiempoPrep: Int): String {
-        if (tiempoPrep.equals(0)) {
-            return "Tiempo de preparacion: Pendiente"
-        } else if (tiempoPrep > 60) {
-            val tiempoPrepH: Double = ((tiempoPrep).toDouble()) / 60
-            val df = DecimalFormat("#.#")
-            df.roundingMode = RoundingMode.CEILING
-
-            return "Tiempo de preparacion: ${df.format(tiempoPrepH).toDouble()} h"
-        }
-        return "Tiempo de preparacion: $tiempoPrep m"
-    }
-
-    private fun parseCalorias(kcal: Int): String {
-        if (kcal.equals(0))
-            return "Calorias estimadas: Pendiente"
-
-        return "Calorias estimadas: $kcal kcal"
-    }
-
-    private fun parseIngredientes(ingredientes: List<Ingrediente>): String {
-        var ingredientesFormatted: String = ""
-
-        for (ing in ingredientes) {
-            if (ing.medidaIngrediente.equals("Al gusto")) {
-                ingredientesFormatted += """
-                ${ing.nombreIngrediente} - ${ing.medidaIngrediente}
-                
-                """.trimIndent()
-            } else if (ing.medidaIngrediente.equals("xxx")) {
-                ingredientesFormatted += """
-                ${ing.nombreIngrediente} - ${ing.cantIngrediente}
-                
-                """.trimIndent()
-            } else if (ing.cantIngrediente.equals(0)) {
-                ingredientesFormatted += """
-                ${ing.nombreIngrediente}
-                
-                """.trimIndent()
-            } else {
-                ingredientesFormatted += """
-                ${ing.nombreIngrediente} - ${ing.cantIngrediente} ${ing.medidaIngrediente}
-                
-                """.trimIndent()
-            }
-        }
-        return ingredientesFormatted
     }
 
     private fun mostrarDialogConfirmacion() {

@@ -12,7 +12,7 @@ interface CocinandoDao {
     fun getToCookRecipes(): Flow<List<CookingWReceta>>
 
     @Query("SELECT * FROM cooking WHERE idCooking = :id")
-    fun getToCookRecipe(id: Int): Flow<CookingReceta>
+    fun getToCookRecipe(id: Int): Flow<CookingWReceta>
 
     //Insert, Update y Delete de una receta a cocinar
     @Insert(onConflict = OnConflictStrategy.IGNORE)

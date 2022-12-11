@@ -53,6 +53,7 @@ class CookingFragment : Fragment() {
             //Codigo para cuando se presione en el CardView
             val intent = Intent(context, CookingActivity::class.java)
             intent.putExtra("id_cooking", it.cookingReceta.idCooking)
+            intent.putExtra("current_step", it.cookingReceta.currentStep)
 
             startActivity(intent)
         }

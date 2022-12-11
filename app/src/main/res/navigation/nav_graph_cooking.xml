@@ -3,17 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_cooking"
-    app:startDestination="@id/startCookingFragment">
+    app:startDestination="@id/prepStepFragment">
 
-    <fragment
-        android:id="@+id/startCookingFragment"
-        android:name="edu.uca.innovatech.cookbook.ui.view.main.cooking.StartCookingFragment"
-        android:label="fragment_start_cooking"
-        tools:layout="@layout/fragment_start_cooking" >
-        <action
-            android:id="@+id/action_startCookingFragment_to_prepStepFragment"
-            app:destination="@id/prepStepFragment" />
-    </fragment>
     <fragment
         android:id="@+id/prepStepFragment"
         android:name="edu.uca.innovatech.cookbook.ui.view.main.cooking.PrepStepFragment"
@@ -22,6 +13,14 @@
         <action
             android:id="@+id/action_prepStepFragment_to_cookStepFragment"
             app:destination="@id/cookStepFragment" />
+        <argument
+            android:name="idCooking"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="currentStep"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/cookStepFragment"
@@ -34,6 +33,12 @@
         <action
             android:id="@+id/action_cookStepFragment_to_prepStepFragment"
             app:destination="@id/prepStepFragment" />
+        <argument
+            android:name="idCooking"
+            app:argType="integer" />
+        <argument
+            android:name="currentStep"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/finishedCookingFragment"

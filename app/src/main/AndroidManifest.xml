@@ -15,7 +15,7 @@
         android:theme="@style/Theme.CookBook"
         tools:targetApi="33">
         <activity
-            android:name=".CookingActivity"
+            android:name=".ui.view.main.cooking.CookingActivity"
             android:exported="false" />
         <activity
             android:name=".ui.view.main.recipe.SeeRecipeActivity"

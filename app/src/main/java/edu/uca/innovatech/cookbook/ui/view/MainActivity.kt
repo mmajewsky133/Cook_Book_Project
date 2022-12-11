@@ -61,9 +61,7 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.page_Recipes -> {
                     //Bottom Sheet Fragment para Filter
-                    true
                 }
-                else -> false
             }
         }
     }
