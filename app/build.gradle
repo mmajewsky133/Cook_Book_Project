@@ -75,6 +75,6 @@ dependencies {
     //Splash Screen API
     implementation "androidx.core:core-splashscreen:1.0.0"
 
-    //Coil Library
-    implementation "io.coil-kt:coil:0.8.0"
+    //Lottie Library
+    implementation "com.airbnb.android:lottie:5.2.0"
 }

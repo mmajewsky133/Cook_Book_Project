@@ -97,6 +97,20 @@
                                 app:layout_constraintStart_toStartOf="@+id/pbTiempoPrep"
                                 app:layout_constraintTop_toTopOf="@+id/pbTiempoPrep" />
 
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/animTempDone"
+                                android:layout_width="140dp"
+                                android:layout_height="140dp"
+                                app:lottie_colorFilter="?attr/colorPrimary"
+                                app:lottie_rawRes="@raw/done_anim"
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                app:layout_constraintBottom_toBottomOf="@+id/pbTiempoPrep"
+                                app:layout_constraintEnd_toEndOf="@+id/pbTiempoPrep"
+                                app:layout_constraintStart_toStartOf="@+id/pbTiempoPrep"
+                                app:layout_constraintTop_toTopOf="@+id/pbTiempoPrep"
+                                android:visibility="invisible" />
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </LinearLayout>
