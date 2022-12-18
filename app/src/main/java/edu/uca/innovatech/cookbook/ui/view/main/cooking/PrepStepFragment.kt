@@ -85,6 +85,9 @@ class PrepStepFragment : Fragment() {
                 )
             findNavController().navigate(action)
         }
+        binding.topAppBar.setNavigationOnClickListener {
+            activity?.onBackPressedDispatcher?.onBackPressed()
+        }
     }
 
     //Pone datos generales a usar en el View

@@ -85,7 +85,9 @@ class CookStepFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
-
+        binding.topAppBar.setNavigationOnClickListener {
+            activity?.onBackPressedDispatcher?.onBackPressed()
+        }
         //debug
         binding.tvPbTiempoPrep.setOnClickListener{
             onFinishTimer()
