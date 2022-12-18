@@ -75,4 +75,5 @@
     <string name="order_ingredients_label">Ordena tus ingredientes!</string>
     <string name="next_step">Siguiente Paso</string>
     <string name="start_step">Comenzar Paso</string>
+    <string name="finished_recipe_label">Receta Terminada!</string>
 </resources>

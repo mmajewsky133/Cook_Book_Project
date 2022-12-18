@@ -81,8 +81,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
             nombre = nombre,
             autor = autor,
             categoria = categoria,
-            tiempo = tiempo,
-            isPending = false
+            tiempo = tiempo
         )
         updateReceta(editedReceta)
     }
@@ -98,7 +97,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
             tiempoPrepReceta += tiempo.tiempo
         }
 
-        recetaUpdated.isPending = isPending
+        recetaUpdated.isPending = receta.receta.isPending && isPending
         recetaUpdated.tiempoPrep = tiempoPrepReceta
 
         updateReceta(recetaUpdated)
