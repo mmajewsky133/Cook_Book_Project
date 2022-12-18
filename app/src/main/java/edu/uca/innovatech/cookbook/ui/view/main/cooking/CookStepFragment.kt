@@ -1,22 +1,18 @@
 package edu.uca.innovatech.cookbook.ui.view.main.cooking
 
-import android.content.Context
+import android.animation.ObjectAnimator
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.airbnb.lottie.LottieProperty
-import com.airbnb.lottie.model.KeyPath
-import com.google.android.material.color.MaterialColors
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.core.util.parseIngredientes
 import edu.uca.innovatech.cookbook.core.util.parseNumPaso
@@ -140,8 +136,10 @@ class CookStepFragment : Fragment() {
     }
 
     private fun onFinishTimer(){
-        timer.cancel()
+        val mediaPlayer = MediaPlayer.create(context, R.raw.step_done_sound_1)
+        onCancelTimer()
         binding.apply {
+            mediaPlayer.start()
             tvPbTiempoPrep.isVisible = false
             initDoneAnim()
             btnSiguiente.isEnabled = true
@@ -149,14 +147,20 @@ class CookStepFragment : Fragment() {
     }
 
     private fun onCancelTimer() {
+        binding.pbTiempoPrep.progress = 0
         timer.cancel()
     }
 
     private fun initDoneAnim() {
         binding.apply {
-            animTempDone.isVisible = true
-            animTempDone.setMinAndMaxFrame(40, 75)
-            animTempDone.playAnimation()
+            animTempDoneCheck.isVisible = true
+            animTempDoneCheck.setMinAndMaxFrame(40, 75)
+            animTempDoneCheck.playAnimation()
+
+            ObjectAnimator.ofInt(pbTiempoPrep, "progress", 1, 100).apply {
+                duration = 1000
+                interpolator = FastOutSlowInInterpolator()
+            }.start()
         }
     }
 
