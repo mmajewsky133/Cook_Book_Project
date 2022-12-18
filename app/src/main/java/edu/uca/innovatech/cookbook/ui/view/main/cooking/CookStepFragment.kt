@@ -74,10 +74,6 @@ class CookStepFragment : Fragment() {
         binding.btnSiguiente.setOnClickListener {
             actualizarPasoCooking(cooking, currentStep)
 
-            //Debug
-            println(receta.pasos.size)
-            println(cooking.currentStep)
-
             if (receta.pasos.size > cooking.currentStep) {
                 val action = CookStepFragmentDirections
                     .actionCookStepFragmentToPrepStepFragment(cooking.idCooking, currentStep+1)
@@ -125,7 +121,7 @@ class CookStepFragment : Fragment() {
 
             tvIngredienteOPasoLable.text = parsePasoTODO(currentStep)
             tvIngredienteOPaso.text = getCurrentStepDetail(currentStep, receta)
-            btnSiguiente.isEnabled = false
+            btnSiguiente.isEnabled = getCurrentStepTime(currentStep, receta) == 0
         }
     }
 
