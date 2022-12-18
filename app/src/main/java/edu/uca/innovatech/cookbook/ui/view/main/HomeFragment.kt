@@ -5,20 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
+import edu.uca.innovatech.cookbook.core.ex.showToast
 import edu.uca.innovatech.cookbook.databinding.FragmentHomeBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeSelectionCardAdapter
+import edu.uca.innovatech.cookbook.ui.viewmodel.CookingViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
 import java.util.*
 
 
 class HomeFragment : Fragment() {
     //Basicamente comparte el ViewModel entre fragmentos
-    private val viewModel: RecipesViewModel by activityViewModels {
+    private val viewModelRecipes: RecipesViewModel by activityViewModels {
         RecipesViewModel.factory
+    }
+    private val viewModelCooking: CookingViewModel by activityViewModels {
+        CookingViewModel.factory
     }
 
     // El ViewBinding
@@ -49,7 +55,7 @@ class HomeFragment : Fragment() {
 
         val adapter = RecipeSelectionCardAdapter {
             //Codigo para cuando se presione en el boton CardView
-            mostrarDialogConfirmacion()
+            mostrarDialogConfirmacion(it.id)
         }
         val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -66,20 +72,21 @@ class HomeFragment : Fragment() {
             tiempo = "Snack"
         }
 
-        viewModel.allRecetasFilter("tiempo_comida", tiempo).observe(this.viewLifecycleOwner) { recetas ->
-            recetas.let {
-                adapter.submitList(it)
+        viewModelRecipes.allRecetasFilter("tiempo_comida", tiempo)
+            .observe(this.viewLifecycleOwner) { recetas ->
+                recetas.let {
+                    adapter.submitList(it)
+                }
             }
-        }
 
-        binding.fabNuevaAccion.setOnClickListener{
+        binding.fabNuevaAccion.setOnClickListener {
             //TODO Implement Speed Dial for: Start Cooking, Add Recipe, Add consumed food
         }
     }
 
     private fun bind(currentHour: Int) {
         if (currentHour in 4..12) {
-            binding.tvTiempoDia.text =  getString(R.string.good_morning_label)
+            binding.tvTiempoDia.text = getString(R.string.good_morning_label)
         } else if (currentHour in 13..18) {
             binding.tvTiempoDia.text = getString(R.string.good_afternoon_label)
         } else {
@@ -87,14 +94,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun mostrarDialogConfirmacion() {
+    private fun mostrarDialogConfirmacion(id: Int) {
         showMaterialDialog(
-            getString(R.string.start_cooking),
-            getString(R.string.cook_recipe_dialog_msg),
-            false,
-            getString(R.string.cancel),
-            getString(R.string.ok),
-            {}, { /*cocinarReceta()*/ }
+            getString(R.string.start_cooking), getString(R.string.cook_recipe_dialog_msg),
+            false, getString(R.string.cancel), getString(R.string.ok),
+            {}, {
+                viewModelCooking.agregarCocinar(id)
+                showToast("La receta esta lista en el apartado Cocinando", Toast.LENGTH_SHORT)
+            }
         )
     }
 
