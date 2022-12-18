@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import edu.uca.innovatech.cookbook.core.util.parseNumPaso
+import edu.uca.innovatech.cookbook.core.util.parseTiempoPrep
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.databinding.ItemPasoDetailsBinding
 
@@ -40,18 +42,6 @@ class StepsDetailsCardAdapter(private val onPasoClicked: (Paso) -> Unit) :
                 tvDetallesPaso.text = paso.detalle
             }
         }
-
-        private fun parseNumPaso(numPaso: Int): String {
-            return "Paso $numPaso:"
-        }
-
-        private fun parseTiempoPrep(tiempoPrep: Int): String {
-            if (tiempoPrep.equals(0))
-                return "Tiempo estimado:"
-
-            return "Tiempo estimado: $tiempoPrep m"
-        }
-
     }
 
     companion object {

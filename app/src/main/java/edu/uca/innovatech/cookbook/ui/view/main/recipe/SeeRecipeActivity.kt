@@ -16,7 +16,6 @@ class SeeRecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //View Binding
         binding = ActivitySeeRecipeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         setContentView(binding.root)
 

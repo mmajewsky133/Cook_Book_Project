@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_cooking"
+    app:startDestination="@id/prepStepFragment">
+
+    <fragment
+        android:id="@+id/prepStepFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.view.main.cooking.PrepStepFragment"
+        android:label="fragment_prep_step"
+        tools:layout="@layout/fragment_prep_step" >
+        <action
+            android:id="@+id/action_prepStepFragment_to_cookStepFragment"
+            app:destination="@id/cookStepFragment" />
+        <argument
+            android:name="idCooking"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="currentStep"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/cookStepFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.view.main.cooking.CookStepFragment"
+        android:label="fragment_cook_step"
+        tools:layout="@layout/fragment_cook_step" >
+        <action
+            android:id="@+id/action_cookStepFragment_to_finishedCookingFragment"
+            app:destination="@id/finishedCookingFragment" />
+        <action
+            android:id="@+id/action_cookStepFragment_to_prepStepFragment"
+            app:destination="@id/prepStepFragment" />
+        <argument
+            android:name="idCooking"
+            app:argType="integer" />
+        <argument
+            android:name="currentStep"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishedCookingFragment"
+        android:name="edu.uca.innovatech.cookbook.ui.view.main.cooking.FinishedCookingFragment"
+        android:label="fragment_finished_cooking"
+        tools:layout="@layout/fragment_finished_cooking" />
+</navigation>

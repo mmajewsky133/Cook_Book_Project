@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.viewModelFactory
+import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.data.database.dao.RecetaDao
 import edu.uca.innovatech.cookbook.data.database.entities.Ingrediente
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
@@ -79,13 +81,12 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
             nombre = nombre,
             autor = autor,
             categoria = categoria,
-            tiempo = tiempo,
-            isPending = false
+            tiempo = tiempo
         )
         updateReceta(editedReceta)
     }
 
-    fun actualizarRecetaEstado(receta: RecetasConPasos) {
+    fun actualizarRecetaEstado(receta: RecetasConPasos, isPending: Boolean) {
         val recetaUpdated = receta.receta
         val pasosReceta = receta.pasos
         var tiempoPrepReceta = receta.receta.tiempoPrepPrep
@@ -96,7 +97,7 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
             tiempoPrepReceta += tiempo.tiempo
         }
 
-        recetaUpdated.isPending = false
+        recetaUpdated.isPending = receta.receta.isPending && isPending
         recetaUpdated.tiempoPrep = tiempoPrepReceta
 
         updateReceta(recetaUpdated)
@@ -216,16 +217,13 @@ class RecipesViewModel(private val recetaDao: RecetaDao) : ViewModel() {
             recetaDao.deleteIngrediente(id, idReceta)
         }
     }
-}
 
-//Clase Factory para instansear la instanciade ViewModel
-class RecipesViewModelFactory(private val recetaDao: RecetaDao) :
-    ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(RecipesViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return RecipesViewModel(recetaDao) as T
+    companion object {
+        val factory : ViewModelProvider.Factory = viewModelFactory {
+            addInitializer(RecipesViewModel::class) {
+                RecipesViewModel(CookBookApp.database.RecetaDao())
+            }
+            build()
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

@@ -7,22 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.constants.MAX_LENGTH_STEP_DETAIL
 import edu.uca.innovatech.cookbook.constants.MAX_TIME_PREP_INGREDIENT
 import edu.uca.innovatech.cookbook.constants.MIN_LENGTH_STEP_DETAIL
 import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
 import edu.uca.innovatech.cookbook.core.ex.onTextChanged
+import edu.uca.innovatech.cookbook.core.ex.showToast
 import edu.uca.innovatech.cookbook.data.database.entities.Paso
 import edu.uca.innovatech.cookbook.databinding.FragmentEditStepDetailsBinding
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
 class EditStepDetailsFragment : Fragment() {
 
@@ -32,10 +32,7 @@ class EditStepDetailsFragment : Fragment() {
 
     //Basicamente instancia el ViewModel
     private val viewModel: RecipesViewModel by activityViewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database
-                .RecetaDao()
-        )
+        RecipesViewModel.factory
     }
 
     //para el Media Picker
@@ -147,8 +144,9 @@ class EditStepDetailsFragment : Fragment() {
                 binding.tfTiempoPrepPaso.text.toString().toInt(),
                 binding.tfDetallePaso.text.toString()
             )
+            showToast("El paso se ha guardado", Toast.LENGTH_SHORT)
         } else {
-            //dialog sayings shits broken, do it again
+            showToast("El paso no se ha guardado", Toast.LENGTH_SHORT)
         }
     }
 
@@ -156,7 +154,7 @@ class EditStepDetailsFragment : Fragment() {
     private fun esValido(): Boolean {
         return with(binding) {
             tfTiempoPrepPaso.text.toString().isNotEmpty()
-                    && tfTiempoPrepPaso.text.toString().toInt() < 1
+                    && tfTiempoPrepPaso.text.toString().toInt() <= 1
                     && tfTiempoPrepPaso.text.toString().toInt() <= MAX_TIME_PREP_INGREDIENT
                     && tfDetallePaso.text.toString().isNotEmpty()
                     && tfDetallePaso.text.toString().length >= MIN_LENGTH_STEP_DETAIL

@@ -1,5 +1,6 @@
 package edu.uca.innovatech.cookbook.core.ex
 
+import android.os.CountDownTimer
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -10,8 +11,8 @@ fun Fragment.showMaterialDialog(
     isCancelable: Boolean,
     negativeBtn: String,
     positiveBtn: String,
-    listenerNo: (String) -> Unit,
-    listenerYes: (String) -> Unit
+    listenerNo: () -> Unit,
+    listenerYes: () -> Unit
 ) {
     this.context?.let {
         MaterialAlertDialogBuilder(it)
@@ -19,10 +20,10 @@ fun Fragment.showMaterialDialog(
             .setMessage(message)
             .setCancelable(isCancelable)
             .setNegativeButton(negativeBtn) { _, _ ->
-                listenerNo("")
+                listenerNo()
             }
             .setPositiveButton(positiveBtn) { _, _ ->
-                listenerYes("")
+                listenerYes()
             }
             .show()
     }

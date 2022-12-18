@@ -36,7 +36,7 @@ data class Paso(
     @ColumnInfo(name = "img_paso")
     val imagenPaso: Bitmap = Bitmap.createBitmap(1284, 1247, Bitmap.Config.ARGB_8888),
     @ColumnInfo(name = "tiempo_paso")
-    val tiempo: Int = 0,
+    val tiempo: Int = 1,
     @ColumnInfo(name = "num_paso")
     val numPaso: Int,
     @ColumnInfo(name = "detalle_paso")

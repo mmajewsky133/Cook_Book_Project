@@ -7,23 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
 import edu.uca.innovatech.cookbook.databinding.FragmentHomeBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeSelectionCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 import java.util.*
 
 
 class HomeFragment : Fragment() {
     //Basicamente comparte el ViewModel entre fragmentos
     private val viewModel: RecipesViewModel by activityViewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database.RecetaDao()
-        )
+        RecipesViewModel.factory
     }
 
     // El ViewBinding

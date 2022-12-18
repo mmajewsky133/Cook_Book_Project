@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.databinding.FragmentSelectRecipeBottomSheetBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.RecipeOverviewCardAdapter
+import edu.uca.innovatech.cookbook.ui.viewmodel.CookingViewModel
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
 class SelectRecipeBottomSheetFragment : BottomSheetDialogFragment() {
     //Basicamente comparte el ViewModel entre fragmentos
-    private val viewModel: RecipesViewModel by activityViewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database.RecetaDao()
-        )
+    private val viewModelRecipes: RecipesViewModel by activityViewModels {
+        RecipesViewModel.factory
+    }
+    private val viewModelCooking: CookingViewModel by activityViewModels {
+        CookingViewModel.factory
     }
 
     //el view binding
@@ -44,6 +44,8 @@ class SelectRecipeBottomSheetFragment : BottomSheetDialogFragment() {
         val adapter = RecipeOverviewCardAdapter {
             //Codigo para cuando se presione en el CardView
             //Mandar a Crear un Nuevo Cooking
+            viewModelCooking.agregarCocinar(it.id)
+            // Cierra el BottomSheetFragment
             dismiss()
         }
         val layoutManager = LinearLayoutManager(this.context)
@@ -51,10 +53,8 @@ class SelectRecipeBottomSheetFragment : BottomSheetDialogFragment() {
         binding.rcvListaRecetas.layoutManager = layoutManager
         binding.rcvListaRecetas.adapter = adapter
 
-        viewModel.allRecetas.observe(this.viewLifecycleOwner) { recetas ->
-            recetas.let {
-                adapter.submitList(it)
-            }
+        viewModelRecipes.allRecetas.observe(this.viewLifecycleOwner) { recetas ->
+            recetas.let { adapter.submitList(it) }
         }
     }
 

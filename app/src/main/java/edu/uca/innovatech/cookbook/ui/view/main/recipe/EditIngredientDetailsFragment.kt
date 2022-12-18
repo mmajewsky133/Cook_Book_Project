@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import edu.uca.innovatech.cookbook.CookBookApp
 import edu.uca.innovatech.cookbook.R
 import edu.uca.innovatech.cookbook.constants.MAX_TIME_PREP_PREP
 import edu.uca.innovatech.cookbook.core.ex.loseFocusAfterAction
@@ -20,7 +19,6 @@ import edu.uca.innovatech.cookbook.data.database.entities.RecetasConPasos
 import edu.uca.innovatech.cookbook.databinding.FragmentEditIngredientDetailsBinding
 import edu.uca.innovatech.cookbook.ui.view.adapter.IngredientsDetailsCardAdapter
 import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModel
-import edu.uca.innovatech.cookbook.ui.viewmodel.RecipesViewModelFactory
 
 class EditIngredientDetailsFragment : Fragment() {
 
@@ -30,10 +28,7 @@ class EditIngredientDetailsFragment : Fragment() {
 
     //Basicamente instancia el ViewModel
     private val viewModel: RecipesViewModel by activityViewModels {
-        RecipesViewModelFactory(
-            (activity?.application as CookBookApp).database
-                .RecetaDao()
-        )
+        RecipesViewModel.factory
     }
 
     private var _binding: FragmentEditIngredientDetailsBinding? = null
