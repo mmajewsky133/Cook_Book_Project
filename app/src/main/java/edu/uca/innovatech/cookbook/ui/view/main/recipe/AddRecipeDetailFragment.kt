@@ -131,8 +131,7 @@ class AddRecipeDetailFragment : Fragment() {
         showMaterialDialog(
             getString(android.R.string.dialog_alert_title),
             getString(R.string.conf_exit_recipe_dialog_msg),
-            false,
-            getString(R.string.no), getString(R.string.yes), {}, {
+            false, getString(R.string.no), getString(R.string.yes), {}, {
                 viewModel.actualizarRecetaEstado(receta, true)
                 activity?.finish()
             }

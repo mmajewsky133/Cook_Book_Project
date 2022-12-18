@@ -19,10 +19,9 @@ class CookingActivity : AppCompatActivity() {
     private val onBackPressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             showMaterialDialog(
-                "",
-                "",
-                true,
-                "No", "Yes", {}, {finish()}
+                getString(android.R.string.dialog_alert_title),
+                getString(R.string.conf_exit_cooking_recipe_dialog_msg),
+                true, "No", "Yes", {}, {finish()}
             )
         }
     }
