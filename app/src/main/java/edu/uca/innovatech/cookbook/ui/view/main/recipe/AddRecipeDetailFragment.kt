@@ -93,7 +93,7 @@ class AddRecipeDetailFragment : Fragment() {
         }
         binding.btnTerminar.setOnClickListener {
             finalizarReceta()
-            getActivity()?.finish()
+            activity?.finish()
         }
     }
 
@@ -123,7 +123,7 @@ class AddRecipeDetailFragment : Fragment() {
     }
 
     private fun finalizarReceta() {
-        viewModel.actualizarRecetaEstado(receta)
+        viewModel.actualizarRecetaEstado(receta, false)
     }
 
     private fun mostrarDialogConfirmacionSalida() {
@@ -134,6 +134,7 @@ class AddRecipeDetailFragment : Fragment() {
                 .setCancelable(false)
                 .setNegativeButton(getString(R.string.no)) { _, _ -> }
                 .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                    viewModel.actualizarRecetaEstado(receta, true)
                     getActivity()?.finish()
                 }
                 .show()
