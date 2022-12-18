@@ -77,4 +77,7 @@ dependencies {
 
     //Lottie Library
     implementation "com.airbnb.android:lottie:5.2.0"
+
+    //Confetti impl
+    implementation "nl.dionsegijn:konfetti-xml:2.0.2"
 }

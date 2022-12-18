@@ -1,60 +1,116 @@
 package edu.uca.innovatech.cookbook.ui.view.main.cooking
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import edu.uca.innovatech.cookbook.R
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import edu.uca.innovatech.cookbook.core.ex.showMaterialDialog
+import edu.uca.innovatech.cookbook.databinding.FragmentFinishedCookingBinding
+import kotlinx.coroutines.*
+import nl.dionsegijn.konfetti.core.Party
+import nl.dionsegijn.konfetti.core.Position
+import nl.dionsegijn.konfetti.core.emitter.Emitter
+import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FinishedCookingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FinishedCookingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    //onBackPressed Override
+    private val onBackPressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            activity?.finish()
         }
     }
+
+    // El ViewBinding
+    private var _binding: FragmentFinishedCookingBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_finished_cooking, container, false)
+        _binding = FragmentFinishedCookingBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FinishedCookingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FinishedCookingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //onBackPressed
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, onBackPressedCallback)
+
+        startConfetti()
+        initAnims()
+
+        binding.btnTerminar.setOnClickListener{
+
+            activity?.finish()
+        }
+    }
+
+    private fun startConfetti(){
+        val bundleColors = getThemeColors()
+        val colorsList = listOf(
+            bundleColors.getInt("primary"),
+            bundleColors.getInt("secondary"),
+            bundleColors.getInt("accent")
+        )
+
+        val party = Party(
+            speed = 0f,
+            maxSpeed = 30f,
+            damping = 0.9f,
+            angle = 310,
+            spread = 50,
+            colors = colorsList,
+            timeToLive = 1500,
+            position = Position.Relative(0.0, 0.6),
+            emitter = Emitter(duration = 1, TimeUnit.SECONDS).perSecond(30)
+        )
+        binding.konfettiView.start(
+            party,
+            party.copy(
+                angle = 230,
+                position = Position.Relative(1.0, 0.6)
+            )
+        )
+    }
+
+    private fun initAnims() {
+       MainScope().launch {
+            delay(1000)
+            ObjectAnimator.ofFloat(binding.tvTerminado, "translationY", -800f).apply {
+                duration = 1000
+                interpolator = FastOutSlowInInterpolator()
+            }.start()
+        }
+    }
+
+    private fun getThemeColors(): Bundle {
+        val bundle = Bundle()
+        val typedValue = TypedValue()
+        if (context?.theme?.resolveAttribute((android.R.attr.colorPrimary), typedValue, true) == true){
+            bundle.putInt("primary", typedValue.data)
+        }
+        if (context?.theme?.resolveAttribute((android.R.attr.colorSecondary), typedValue, true) == true){
+            bundle.putInt("secondary", typedValue.data)
+        }
+        if (context?.theme?.resolveAttribute((android.R.attr.colorAccent), typedValue, true) == true){
+            bundle.putInt("accent", typedValue.data)
+        }
+        return bundle
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -186,13 +186,9 @@ class CookStepFragment : Fragment() {
         return ""
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        onCancelTimer()
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
+        timer.cancel()
         _binding = null
     }
 }
